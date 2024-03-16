@@ -4,6 +4,11 @@ import { Inter } from 'next/font/google';
 
 import { Providers } from '../redux/provider';
 
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import theme from '@/theme';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -19,7 +24,14 @@ export default function RootLayout({
   return (
     <Providers>
       <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          {/* <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+            <ThemeProvider theme={theme}>
+              <CssBaseline /> */}
+          {children}
+          {/* </ThemeProvider>
+          </AppRouterCacheProvider> */}
+        </body>
       </html>
     </Providers>
   );
