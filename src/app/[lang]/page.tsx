@@ -7,6 +7,7 @@ import { getDictionary } from '@/get-dictionary';
 import Header from '@/shared/header/header';
 import Footer from '@/shared/footer/footer';
 import { GoogleMap } from '@/sections/homePage/GoogleMap';
+import { OurServices } from '@/sections/homePage/OurServices';
 
 // Define the Home component
 async function Home({ params: { lang } }: { params: { lang: Locale } }) {
@@ -18,6 +19,7 @@ async function Home({ params: { lang } }: { params: { lang: Locale } }) {
       <main className={styles.main}>
         <CardComponent />
       </main>
+      <OurServices dictionary={dictionary.project} />
       <GoogleMap dictionary={dictionary.project} />
       <Footer dictionary={dictionary.project} />
     </>
