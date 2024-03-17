@@ -5,7 +5,6 @@ import { Inter } from 'next/font/google';
 import { Providers } from '../../redux/provider';
 import { Locale, i18n } from '@/i18n-config';
 
-
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -28,7 +27,7 @@ export default function RootLayout({
     <Providers>
       <html lang={params.lang}>
         <body className={inter.className}>
-          {children}
+          <main>{children}</main>
         </body>
       </html>
     </Providers>
