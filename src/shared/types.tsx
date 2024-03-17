@@ -7,3 +7,9 @@ export interface ICard {
   key: string;
   accessibility: number;
 }
+
+export type I18nDictionary = {
+    ['locale-switcher']: {
+        [key: string]: string
+    }
+}

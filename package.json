@@ -12,9 +12,11 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@formatjs/intl-localematcher": "^0.5.4",
     "@mui/material": "^5.14.12",
     "@reduxjs/toolkit": "^1.9.7",
     "axios": "^1.6.8",
+    "negotiator": "^0.6.3",
     "next": "13.5.4",
     "prettier": "^3.2.5",
     "react": "^18",
@@ -26,6 +28,7 @@
     "typesafe-actions": "^5.1.0"
   },
   "devDependencies": {
+    "@types/negotiator": "^0.6.3",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

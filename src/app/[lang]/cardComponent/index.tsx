@@ -1,33 +1,27 @@
-// Import necessary dependencies and styles
-'use client';
-import React, { useEffect } from 'react';
-import { Card, CardContent, Typography, Link, Button } from '@mui/material';
-import styles from './page.module.css';
+"use client"
+import { getCardData } from "@/redux/slices/cardSlice";
+import { useDispatch, useSelector } from "@/redux/store";
+import { Box, Button, Card, CardContent, Link, Typography } from "@mui/material";
+import { useEffect } from "react";
 
-// Import Redux-related functions and actions
-import { useSelector, useDispatch } from '../redux/store';
-import { getCardData } from '@/redux/slices/cardSlice';
+const CardComponent = () => {
+    const dispatch = useDispatch();
 
-// Define the Home component
-const Home: React.FC = () => {
-  // Initialize useDispatch to dispatch Redux actions
-  const dispatch = useDispatch();
+    // Select the 'cardDetails' data from the Redux store using useSelector
+    const { cardDetails } = useSelector((state) => state.cards);
 
-  // Select the 'cardDetails' data from the Redux store using useSelector
-  const { cardDetails } = useSelector((state) => state.cards);
+    // useEffect hook to dispatch 'getResources' action when the component mounts
+    useEffect(() => {
+        dispatch(getCardData());
+    }, []);
 
-  // useEffect hook to dispatch 'getResources' action when the component mounts
-  useEffect(() => {
-    dispatch(getCardData());
-  }, []);
+    // Handler function for clicking the 'Find something to do' button
+    const handleGetWorkClick = () => {
+        // Dispatch the 'getResources' action to fetch data
+        dispatch(getCardData());
+    };
 
-  // Handler function for clicking the 'Find something to do' button
-  const handleGetWorkClick = () => {
-    // Dispatch the 'getResources' action to fetch data
-    dispatch(getCardData());
-  };
-
-  // JSX for rendering the button
+    
   const renderButton = (
     <>
       <h1
@@ -81,9 +75,8 @@ const Home: React.FC = () => {
     </Card>
   );
 
-  // JSX for the main component
   return (
-    <main className={styles.main}>
+    <Box>
       {/* Render the button */}
       {renderButton}
 
@@ -91,9 +84,7 @@ const Home: React.FC = () => {
         {/* Render the card */}
         {renderCard}
       </div>
-    </main>
+    </Box>
   );
-};
-
-// Export the Home component as the default export
-export default Home;
+}
+export default CardComponent;
