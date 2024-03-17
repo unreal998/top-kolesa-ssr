@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './page.module.css';
 
-import LocaleSwitcher from './localeSwitcher';
 import { Locale } from '@/i18n-config';
 import CardComponent from './cardComponent';
 import { getDictionary } from '@/get-dictionary';
 import Header from '@/shared/header/header';
+import Footer from '@/shared/footer/footer';
 
 // Define the Home component
 async function Home({ params: { lang } }: { params: { lang: Locale } }) {
@@ -18,6 +18,7 @@ async function Home({ params: { lang } }: { params: { lang: Locale } }) {
         {/* <LocaleSwitcher params={{ dictionary }} /> */}
         <CardComponent />
       </main>
+      <Footer dictionary={dictionary.project} />
     </>
   );
 }
