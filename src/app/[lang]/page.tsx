@@ -4,8 +4,8 @@ import styles from './page.module.css';
 import { Locale } from '@/i18n-config';
 import CardComponent from './cardComponent';
 import { getDictionary } from '@/get-dictionary';
-import Header from '@/shared/header/header';
-import Footer from '@/shared/footer/footer';
+import Header from '@/shared/header/Header';
+import Footer from '@/shared/footer/Footer';
 
 // Define the Home component
 async function Home({ params: { lang } }: { params: { lang: Locale } }) {

@@ -6,7 +6,7 @@ import { Box, Button, Link, Stack, Typography, styled } from '@mui/material';
 import { ButtonWithIcon } from '../components/ButtonWithIcon';
 import { FooterStrocedText } from './FooterStrocedText';
 import { Copyright } from './Copyright';
-import { BASE_COLORS, contactPhones } from '../../shared/constants';
+import { BASE_COLORS, contactPhones } from '../constants';
 
 const StyledTextBox = styled(Stack)({
   width: '30%',
