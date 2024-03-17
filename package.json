@@ -10,10 +10,12 @@
     "format": "npx prettier . --write"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
+    "@emotion/cache": "^11.11.0",
+    "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
     "@formatjs/intl-localematcher": "^0.5.4",
     "@mui/material": "^5.14.12",
+    "@mui/material-nextjs": "^5.15.11",
     "@reduxjs/toolkit": "^1.9.7",
     "axios": "^1.6.8",
     "negotiator": "^0.6.3",
