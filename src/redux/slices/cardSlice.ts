@@ -1,4 +1,4 @@
-import { ICard } from '@/shared/types';
+import { ICard } from '@/shared/typesTest';
 import { createSlice } from '@reduxjs/toolkit';
 
 type CardState = {

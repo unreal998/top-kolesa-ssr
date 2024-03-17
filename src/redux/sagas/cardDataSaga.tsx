@@ -6,7 +6,7 @@ import {
   getCardDataFailed,
   getCardDataSuccess,
 } from '../slices/cardSlice';
-import { ICard } from '@/shared/types';
+import { ICard } from '@/shared/typesTest';
 
 export function* getResources() {
   try {
