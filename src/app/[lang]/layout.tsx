@@ -1,11 +1,16 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { PT_Sans } from 'next/font/google';
 
 import { Providers } from '../../redux/provider';
 import { Locale, i18n } from '@/i18n-config';
 
-const inter = Inter({ subsets: ['latin'] });
+const ptSans = PT_Sans({
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -25,8 +30,8 @@ export default function RootLayout({
 }) {
   return (
     <Providers>
-      <html lang={params.lang}>
-        <body className={inter.className}>
+      <html lang={params.lang} className={ptSans.className}>
+        <body>
           <main>{children}</main>
         </body>
       </html>
