@@ -8,6 +8,7 @@ import Header from '@/shared/header/header';
 import Footer from '@/shared/footer/footer';
 import { GoogleMap } from '@/sections/homePage/GoogleMap';
 import { OurServices } from '@/sections/homePage/OurServices';
+import { TiresInput } from '@/sections/homePage/TiresInput';
 
 // Define the Home component
 async function Home({ params: { lang } }: { params: { lang: Locale } }) {
@@ -16,9 +17,7 @@ async function Home({ params: { lang } }: { params: { lang: Locale } }) {
   return (
     <>
       <Header lang={lang} dictionary={dictionary.project} />
-      <main className={styles.main}>
-        <CardComponent />
-      </main>
+      <TiresInput dictionary={dictionary.project} />
       <OurServices dictionary={dictionary.project} />
       <GoogleMap dictionary={dictionary.project} />
       <Footer dictionary={dictionary.project} />
