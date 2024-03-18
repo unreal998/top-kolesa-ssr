@@ -4,16 +4,17 @@ import { Locale } from '@/i18n-config';
 import { getDictionary } from '@/get-dictionary';
 import Header from '@/shared/header/header';
 import Footer from '@/shared/footer/footer';
+import AboutPage from './components/about';
 
-async function Shop({ params: { lang } }: { params: { lang: Locale } }) {
+async function About({ params: { lang } }: { params: { lang: Locale } }) {
   const dictionary = await getDictionary(lang);
   return (
     <div>
       <Header lang={lang} dictionary={dictionary.project} />
-      Shop
+      <AboutPage dictionary={dictionary.project} />
       <Footer dictionary={dictionary.project} />
     </div>
   );
 }
 
-export default Shop;
+export default About;
