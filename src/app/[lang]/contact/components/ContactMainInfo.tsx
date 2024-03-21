@@ -21,6 +21,8 @@ const StyledText = styled(Typography)({
   fontSize: '1rem',
 });
 
+/* test */
+
 export function ContactMainInfo({
   dictionary,
 }: {
