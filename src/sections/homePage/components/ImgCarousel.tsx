@@ -3,7 +3,6 @@ import { Box, styled } from '@mui/material';
 import { SliderItem } from '../../../shared/types';
 import 'slick-carousel/slick/slick.css';
 import { useRef, WheelEvent } from 'react';
-import { BASE_COLORS } from '../../../shared/constants';
 
 const settings = {
   slidesToShow: 5,

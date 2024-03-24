@@ -1,11 +1,9 @@
 import React from 'react';
-import styles from './page.module.css';
 
 import { Locale } from '@/i18n-config';
-import CardComponent from './cardComponent';
 import { getDictionary } from '@/get-dictionary';
-import Header from '@/shared/header/header';
-import Footer from '@/shared/footer/footer';
+import Header from '@/shared/header/Header';
+import Footer from '@/shared/footer/Footer';
 import { GoogleMap } from '@/sections/homePage/GoogleMap';
 import { OurServices } from '@/sections/homePage/OurServices';
 import { TiresInput } from '@/sections/homePage/TiresInput';

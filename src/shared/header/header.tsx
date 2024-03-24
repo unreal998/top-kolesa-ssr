@@ -99,7 +99,7 @@ function Header({
     return segments.join('/');
   };
 
-  const languageCode = pathName.split('/')[1] || 'default';
+  const languageCode = pathName ? pathName.split('/')[1] : 'default';
 
   const languages: { code: LocaleType; name: string }[] = [
     {

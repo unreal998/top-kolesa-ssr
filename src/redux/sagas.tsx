@@ -1,6 +1,7 @@
 import { all } from 'redux-saga/effects';
-import { watchCardData } from './sagas/cardDataSaga';
+import { watchFilterData } from './sagas/filterDataSaga';
+import { watchShopGetItems } from './sagas/shopDataSaga';
 
 export function* rootSaga() {
-  yield all([watchCardData()]);
+  yield all([watchFilterData(), watchShopGetItems()]);
 }

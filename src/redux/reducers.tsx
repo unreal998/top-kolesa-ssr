@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
 import { StateType } from 'typesafe-actions';
-import { cardSlice } from './slices/cardSlice';
+import { filterSlice } from './slices/filterSlice';
 
-const slices = [cardSlice];
+
+const slices = [filterSlice];
 
 const toolkitReducers = Object.fromEntries(
   slices.map(({ name, reducer }) => [name, reducer]),
