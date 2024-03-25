@@ -7,6 +7,10 @@ import { Box, Stack, Typography, styled } from '@mui/material';
 import { SliderItem } from '../../shared/types';
 import { BASE_COLORS } from '../../shared/constants';
 import { type getDictionary } from '../../get-dictionary';
+import TiresFilter from './TiresFilter';
+import { getFilterData } from '@/redux/slices/filterSlice';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 const StyledTagLine = styled(Typography)({
   fontWeight: '800',
@@ -156,6 +160,12 @@ export function TiresInput({
 }: {
   dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
 }) {
+  
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getFilterData());
+  }, [dispatch]);
+
   return (
     <>
       <Box
@@ -194,7 +204,7 @@ export function TiresInput({
           {dictionary.tireSelectorTitle2}
         </StyledTagLine>
         <Stack direction="row" alignContent={'center'}>
-          {/* <TiresFilter /> */}
+          <TiresFilter />
         </Stack>
       </Box>
       <Stack bgcolor={BASE_COLORS.DEFAULT_BLUE}>

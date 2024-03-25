@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export async function getFilterDataApi() {
   try {
-    const response = await axios.get(`${SERVER_URL}/api/getFiterData`);
+    const response = await axios.get(`${SERVER_URL}/api/getFilterData`);
 
     return response.data;
   } catch (error) {

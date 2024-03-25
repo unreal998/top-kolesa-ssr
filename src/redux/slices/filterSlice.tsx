@@ -35,3 +35,5 @@ export const filterSlice = createSlice({
 export const { getFilterDataSuccess, getFilterData, getFilterDataFailure } = filterSlice.actions;
 
 export default filterSlice.reducer;
+
+export type filterReducerState = typeof initialState;

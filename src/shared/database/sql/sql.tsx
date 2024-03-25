@@ -120,7 +120,7 @@ export async function getFilterData() {
                                     })
                                     responseData.tireSizes.prices = pricesArray;
                                     connection.release();
-                                    resolve(responseData)
+                                    resolve(responseData.tireSizes)
                                 })
                             })
                         })
