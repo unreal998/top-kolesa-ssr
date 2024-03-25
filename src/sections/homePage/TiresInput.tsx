@@ -7,6 +7,7 @@ import { Box, Stack, Typography, styled } from '@mui/material';
 import { SliderItem } from '../../shared/types';
 import { BASE_COLORS } from '../../shared/constants';
 import { type getDictionary } from '../../get-dictionary';
+import TiresFilter from '../../sections/homePage/TiresFilter';
 
 const StyledTagLine = styled(Typography)({
   fontWeight: '800',
@@ -194,7 +195,7 @@ export function TiresInput({
           {dictionary.tireSelectorTitle2}
         </StyledTagLine>
         <Stack direction="row" alignContent={'center'}>
-          {/* <TiresFilter /> */}
+          <TiresFilter />
         </Stack>
       </Box>
       <Stack bgcolor={BASE_COLORS.DEFAULT_BLUE}>
