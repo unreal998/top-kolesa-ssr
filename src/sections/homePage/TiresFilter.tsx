@@ -1,7 +1,9 @@
 'use client';
 
-import { SyntheticEvent, useState, useCallback } from 'react';
+import { SyntheticEvent, useState, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { type getDictionary } from '../../get-dictionary';
 /* import { useNavigate } from 'react-router-dom'; */
 
 import {
@@ -18,6 +20,14 @@ import { inputLabelClasses } from '@mui/material/InputLabel';
 import { ButtonWithIcon } from '../../shared/components/ButtonWithIcon';
 import { BASE_COLORS, FILTER_COLORS } from '../../shared/constants';
 import { selectFilterData } from '@/redux/slices/selectors/filterSelectors';
+import {
+  setSelectedWidth,
+  setSelectedProfile,
+  setSelectedDiametr,
+  setSeasonChange,
+  setBrandChange,
+} from '@/redux/slices/shopPageSlice';
+import Link from 'next/link';
 
 const StyledFilterBox = styled(Stack)({
   backgroundColor: BASE_COLORS.BACKGROUND_WHITE,
@@ -105,7 +115,11 @@ const StyledAutocomplete = styled(Autocomplete)({
   },
 });
 
-function TiresFilter() {
+function TiresFilter({
+  dictionary,
+}: {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
+}) {
   const dispatch = useDispatch();
   /* const history = useNavigate(); */
   const filtersParams = useSelector(selectFilterData());
@@ -115,13 +129,13 @@ function TiresFilter() {
   const [season, setSeasonValue] = useState('');
   const [brand, setBrandValue] = useState('');
 
-  /*  const handleSearchButton = useCallback(() => {
+  const handleSearchButton = () => {
     dispatch(setSelectedWidth(width));
     dispatch(setSelectedProfile(profile));
     dispatch(setSelectedDiametr(diametr));
     dispatch(setSeasonChange([season]));
     dispatch(setBrandChange([brand]));
-  }); */
+  };
 
   /* history(
       `shop/?price=${JSON.stringify([
@@ -171,11 +185,11 @@ function TiresFilter() {
             break;
           case 'season':
             setSeasonValue(
-              value === 'summer'
+              value === `${dictionary.summer}`
                 ? 'summer'
-                : value === 'winter'
+                : value === `${dictionary.winter}`
                   ? 'winter'
-                  : value === 'all-season'
+                  : value === `${dictionary.allseason}`
                     ? 'all-season'
                     : '',
             );
@@ -205,31 +219,31 @@ function TiresFilter() {
     {
       id: 'width',
       options: filtersParams?.width.slice(1),
-      label: 'width',
+      label: `${dictionary.width}`,
       onChange: handleAutocompleteChange('width'),
     },
     {
       id: 'profile',
       options: filtersParams?.height.slice(1),
-      label: 'profile',
+      label: `${dictionary.profile}`,
       onChange: handleAutocompleteChange('profile'),
     },
     {
       id: 'diametr',
       options: filtersParams?.diametr.slice(1),
-      label: 'diametr',
+      label: `${dictionary.diametr}`,
       onChange: handleAutocompleteChange('diametr'),
     },
     {
       id: 'season',
-      options: ['summer', 'winter', 'all-season'],
-      label: 'season',
+      options: [dictionary.summer, dictionary.winter, dictionary.allseason],
+      label: `${dictionary.season}`,
       onChange: handleAutocompleteChange('season'),
     },
     {
       id: 'brand',
       options: filtersParams?.brands,
-      label: 'brand',
+      label: `${dictionary.brand}`,
       onChange: handleAutocompleteChange('brand'),
     },
   ];
@@ -241,7 +255,7 @@ function TiresFilter() {
         color="#ffffff"
         fontWeight="600"
         textAlign={'center'}>
-        {'tireSelection'}
+        {dictionary.tireSelection}
       </Typography>
       <StyledFilterBox>
         {autocompleteOptions.map(({ id, options, label, onChange }) => (
@@ -272,25 +286,27 @@ function TiresFilter() {
           />
         ))}
       </StyledFilterBox>
-      <ButtonWithIcon
-        button={
-          <Button
-            variant="contained"
-            /* onClick={handleSearchButton} */
-            sx={{
-              backgroundColor: BASE_COLORS.DEFAULT_BLUE,
-              fontWeight: '600',
-              borderRadius: '999px',
-              padding: '20px 40px',
-              fontSize: '0.9rem',
-              '@media (max-width: 800px)': {
-                fontSize: '13px',
-              },
-            }}>
-            {'searchButton'}
-          </Button>
-        }
-        icon={<ArrowRightIcon />}></ButtonWithIcon>
+      <Link href="/shop">
+        <ButtonWithIcon
+          button={
+            <Button
+              variant="contained"
+              onClick={handleSearchButton}
+              sx={{
+                backgroundColor: BASE_COLORS.DEFAULT_BLUE,
+                fontWeight: '600',
+                borderRadius: '999px',
+                padding: '20px 40px',
+                fontSize: '0.9rem',
+                '@media (max-width: 800px)': {
+                  fontSize: '13px',
+                },
+              }}>
+              {dictionary.searchButton}
+            </Button>
+          }
+          icon={<ArrowRightIcon />}></ButtonWithIcon>
+      </Link>
     </Stack>
   );
 }

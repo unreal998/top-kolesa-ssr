@@ -10,7 +10,7 @@ async function Shop({ params: { lang } }: { params: { lang: Locale } }) {
   return (
     <div>
       <Header lang={lang} dictionary={dictionary.project} />
-      Shop
+
       <Footer dictionary={dictionary.project} />
     </div>
   );

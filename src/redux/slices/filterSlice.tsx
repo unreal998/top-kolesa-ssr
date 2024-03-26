@@ -23,7 +23,10 @@ export const filterSlice = createSlice({
   initialState,
   reducers: {
     getFilterData(state) {},
-    getFilterDataSuccess(state, { payload }: PayloadAction<FilterParamsResponce>) {
+    getFilterDataSuccess(
+      state,
+      { payload }: PayloadAction<FilterParamsResponce>,
+    ) {
       state.filtersParams = { ...payload };
     },
     getFilterDataFailure(state, { payload }: PayloadAction<string>) {
@@ -32,7 +35,8 @@ export const filterSlice = createSlice({
   },
 });
 
-export const { getFilterDataSuccess, getFilterData, getFilterDataFailure } = filterSlice.actions;
+export const { getFilterDataSuccess, getFilterData, getFilterDataFailure } =
+  filterSlice.actions;
 
 export default filterSlice.reducer;
 
