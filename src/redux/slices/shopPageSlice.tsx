@@ -194,11 +194,11 @@ export const shopPageSlice = createSlice({
   },
 });
 
-export const { 
-  getShopItems, 
-  getShopItemsSuccess, 
-  getShopItemsFailure, 
-  setSelectedItemId, 
+export const {
+  getShopItems,
+  getShopItemsSuccess,
+  getShopItemsFailure,
+  setSelectedItemId,
   setCardView,
   setSortParams,
   setCurrentPage,
@@ -223,7 +223,52 @@ export const {
   setStuddedChange,
   setVechileTypeChange,
   setResetStudded,
-  setCartModalWindowOpen
+  setCartModalWindowOpen,
 } = shopPageSlice.actions;
+
+const {
+  currentPage,
+  itemsList,
+  selectedItemId,
+  cardView,
+  sortParams,
+  isFullMenuOpen,
+  activeTabIndex,
+  searchInput,
+  selectedWidth,
+  selectedProfile,
+  selectedDiametr,
+  selectedVechileType,
+  selectedPrice,
+  selectedSeason,
+  selectedBrand,
+  cartItemCount,
+  selectedStudded,
+  cartModalWindowOpen,
+  isLoading,
+} = initialState;
+
+export {
+  initialState,
+  currentPage,
+  itemsList,
+  selectedItemId,
+  cardView,
+  sortParams,
+  isFullMenuOpen,
+  activeTabIndex,
+  searchInput,
+  selectedWidth,
+  selectedProfile,
+  selectedDiametr,
+  selectedVechileType,
+  selectedPrice,
+  selectedSeason,
+  selectedBrand,
+  cartItemCount,
+  selectedStudded,
+  cartModalWindowOpen,
+  isLoading,
+};
 
 export type shopPageReducerState = typeof initialState;

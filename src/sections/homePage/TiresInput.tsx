@@ -160,8 +160,7 @@ export function TiresInput({
 }: {
   dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
 }) {
-  
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getFilterData());
   }, [dispatch]);
@@ -204,7 +203,7 @@ export function TiresInput({
           {dictionary.tireSelectorTitle2}
         </StyledTagLine>
         <Stack direction="row" alignContent={'center'}>
-          <TiresFilter />
+          <TiresFilter dictionary={dictionary} />
         </Stack>
       </Box>
       <Stack bgcolor={BASE_COLORS.DEFAULT_BLUE}>
@@ -213,7 +212,6 @@ export function TiresInput({
             backgroundImage: 'url(./imgs/bg-brand.png)',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
-
             '@media (max-width: 1560px)': {
               backgroundPosition: 'right',
             },
