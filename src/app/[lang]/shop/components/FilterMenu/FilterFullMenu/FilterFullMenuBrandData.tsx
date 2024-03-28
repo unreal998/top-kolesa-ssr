@@ -9,8 +9,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   selectSearchInput,
   selectSelectedBrand,
-} from '@/redux/slices/shopPageSlice';
+} from '@/redux/slices/selectors/shopPageSelectors';
 import { selectFilterData } from '@/redux/slices/selectors/filterSelectors';
+import { type getDictionary } from '@/get-dictionary';
 
 import {
   Box,
@@ -34,7 +35,11 @@ const CheckBoxContainer = styled('div')({
   width: '362px',
 });
 
-function FilterFullMenuBrandData() {
+function FilterFullMenuBrandData({
+  dictionary,
+}: {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
+}) {
   const dispatch = useDispatch();
   const selectedBrand = useSelector(selectSelectedBrand);
   const searchInput = useSelector(selectSearchInput);
@@ -96,7 +101,7 @@ function FilterFullMenuBrandData() {
           }}
         />
         <Typography variant="subtitle2" pt={0.2}>
-          {'D.resetFilter'}
+          {dictionary.resetFilter}
         </Typography>
       </Box>
       <CheckBoxContainer>
@@ -130,7 +135,7 @@ function FilterFullMenuBrandData() {
             sx={{
               marginTop: '20px',
             }}>
-            {'D.noMatchesFound'}
+            {dictionary.noMatchesFound}
           </Typography>
         )}
       </CheckBoxContainer>
@@ -146,7 +151,7 @@ function FilterFullMenuBrandData() {
             background: BASE_COLORS.DEFAULT_BLUE,
           },
         }}>
-        {'D.set'}
+        {dictionary.set}
       </Button>
     </>
   );

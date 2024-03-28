@@ -8,21 +8,16 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import {
-  BASE_COLORS,
-  FILTER_COLORS,
-  FONTS,
-} from '../../../../shared/constants';
+import { BASE_COLORS, FILTER_COLORS } from '@/shared/constants';
 import Button from '@mui/material/Button';
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 import { SyntheticEvent, useCallback, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { inputLabelClasses } from '@mui/material/InputLabel';
 import styled from '@emotion/styled';
-import { actions } from '../../reducer';
+import { actions } from '@/redux/slices/shopPageSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { selectFilterData } from '../../../mainPage/selectors';
+
+import { selectFilterData } from '@/redux/slices/selectors/filterSelectors';
 import CloseIcon from '@mui/icons-material/Close';
 import {
   selectSelectedBrand,
@@ -32,7 +27,7 @@ import {
   selectSelectedStudded,
   selectSelectedVechileType,
   selectSelectedWidth,
-} from '../../selectors';
+} from '@/redux/slices/selectors/shopPageSelectors';
 
 type FieldType =
   | 'width'
@@ -70,7 +65,6 @@ const StyledAutocomplete = styled(Autocomplete)({
   },
   [`& .${inputLabelClasses.root}`]: {
     color: 'defaultColor',
-    fontFamily: FONTS.MAIN_TEXT_FAMILY,
     fontSize: '16px',
     [`&.${inputLabelClasses.focused}`]: {
       color: BASE_COLORS.DEFAULT_BLUE,
@@ -78,7 +72,6 @@ const StyledAutocomplete = styled(Autocomplete)({
   },
   //INPUT COLOR/FONTS
   '& .MuiOutlinedInput-root': {
-    fontFamily: FONTS.MAIN_TEXT_FAMILY,
     fontSize: '16px',
     '&:hover .MuiOutlinedInput-notchedOutline': {
       borderColor: BASE_COLORS.DEFAULT_BLUE,
@@ -98,7 +91,6 @@ const StyledAutocomplete = styled(Autocomplete)({
 
   //OPTION COLOR/FONTS
   '& + .MuiAutocomplete-popper .MuiAutocomplete-option': {
-    fontFamily: FONTS.MAIN_TEXT_FAMILY,
     fontSize: '16px',
   },
   '& + .MuiAutocomplete-popper .MuiAutocomplete-option:hover': {
@@ -121,14 +113,12 @@ const StyledButton = styled(Button)({
   marginTop: '1rem',
   width: '40%',
   height: '50px',
-  fontFamily: FONTS.BOLD_TEXT_FAMILY,
+
   fontWeight: 'bold',
 });
 
 export function MobileFilter() {
-  const { t } = useTranslation();
   const dispatch = useDispatch();
-  const history = useNavigate();
   const selectWidth = useSelector(selectSelectedWidth);
   const selectProfile = useSelector(selectSelectedProfile);
   const selectDiametr = useSelector(selectSelectedDiametr);
@@ -184,31 +174,19 @@ export function MobileFilter() {
     let seasonParam = '';
 
     switch (season) {
-      case t('summer'):
+      case 'D.summer':
         seasonParam = 'summer';
         break;
-      case t('winter'):
+      case 'D.winter':
         seasonParam = 'winter';
         break;
-      case t('all-season'):
+      case 'D.all-season':
         seasonParam = 'all-season';
         break;
       default:
         seasonParam = '';
         break;
     }
-
-    history(
-      `?price=${JSON.stringify([
-        Math.min.apply(null, filtersParams.prices),
-        Math.max.apply(null, filtersParams.prices),
-      ])}&width=${JSON.stringify(width)}&profile=${JSON.stringify(
-        profile,
-      )}&diametr=${JSON.stringify(diametr)}&season=${JSON.stringify(
-        seasonParam,
-      )}&brand=${JSON.stringify(brand)}`,
-      { replace: true },
-    );
   };
 
   const handleAutocompleteChange = useCallback(

@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectSelectedVechileType } from '@/redux/slices/shopPageSlice';
+import { selectSelectedVechileType } from '@/redux/slices/selectors/shopPageSelectors';
+import { type getDictionary } from '@/get-dictionary';
 import {
   setVechileTypeChange,
   toggleFullMenu,
@@ -29,7 +30,11 @@ const CheckBoxContainer = styled(FormGroup)({
   width: '362px',
 });
 
-function FilterFullMenuVechileTypeData() {
+function FilterFullMenuVechileTypeData({
+  dictionary,
+}: {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
+}) {
   const dispatch = useDispatch();
   const selectedVechileType = useSelector(selectSelectedVechileType);
   const [vechileType, setVechileType] = useState(selectedVechileType);
@@ -79,7 +84,7 @@ function FilterFullMenuVechileTypeData() {
           }}
         />
         <Typography variant="subtitle2" pt={0.2} sx={{}}>
-          {'D.resetFilter'}
+          {dictionary.resetFilter}
         </Typography>
       </Box>
       <RadioGroup onChange={handleTypeChange}>
@@ -100,7 +105,7 @@ function FilterFullMenuVechileTypeData() {
                   }}
                 />
               }
-              label={`D.${type}`}
+              label={dictionary[type]}
               key={type}
               sx={{
                 '& .MuiTypography-root': {},
@@ -121,7 +126,7 @@ function FilterFullMenuVechileTypeData() {
             background: BASE_COLORS.DEFAULT_BLUE,
           },
         }}>
-        {'D.set'}
+        {dictionary.set}
       </Button>
     </>
   );

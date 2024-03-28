@@ -6,7 +6,9 @@ import { selectFilterData } from '@/redux/slices/selectors/filterSelectors';
 import {
   selectSearchInput,
   selectSelectedWidth,
-} from '@/redux/slices/shopPageSlice';
+} from '@/redux/slices/selectors/shopPageSelectors';
+
+import { type getDictionary } from '@/get-dictionary';
 
 import ClearIcon from '@mui/icons-material/Clear';
 import { Box, Button, Typography } from '@mui/material';
@@ -37,7 +39,11 @@ const StyledButton = styled(Button)({
   },
 });
 
-function FilterFullMenuWidthData() {
+function FilterFullMenuWidthData({
+  dictionary,
+}: {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
+}) {
   const dispatch = useDispatch();
   const searchInput = useSelector(selectSearchInput);
   const selectedWidth = useSelector(selectSelectedWidth);
@@ -92,7 +98,7 @@ function FilterFullMenuWidthData() {
           }}
         />
         <Typography variant="subtitle2" pt={0.2} sx={{}}>
-          {'D.resetFilter'}
+          {dictionary.resetFilter}
         </Typography>
       </Box>
       <ButtonsContainer>
@@ -124,7 +130,7 @@ function FilterFullMenuWidthData() {
               sx={{
                 marginTop: '20px',
               }}>
-              {'D.noMatchesFound'}
+              {dictionary.noMatchesFound}
             </Typography>
           </Box>
         )}

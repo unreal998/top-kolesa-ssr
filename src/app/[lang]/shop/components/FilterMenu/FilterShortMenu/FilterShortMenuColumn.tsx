@@ -7,6 +7,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import { FILTER_COLORS, BASE_COLORS } from '@/shared/constants';
 import { useCallback } from 'react';
+import { type getDictionary } from '@/get-dictionary';
 
 const StyledButtonMain = styled(Button)({
   display: 'flex',
@@ -73,6 +74,7 @@ const StyledButtonSecondary = styled(Button)({
 
 type FilterShortMenuColumnProps = {
   filterName: string;
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
   icon: React.ReactNode;
   params: string[] | string;
   onClick: (param: string) => void;
@@ -83,6 +85,7 @@ function FilterShortMenuColumn({
   filterName,
   params,
   onClick,
+  dictionary,
 }: FilterShortMenuColumnProps) {
   const dispatch = useDispatch();
 
@@ -111,13 +114,13 @@ function FilterShortMenuColumn({
   const getFilterName = useCallback((filterName: string) => {
     switch (filterName) {
       case 'Season':
-        return 'D.season';
+        return `${dictionary.season}`;
       case 'Brand':
-        return 'D.brand';
+        return `${dictionary.brand}`;
       case 'Studded':
-        return 'D.studdedFilterName';
+        return `${dictionary.studdedFilterName}`;
       case 'Vechile Type':
-        return 'D.vechileType';
+        return `${dictionary.vechileType}`;
       default:
         console.error('Unknown filter name');
     }
@@ -126,17 +129,17 @@ function FilterShortMenuColumn({
   function getTextParam(param: string) {
     switch (param) {
       case 'winter':
-        return 'D.winter';
+        return `${dictionary.winter}`;
       case 'summer':
-        return 'D.summer';
+        return `${dictionary.summer}`;
       case 'all-season':
-        return 'D.all-season';
+        return `${dictionary.allseason}`;
       case 'light':
-        return 'D.light';
+        return `${dictionary.light}`;
       case 'lightTruck':
-        return 'D.lightTruck';
+        return `${dictionary.lightTruck}`;
       case 'cargo':
-        return 'D.cargo';
+        return `${dictionary.cargo}`;
       default:
         return param;
     }
@@ -257,7 +260,9 @@ function FilterShortMenuColumn({
                   )}
                   {filterName === 'Studded' && (
                     <Typography variant="body2">
-                      {param === 'studded' ? 'D.studded' : 'D.studless'}
+                      {param === 'studded'
+                        ? `${dictionary.studded}`
+                        : `${dictionary.studless}`}
                     </Typography>
                   )}
                   {filterName === 'Vechile Type' && (

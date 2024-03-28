@@ -22,7 +22,7 @@ import {
   selectSelectedStudded,
   selectSelectedVechileType,
   selectSelectedWidth,
-} from '@/redux/slices/shopPageSlice';
+} from '@/redux/slices/selectors/shopPageSelectors';
 import { selectFilterData } from '@/redux/slices/selectors/filterSelectors';
 
 import FilterShortMenuRow from './FilterShortMenuRow';
@@ -43,8 +43,13 @@ import StuddedTireIcon from '@/shared/Icons/StuddedTireIcon';
 import { PayloadAction } from 'typesafe-actions';
 import { PayloadAction as PayloadActionRedux } from '@reduxjs/toolkit';
 import { useCallback, useEffect } from 'react';
+import { type getDictionary } from '@/get-dictionary';
 
-const FilterShortMenuContainer = () => {
+const FilterShortMenuContainer = ({
+  dictionary,
+}: {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
+}) => {
   const dispatch = useDispatch();
   const filtersParams = useSelector(selectFilterData());
   const selectWidth = useSelector(selectSelectedWidth);
@@ -134,11 +139,13 @@ const FilterShortMenuContainer = () => {
         filterName="Price"
         params={selectedPrice}
         onClick={handleClearPrice}
+        dictionary={dictionary}
       />
       <FilterShortMenuColumn
         icon={<SeasonIcon />}
         filterName="Season"
         params={selectedSeason}
+        dictionary={dictionary}
         onClick={(param) =>
           handleClearColumnFilters(selectedSeason, param, setSeasonChange)()
         }
@@ -147,24 +154,28 @@ const FilterShortMenuContainer = () => {
         icon={<WidthIcon />}
         filterName="Width"
         params={selectWidth}
+        dictionary={dictionary}
         onClick={(e) => handleClearRowsFilters()(e, setClearSelectedWidth)}
       />
       <FilterShortMenuRow
         icon={<ProfileIcon />}
         filterName="Profile"
         params={selectProfile}
+        dictionary={dictionary}
         onClick={(e) => handleClearRowsFilters()(e, setClearSelectedProfile)}
       />
       <FilterShortMenuRow
         icon={<DiametrIcon />}
         filterName="Diametr"
         params={selectDiametr}
+        dictionary={dictionary}
         onClick={(e) => handleClearRowsFilters()(e, setClearSelectedDiametr)}
       />
       <FilterShortMenuColumn
         icon={<BrandIcon />}
         filterName="Brand"
         params={selectedBrand}
+        dictionary={dictionary}
         onClick={(param) =>
           handleClearColumnFilters(selectedBrand, param, setBrandChange)()
         }
@@ -173,18 +184,21 @@ const FilterShortMenuContainer = () => {
         icon={<DriveEtaIcon />}
         filterName="Vechile Type"
         params={selectedVechileType}
+        dictionary={dictionary}
         onClick={() => dispatch(setVechileTypeChange(''))}
       />
       <FilterShortMenuColumn
         icon={<StuddedTireIcon />}
         filterName="Studded"
         params={selectedStudded}
+        dictionary={dictionary}
         onClick={(param) =>
           handleClearColumnFilters(selectedStudded, param, setStuddedChange)()
         }
       />
       {visableResetButton && (
         <FilterShortMenuReset
+          dictionary={dictionary}
           icon={<ResetIcon />}
           onClick={handleCleareAllFilters}
         />

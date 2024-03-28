@@ -1,5 +1,5 @@
 import { styled, Box, Typography } from '@mui/material';
-
+import { type getDictionary } from '@/get-dictionary';
 import { FILTER_COLORS } from '@/shared/constants';
 
 const StyledButton = styled(Box)({
@@ -31,9 +31,14 @@ const StyledButton = styled(Box)({
 type FilterShortMenuRowProps = {
   icon: React.ReactNode;
   onClick: React.MouseEventHandler<HTMLDivElement>;
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
 };
 
-function FilterShortMenuReset({ icon, onClick }: FilterShortMenuRowProps) {
+function FilterShortMenuReset({
+  icon,
+  onClick,
+  dictionary,
+}: FilterShortMenuRowProps) {
   return (
     <StyledButton onClick={onClick}>
       <Box display="flex" alignItems="center" sx={{ flexGrow: 1 }}>
@@ -41,7 +46,7 @@ function FilterShortMenuReset({ icon, onClick }: FilterShortMenuRowProps) {
           {icon}
         </Box>
         <Typography variant="body1" fontWeight={600} ml={1.3}>
-          {'D.resetAllFilters'}
+          {dictionary.resetAllFilters}
         </Typography>
       </Box>
     </StyledButton>

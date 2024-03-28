@@ -1,9 +1,10 @@
 import { useCallback, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { type getDictionary } from '@/get-dictionary';
 import {
   selectSearchInput,
   selectSelectedSeason,
-} from '@/redux/slices/shopPageSlice';
+} from '@/redux/slices/selectors/shopPageSelectors';
 import {
   setSeasonChange,
   toggleFullMenu,
@@ -33,15 +34,19 @@ const CheckBoxContainer = styled(FormGroup)({
   width: '362px',
 });
 
-function FilterFullMenuSeasonData() {
+function FilterFullMenuSeasonData({
+  dictionary,
+}: {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
+}) {
   const dispatch = useDispatch();
   const selectedSeason = useSelector(selectSelectedSeason);
   const searchInput = useSelector(selectSearchInput);
   const [season, setSeason] = useState(selectedSeason);
 
   const filteredSeasons = useMemo(() => {
-    return ['D.winter', 'D.summer', 'D.all-season'].filter((season) =>
-      season.toLowerCase().includes(searchInput.toLowerCase()),
+    return [dictionary.winter, dictionary.summer, dictionary.allseason].filter(
+      (season) => season.toLowerCase().includes(searchInput.toLowerCase()),
     );
   }, [searchInput]);
 
@@ -100,7 +105,7 @@ function FilterFullMenuSeasonData() {
           sx={{
             fontFamily: FONTS.MAIN_TEXT_FAMILY,
           }}>
-          {'D.resetFilter'}
+          {dictionary.resetFilter}
         </Typography>
       </Box>
       <CheckBoxContainer>
@@ -144,7 +149,7 @@ function FilterFullMenuSeasonData() {
               fontFamily: FONTS.MAIN_TEXT_FAMILY,
               marginTop: '20px',
             }}>
-            {'D.noMatchesFound'}
+            {dictionary.noMatchesFound}
           </Typography>
         )}
       </CheckBoxContainer>
@@ -160,7 +165,7 @@ function FilterFullMenuSeasonData() {
             background: BASE_COLORS.DEFAULT_BLUE,
           },
         }}>
-        {'D.set'}
+        {dictionary.set}
       </Button>
     </>
   );

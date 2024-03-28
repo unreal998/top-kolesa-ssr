@@ -9,13 +9,13 @@ import {
   selectCurrentPageItemList,
   selectIsLoading,
   selectPagesCount,
-} from '@/redux/slices/shopPageSlice';
+} from '@/redux/slices/selectors/shopPageSelectors';
 import { setCurrentPage } from '@/redux/slices/shopPageSlice';
-/* import { MobileShopHeaderBar } from './mobileShopHeaderBar/MobileShopHeaderBar'; */
+import { MobileShopHeaderBar } from './mobileShopHeaderBar/MobileShopHeaderBar';
 import { BASE_COLORS } from '@/shared/constants';
 import Loader from '@/shared/components/Loader';
 import NoFilterResults from './NoFilterResults';
-import { type getDictionary } from '../../../../get-dictionary';
+import { type getDictionary } from '@/get-dictionary';
 
 const StyledGridBox = styled(Grid)({
   '@media (min-width: 2050px)': {
@@ -93,7 +93,7 @@ export function ShopContainer({
           padding: '20px 0',
         },
       }}>
-      <ShopHeaderBar />
+      <ShopHeaderBar dictionary={dictionary} />
       {/* <MobileShopHeaderBar /> */}
       {isLoading ? (
         <Box
