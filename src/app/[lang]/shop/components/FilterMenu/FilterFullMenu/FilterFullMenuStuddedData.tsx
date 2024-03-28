@@ -1,11 +1,12 @@
 import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectSelectedStudded } from '@/redux/slices/shopPageSlice';
+import { selectSelectedStudded } from '@/redux/slices/selectors/shopPageSelectors';
 import {
   setStuddedChange,
   toggleFullMenu,
   setResetStudded,
 } from '@/redux/slices/shopPageSlice';
+import { type getDictionary } from '@/get-dictionary';
 
 import styled from '@emotion/styled';
 import {
@@ -31,7 +32,11 @@ const CheckBoxContainer = styled(FormGroup)({
   width: '362px',
 });
 
-function FilterFullMenuStuddedData() {
+function FilterFullMenuStuddedData({
+  dictionary,
+}: {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
+}) {
   const dispatch = useDispatch();
   const selectedStudded = useSelector(selectSelectedStudded);
   const [studded, setStudded] = useState(selectedStudded);
@@ -84,7 +89,7 @@ function FilterFullMenuStuddedData() {
           }}
         />
         <Typography variant="subtitle2" pt={0.2} sx={{}}>
-          {'D.resetFilter'}
+          {dictionary.resetFilter}
         </Typography>
       </Box>
       <RadioGroup onChange={handleSeasonChange}>
@@ -105,7 +110,7 @@ function FilterFullMenuStuddedData() {
                   }}
                 />
               }
-              label={`D.${type}`}
+              label={dictionary[type]}
               key={type}
               sx={{
                 '& .MuiTypography-root': {},
@@ -126,7 +131,7 @@ function FilterFullMenuStuddedData() {
             background: BASE_COLORS.DEFAULT_BLUE,
           },
         }}>
-        {'D.set'}
+        {dictionary.set}
       </Button>
     </>
   );

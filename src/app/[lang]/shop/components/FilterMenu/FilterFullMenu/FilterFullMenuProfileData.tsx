@@ -5,10 +5,11 @@ import {
   toggleFullMenu,
 } from '@/redux/slices/shopPageSlice';
 import { selectFilterData } from '@/redux/slices/selectors/filterSelectors';
+import { type getDictionary } from '@/get-dictionary';
 import {
   selectSearchInput,
   selectSelectedProfile,
-} from '@/redux/slices/shopPageSlice';
+} from '@/redux/slices/selectors/shopPageSelectors';
 
 import { Box, Button, Typography } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -39,7 +40,11 @@ const StyledButton = styled(Button)({
   },
 });
 
-function FilterFullMenuProfileData() {
+function FilterFullMenuProfileData({
+  dictionary,
+}: {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
+}) {
   const dispatch = useDispatch();
   const searchInput = useSelector(selectSearchInput);
   const selectedProfile = useSelector(selectSelectedProfile);
@@ -94,7 +99,7 @@ function FilterFullMenuProfileData() {
           }}
         />
         <Typography variant="subtitle2" pt={0.2} sx={{}}>
-          {'D.resetFilter'}
+          {dictionary.resetFilter}
         </Typography>
       </Box>
       <ButtonsContainer>
@@ -126,7 +131,7 @@ function FilterFullMenuProfileData() {
               sx={{
                 marginTop: '20px',
               }}>
-              {'d.noMatchesFound'}
+              {dictionary.noMatchesFound}
             </Typography>
           </Box>
         )}

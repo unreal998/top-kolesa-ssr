@@ -4,8 +4,10 @@ import { Apps, FormatAlignJustify } from '@mui/icons-material';
 import styled from '@emotion/styled';
 import { BASE_COLORS } from '@/shared/constants';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCardView, selectCardView } from '@/redux/slices/shopPageSlice';
+import { setCardView } from '@/redux/slices/shopPageSlice';
+import { selectCardView } from '@/redux/slices/selectors/shopPageSelectors';
 import { ShopHeaderSort } from '../ShopHeaderSort';
+import { type getDictionary } from '@/get-dictionary';
 
 const ViewButton = styled(Box)({
   backgroundColor: BASE_COLORS.BACKGROUND_WHITE,
@@ -61,7 +63,11 @@ const StyledDivider = styled(Divider)({
   },
 });
 
-export function ShopHeaderBar() {
+export function ShopHeaderBar({
+  dictionary,
+}: {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
+}) {
   const dispatch = useDispatch();
   const cardView = useSelector(selectCardView);
   const tableButton = useRef();
@@ -126,7 +132,7 @@ export function ShopHeaderBar() {
         </ViewButton>
       </Stack>
       <StyledDivider />
-      <ShopHeaderSort />
+      <ShopHeaderSort dictionary={dictionary} />
     </Stack>
   );
 }

@@ -2,11 +2,12 @@ import * as React from 'react';
 import { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DriveEtaIcon from '@mui/icons-material/DriveEta';
-import { selectActiveTabIndex } from '@/redux/slices/shopPageSlice';
+import { selectActiveTabIndex } from '@/redux/slices/selectors/shopPageSelectors';
 import {
   setClearSearchInput,
   toggleFullMenu,
 } from '@/redux/slices/shopPageSlice';
+import { type getDictionary } from '@/get-dictionary';
 
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -87,7 +88,11 @@ function a11yProps(index: number) {
   };
 }
 
-function FilterFullMenuContainer() {
+function FilterFullMenuContainer({
+  dictionary,
+}: {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
+}) {
   const dispatch = useDispatch();
   const activeTabIndex = useSelector(selectActiveTabIndex);
   const [value, setValue] = useState(activeTabIndex);
@@ -107,69 +112,69 @@ function FilterFullMenuContainer() {
   const menuData: { [key: string]: MenuData } = {
     Price: {
       dataComponent: FilterFullMenuPriceData,
-      headerTitle: 'D.filterHeaderTitlePrice',
-      asideHeader: 'D.filterAsideHeaderPrice',
-      text1: 'D.filterAsideText1Price',
+      headerTitle: `${dictionary.filterHeaderTitlePrice}`,
+      asideHeader: `${dictionary.filterAsideHeaderPrice}`,
+      text1: `${dictionary.filterAsideText1Price}`,
     },
     Season: {
       dataComponent: FilterFullMenuSeasonData,
-      headerTitle: 'D.filterHeaderTitleSeason',
-      asideHeader: 'D.filterAsideHeaderSeason',
-      text1: 'D.filterAsideText1Season',
-      text2: 'D.filterAsideText2Season',
-      text3: 'D.filterAsideText3Season',
+      headerTitle: `${dictionary.filterHeaderTitleSeason}`,
+      asideHeader: `${dictionary.filterAsideHeaderSeason}`,
+      text1: `${dictionary.filterAsideText1Season}`,
+      text2: `${dictionary.filterAsideText2Season}`,
+      text3: `${dictionary.filterAsideText3Season}`,
     },
     Width: {
       inputComponent: FilterFullMenuInput,
       dataComponent: FilterFullMenuWidthData,
-      headerTitle: 'D.filterHeaderTitleWidth',
-      asideHeader: 'D.filterAsideHeaderWidth',
-      text1: 'D.filterAsideText1',
-      text2: 'D.filterAsideText2',
+      headerTitle: `${dictionary.filterHeaderTitleWidth}`,
+      asideHeader: `${dictionary.filterAsideHeaderWidth}`,
+      text1: `${dictionary.filterAsideText1}`,
+      text2: `${dictionary.filterAsideText2}`,
       parametr: '205',
-      textForParametr: 'D.filterAsideText3Width',
+      textForParametr: `${dictionary.filterAsideText3Width}`,
     },
     Profile: {
       inputComponent: FilterFullMenuInput,
       dataComponent: FilterFullMenuProfileData,
-      headerTitle: 'D.filterHeaderTitleProfile',
-      asideHeader: 'D.filterAsideHeaderProfile',
-      text1: 'D.filterAsideText1',
-      text2: 'D.filterAsideText2',
+      headerTitle: `${dictionary.filterHeaderTitleProfile}`,
+      asideHeader: `${dictionary.filterAsideHeaderProfile}`,
+      text1: `${dictionary.filterAsideText1}`,
+      text2: `${dictionary.filterAsideText2}`,
       parametr: '75',
-      textForParametr: 'D.filterAsideText3Profile',
+      textForParametr: `${dictionary.filterAsideText3Profile}`,
     },
     Diametr: {
       inputComponent: FilterFullMenuInput,
       dataComponent: FilterFullMenuDiametrData,
-      headerTitle: 'D.filterHeaderTitleDiametr',
-      asideHeader: 'D.filterAsideHeaderDiametr',
-      text1: 'D.filterAsideText1',
-      text2: 'D.filterAsideText2',
+      headerTitle: `${dictionary.filterHeaderTitleDiametr}`,
+      asideHeader: `${dictionary.filterAsideHeaderDiametr}`,
+      text1: `${dictionary.filterAsideText1}`,
+      text2: `${dictionary.filterAsideText2}`,
       parametr: '16',
-      textForParametr: 'D.filterAsideText3Diametr',
+      textForParametr: `${dictionary.filterAsideText3Diametr}`,
     },
     Brand: {
       inputComponent: FilterFullMenuInput,
       dataComponent: FilterFullMenuBrandData,
-      headerTitle: 'D.filterHeaderTitleBrand',
-      asideHeader: 'D.filterAsideHeaderBrand',
-      text1: 'D.filterAsideText1Brand',
-      text2: 'D.filterAsideText2Brand',
+      headerTitle: `${dictionary.filterHeaderTitleBrand}`,
+      asideHeader: `${dictionary.filterAsideHeaderBrand}`,
+      text1: `${dictionary.filterAsideText1Brand}`,
+      text2: `${dictionary.filterAsideText2Brand}`,
     },
     VechileType: {
       dataComponent: FilterFullMenuVechileTypeData,
-      headerTitle: 'D.filterHeaderTitleVechileType',
-      asideHeader: 'D.filterAsideHeaderVechileType',
-      text1: 'D.filterAsideText1VechileType',
-      text2: 'D.filterAsideText2VechileType',
+      headerTitle: `${dictionary.filterHeaderTitleVechileType}`,
+      asideHeader: `${dictionary.filterAsideHeaderVechileType}`,
+      text1: `${dictionary.filterAsideText1VechileType}`,
+      text2: `${dictionary.filterAsideText2VechileType}`,
     },
     Studded: {
       dataComponent: FilterFullMenuStuddedData,
-      headerTitle: 'D.filterHeaderTitleStudded',
-      asideHeader: 'D.filterAsideHeaderStudded',
-      text1: 'D.filterAsideText1Studded',
-      text2: 'D.filterAsideText2Studded',
+      headerTitle: `${dictionary.filterHeaderTitleStudded}`,
+      asideHeader: `${dictionary.filterAsideHeaderStudded}`,
+      text1: `${dictionary.filterAsideText1Studded}`,
+      text2: `${dictionary.filterAsideText2Studded}`,
     },
   };
 
@@ -242,8 +247,8 @@ function FilterFullMenuContainer() {
                   }}>
                   {headerTitle?.toUpperCase()}
                 </Typography>
-                {InputComponent && <InputComponent />}
-                {DataComponent && <DataComponent />}
+                {InputComponent && <InputComponent dictionary={dictionary} />}
+                {DataComponent && <DataComponent dictionary={dictionary} />}
               </Box>
               <Box
                 flexBasis="289px"
@@ -284,7 +289,7 @@ function FilterFullMenuContainer() {
                 {key === 'Width' || key === 'Profile' || key === 'Diametr' ? (
                   <StyledText>
                     {menuData[key].text2}
-                    <b>205/75 R16 91T</b> {'D.where'}
+                    <b>205/75 R16 91T</b> {dictionary.where}
                     <b>{menuData[key].parametr}</b>{' '}
                     {menuData[key].textForParametr}
                   </StyledText>

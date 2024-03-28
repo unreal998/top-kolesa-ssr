@@ -5,6 +5,7 @@ import { selectFilterData } from '@/redux/slices/selectors/filterSelectors';
 import { Button, styled, Box, ButtonGroup, Typography } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ClearIcon from '@mui/icons-material/Clear';
+import { type getDictionary } from '@/get-dictionary';
 
 import { FILTER_COLORS, BASE_COLORS } from '@/shared/constants';
 
@@ -63,6 +64,7 @@ const StyledButtonSecondary = styled(Button)({
 });
 
 type FilterShortMenuColumnPriceProps = {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
   filterName: 'Price';
   icon: React.ReactNode;
   params: number[];
@@ -76,6 +78,7 @@ function FilterShortMenuColumnPrice({
   filterName,
   params,
   onClick,
+  dictionary,
 }: FilterShortMenuColumnPriceProps) {
   const dispatch = useDispatch();
   const filtersParams = useSelector(selectFilterData());
@@ -83,7 +86,7 @@ function FilterShortMenuColumnPrice({
   const maxPrice = Math.max(...filtersParams.prices);
 
   const visableParams =
-    maxPrice === params?.[1] && minPrice === params?.[0] ? true : false;
+    maxPrice === params?.[1] && minPrice === params?.[0] ? false : true;
   const handleMenuToggle = () => {
     dispatch(toggleFullMenu(0));
   };
@@ -145,7 +148,7 @@ function FilterShortMenuColumnPrice({
                 : FILTER_COLORS.TEXT_SHORT_MENU,
               transition: 'color 0.2s ease',
             }}>
-            {'D.price'}
+            {dictionary.price}
           </Typography>
         </Box>
         <ArrowForwardIosIcon sx={{ height: '20px' }} />
@@ -187,7 +190,7 @@ function FilterShortMenuColumnPrice({
               <ClearIcon fontSize="inherit" />
             </Box>
             <Typography variant="body2">
-              {'D.from'} {params?.[0]} {'D.to'} {params?.[1]}
+              {dictionary.from} {params?.[0]} {dictionary.to} {params?.[1]}
             </Typography>
           </Box>
         </StyledButtonSecondary>

@@ -1,6 +1,6 @@
 'use client';
 
-import { type getDictionary } from '../../../../get-dictionary';
+import { type getDictionary } from '@/get-dictionary';
 import { ShopContainer } from './ShopContainer';
 import { Box, Dialog } from '@mui/material';
 
@@ -12,7 +12,8 @@ import {
   toggleFullMenu,
 } from '@/redux/slices/shopPageSlice';
 import { getFilterData } from '@/redux/slices/filterSlice';
-import { selectIsFullMenuOpen } from '@/redux/slices/shopPageSlice';
+
+import { selectIsFullMenuOpen } from '@/redux/slices/selectors/shopPageSelectors';
 import { selectFilterData } from '@/redux/slices/selectors/filterSelectors';
 
 import FilterShortMenuContainer from './FilterMenu/FilterShortMenu/FilterShortMenuContainer';
@@ -50,8 +51,6 @@ function ContainerPage({
     dispatch(toggleFullMenu());
   };
 
-  console.log('isFullMenuOpen', isFullMenuOpen);
-
   return (
     <Box
       padding="0 30px"
@@ -65,8 +64,8 @@ function ContainerPage({
         },
       }}>
       <Box position="relative">
-        <FilterShortMenuContainer />
-        {/* {isFullMenuOpen && (
+        <FilterShortMenuContainer dictionary={dictionary} />
+        {isFullMenuOpen && (
           <Dialog
             open={isFullMenuOpen}
             onClose={handleCloseMenu}
@@ -79,9 +78,9 @@ function ContainerPage({
                 maxHeight: '100%',
               },
             }}>
-            <FilterFullMenuContainer />
+            <FilterFullMenuContainer dictionary={dictionary} />
           </Dialog>
-        )} */}
+        )}
       </Box>
       <ShopContainer dictionary={dictionary} />
     </Box>

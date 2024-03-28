@@ -1,10 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectFilterData } from '@/redux/slices/selectors/filterSelectors';
+import { type getDictionary } from '@/get-dictionary';
 import {
   selectSearchInput,
   selectSelectedDiametr,
-} from '@/redux/slices/shopPageSlice';
+} from '@/redux/slices/selectors/shopPageSelectors';
 import {
   setSelectedDiametr,
   toggleFullMenu,
@@ -14,7 +15,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { Box, Button, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-import { FILTER_COLORS, FONTS } from '@/shared/constants';
+import { FILTER_COLORS } from '@/shared/constants';
 
 const ButtonsContainer = styled('div')({
   display: 'grid',
@@ -28,7 +29,6 @@ const StyledButton = styled(Button)({
   height: '59px',
   border: 'none',
   fontSize: '1.2rem',
-  fontFamily: FONTS.BOLD_TEXT_FAMILY,
   color: `${FILTER_COLORS.TEXT_MAIN}`,
   '&:hover': {
     backgroundColor: `${FILTER_COLORS.BACKGROUND_GREY}`,
@@ -40,7 +40,11 @@ const StyledButton = styled(Button)({
   },
 });
 
-function FilterFullMenuDiametr() {
+function FilterFullMenuDiametr({
+  dictionary,
+}: {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
+}) {
   const dispatch = useDispatch();
   const searchInput = useSelector(selectSearchInput);
   const selectedDiametr = useSelector(selectSelectedDiametr);
@@ -95,13 +99,8 @@ function FilterFullMenuDiametr() {
             transition: 'all 0.2s ease',
           }}
         />
-        <Typography
-          variant="subtitle2"
-          pt={0.2}
-          sx={{
-            fontFamily: FONTS.MAIN_TEXT_FAMILY,
-          }}>
-          {'D.resetFilter'}
+        <Typography variant="subtitle2" pt={0.2} sx={{}}>
+          {dictionary.resetFilter}
         </Typography>
       </Box>
       <ButtonsContainer>
@@ -131,10 +130,9 @@ function FilterFullMenuDiametr() {
             <Typography
               variant="subtitle2"
               sx={{
-                fontFamily: FONTS.MAIN_TEXT_FAMILY,
                 marginTop: '20px',
               }}>
-              {'D.noMatchesFound'}
+              {dictionary.noMatchesFound}
             </Typography>
           </Box>
         )}

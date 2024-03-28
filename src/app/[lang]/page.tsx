@@ -8,10 +8,9 @@ import { GoogleMap } from '@/sections/homePage/GoogleMap';
 import { OurServices } from '@/sections/homePage/OurServices';
 import { TiresInput } from '@/sections/homePage/TiresInput';
 
-// Define the Home component
 async function Home({ params: { lang } }: { params: { lang: Locale } }) {
   const dictionary = await getDictionary(lang);
-  // JSX for the main component
+
   return (
     <>
       <Header lang={lang} dictionary={dictionary.project} />
@@ -23,5 +22,4 @@ async function Home({ params: { lang } }: { params: { lang: Locale } }) {
   );
 }
 
-// Export the Home component as the default export
 export default Home;

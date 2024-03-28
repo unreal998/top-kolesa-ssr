@@ -6,7 +6,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { Button, styled, Box, Typography } from '@mui/material';
 
 import { FILTER_COLORS, BASE_COLORS } from '@/shared/constants';
-
+import { type getDictionary } from '@/get-dictionary';
 import { useCallback } from 'react';
 
 const StyledButton = styled(Button)({
@@ -49,6 +49,7 @@ const StyledButton = styled(Button)({
 
 type FilterShortMenuRowProps = {
   filterName: 'Width' | 'Profile' | 'Diametr' | 'Vechile Type';
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
   icon: React.ReactNode;
   params: string;
   onClick: (
@@ -61,6 +62,7 @@ function FilterShortMenuRow({
   filterName,
   params,
   onClick,
+  dictionary,
 }: FilterShortMenuRowProps) {
   const dispatch = useDispatch();
 
@@ -84,13 +86,13 @@ function FilterShortMenuRow({
     (filterName: string) => {
       switch (filterName) {
         case 'Width':
-          return 'D.width';
+          return `${dictionary.width}`;
         case 'Profile':
-          return 'D.profile';
+          return `${dictionary.profile}`;
         case 'Diametr':
-          return 'D.diametr';
+          return `${dictionary.diametr}`;
         case 'Vechile Type':
-          return 'D.vechileType';
+          return `${dictionary.vechileType}`;
         default:
           throw new Error('Unknown filter param');
       }

@@ -1,12 +1,13 @@
 import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { type getDictionary } from '@/get-dictionary';
 import {
   setResetPriceRange,
   initializePriceRange,
   setPriceChange,
   toggleFullMenu,
 } from '@/redux/slices/shopPageSlice';
-import { selectSelectedPrice } from '@/redux/slices/shopPageSlice';
+import { selectSelectedPrice } from '@/redux/slices/selectors/shopPageSelectors';
 
 import {
   Box,
@@ -40,7 +41,11 @@ const StyledTextField = styled(TextField)({
   },
 });
 
-function FilterFullMenuPriceData() {
+function FilterFullMenuPriceData({
+  dictionary,
+}: {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
+}) {
   const dispatch = useDispatch();
   const filtersParams = useSelector(selectFilterData());
   const selectedPriceGlobal = useSelector(selectSelectedPrice);
@@ -133,19 +138,19 @@ function FilterFullMenuPriceData() {
           }}
         />
         <Typography variant="subtitle2" pt={0.2} sx={{}}>
-          {'D.resetFilter'}
+          {dictionary.resetFilter}
         </Typography>
       </Box>
       <Box display="flex" justifyContent="space-around" marginBottom="20px">
         <StyledTextField
-          label={'D.minPrice'}
+          label={dictionary.minPrice}
           variant="outlined"
           value={tempPrice[0]}
           onChange={handleLeftSliderChange}
           type="number"
         />
         <StyledTextField
-          label={'D.maxPrice'}
+          label={dictionary.maxPrice}
           variant="outlined"
           value={tempPrice[1]}
           onChange={handleRightSliderChange}
@@ -177,7 +182,7 @@ function FilterFullMenuPriceData() {
             background: BASE_COLORS.DEFAULT_BLUE,
           },
         }}>
-        {'D.set'}
+        {dictionary.set}
       </Button>
     </Box>
   );

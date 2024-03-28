@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { BASE_COLORS } from '../../../../shared/constants';
+import { BASE_COLORS } from '@/shared/constants';
 import { MobileShow } from './MobileShow';
 import { MobileSortBy } from './MobileSortBy';
 import { MobileFilter } from './MobileFilter';

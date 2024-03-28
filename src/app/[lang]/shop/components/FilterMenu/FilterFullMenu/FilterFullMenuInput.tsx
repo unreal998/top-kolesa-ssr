@@ -2,8 +2,9 @@ import {
   setSearchInput,
   setClearSearchInput,
 } from '@/redux/slices/shopPageSlice';
+import { type getDictionary } from '@/get-dictionary';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectSearchInput } from '@/redux/slices/shopPageSlice';
+import { selectSearchInput } from '@/redux/slices/selectors/shopPageSelectors';
 
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -23,7 +24,12 @@ const InputSearch = styled('input')({
     outline: 'none',
   },
 });
-function FilterFullMenuInput() {
+
+function FilterFullMenuInput({
+  dictionary,
+}: {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
+}) {
   const dispatch = useDispatch();
   const searchInput = useSelector(selectSearchInput);
 
@@ -54,7 +60,7 @@ function FilterFullMenuInput() {
         value={searchInput}
         onChange={handleInputChange}
         className="input-search"
-        placeholder={'D.search'}
+        placeholder={dictionary.search}
       />
       <Box sx={{ position: 'absolute', right: 10, top: 7 }}>
         {renderInputIcon()}

@@ -10,7 +10,9 @@ import {
 } from '@mui/material';
 import { BASE_COLORS, FILTER_COLORS } from '@/shared/constants';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSortParams, selectSortParams } from '@/redux/slices/shopPageSlice';
+import { setSortParams } from '@/redux/slices/shopPageSlice';
+import { selectSortParams } from '@/redux/slices/selectors/shopPageSelectors';
+import { type getDictionary } from '@/get-dictionary';
 
 const StyledFormControl = styled(FormControl)({
   marginTop: '-44px',
@@ -30,7 +32,11 @@ const StyledInputLabel = styled(InputLabel)({
   },
 });
 
-export function ShopHeaderSort() {
+export function ShopHeaderSort({
+  dictionary,
+}: {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
+}) {
   const dispatch = useDispatch();
   const sortParams = useSelector(selectSortParams());
 
@@ -59,10 +65,10 @@ export function ShopHeaderSort() {
   );
 
   const sortItems = [
-    { value: 'rated', label: 'rated' },
-    { value: 'date', label: 'date' },
-    { value: 'priceHigh', label: 'priceHigh' },
-    { value: 'priceLow', label: 'priceLow' },
+    { value: 'rated', label: `${dictionary.rated}` },
+    { value: 'date', label: `${dictionary.date}` },
+    { value: 'priceHigh', label: `${dictionary.priceHigh}` },
+    { value: 'priceLow', label: `${dictionary.priceLow}` },
   ];
 
   const showItems = [10, 20, 30];
@@ -76,7 +82,7 @@ export function ShopHeaderSort() {
           sx={{
             width: '95%',
           }}>
-          <StyledInputLabel>{'sortBy'}</StyledInputLabel>
+          <StyledInputLabel>{dictionary.sortBy}</StyledInputLabel>
           <Select
             defaultValue={sortParams?.sortBy || 'rated'}
             onChange={handleChangeSortBy}
@@ -115,7 +121,7 @@ export function ShopHeaderSort() {
             sx={{
               color: BASE_COLORS.DEFAULT_GREY,
             }}>
-            {'show'}
+            {dictionary.show}
           </StyledInputLabel>
           <Select
             value={sortParams?.showBy?.toString()}
