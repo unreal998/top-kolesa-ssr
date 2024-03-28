@@ -1,4 +1,5 @@
-import { filterReducerState, filterSlice } from "../filterSlice";
+import { filterReducerState, filterSlice } from '../filterSlice';
+import { ShopSliceStore } from '../shopPageSlice';
 
 export type FilterSliceStore = {
   [filterSlice.name]: filterReducerState;
