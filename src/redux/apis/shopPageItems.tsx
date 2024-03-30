@@ -26,7 +26,7 @@ export async function getShopPageItems(params: '' | FilterParams) {
     );
     return response.data;
   } else {
-    response = await axios.get(`${SERVER_URL}/shop`);
+    response = await axios.get(`${SERVER_URL}/api/getShopData`);
     return response.data;
   }
 }

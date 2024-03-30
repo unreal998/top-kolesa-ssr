@@ -18,6 +18,7 @@ import { selectFilterData } from '@/redux/slices/selectors/filterSelectors';
 
 import FilterShortMenuContainer from './FilterMenu/FilterShortMenu/FilterShortMenuContainer';
 import FilterFullMenuContainer from './FilterMenu/FilterFullMenu/FilterFullMenuContainer';
+import { useSearchParams } from 'next/navigation';
 
 function ContainerPage({
   dictionary,
@@ -25,11 +26,28 @@ function ContainerPage({
   dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
 }) {
   const dispatch = useDispatch();
+  const searchParams = useSearchParams();
   const isFullMenuOpen = useSelector(selectIsFullMenuOpen);
   const filtersParams = useSelector(selectFilterData());
   const [isInitialized, setIsInitialized] = useState<boolean>(true);
 
   useEffect(() => {
+    if (searchParams && searchParams.size > 0) {
+      dispatch(
+        getShopItems({
+          price: searchParams.get('price') || undefined,
+          width: searchParams.get('width') || undefined,
+          profile: searchParams.get('profile') || undefined,
+          diametr: searchParams.get('diametr') || undefined,
+          season: searchParams.get('season') || undefined,
+          brand: searchParams.get('brand') || undefined,
+          studded: searchParams.get('studded') || undefined,
+          vechileType: searchParams.get('vechileType') || undefined,
+        }),
+      );
+    } else {
+      dispatch(getShopItems(''));
+    }
     dispatch(getFilterData());
   }, [dispatch]);
 
