@@ -5,6 +5,11 @@ import { ShopItem } from '@/redux/slices/shopPageSlice';
 import { SHOP_ITEM_TIRES_IMG_PREFIX } from '@/shared/keys';
 import { motion } from 'framer-motion';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { type getDictionary } from '@/get-dictionary';
+
+type ShopItemTableProps = ShopItem & {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
+};
 
 const HoverableBox = styled(motion.div)({
   position: 'absolute',
@@ -76,7 +81,8 @@ export function ShopItemTable({
   speed,
   weight,
   param,
-}: ShopItem) {
+  dictionary,
+}: ShopItemTableProps) {
   const [value, setValue] = useState<number | null>(2);
   const [hoverWindow, setHoverWindow] = useState<boolean>(false);
 
@@ -85,12 +91,12 @@ export function ShopItemTable({
   }, [rating]);
 
   const tableData = [
-    { title: 'width', info: width },
-    { title: 'diametr', info: diametr },
-    { title: 'profile', info: height },
-    { title: 'country', info: country },
-    { title: 'season', info: season },
-    { title: 'year', info: year },
+    { title: `${dictionary.width}`, info: width },
+    { title: `${dictionary.diametr}`, info: diametr },
+    { title: `${dictionary.profile}`, info: height },
+    { title: `${dictionary.country}`, info: country },
+    { title: `${dictionary.season}`, info: season },
+    { title: `${dictionary.year}`, info: year },
   ];
 
   const handleHoverOpen = () => {

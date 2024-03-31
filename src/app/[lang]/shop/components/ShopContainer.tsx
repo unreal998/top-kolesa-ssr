@@ -127,6 +127,7 @@ export function ShopContainer({
                       speed={item.speed}
                       weight={item.weight}
                       param={item.param}
+                      dictionary={dictionary}
                     />
                   ) : (
                     <ShopItemTable
@@ -145,6 +146,7 @@ export function ShopContainer({
                       speed={item.speed}
                       weight={item.weight}
                       param={item.param}
+                      dictionary={dictionary}
                     />
                   )}
                 </Grid>
