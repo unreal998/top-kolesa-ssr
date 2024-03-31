@@ -15,6 +15,11 @@ export const selectPagesCount =
     );
   };
 
+export const selectShopItemsList =
+  () =>
+  ({ shopPageSliceData }: ShopSliceStore) =>
+    shopPageSliceData.itemsList;
+
 export const selectCurrentPageItemList =
   () =>
   ({ shopPageSliceData }: ShopSliceStore) => {

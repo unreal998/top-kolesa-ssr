@@ -1,7 +1,8 @@
 'use client';
 
-import React, { SyntheticEvent, useCallback, useState } from 'react';
+import React, { SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import NextLink from 'next/link';
+import { FONTS } from '@/shared/constants';
 import {
   Box,
   Button,
@@ -22,12 +23,24 @@ import {
   TimerOutlined,
 } from '@mui/icons-material';
 import PhoneIcon from '@mui/icons-material/Phone';
-import { type getDictionary } from '../../get-dictionary';
+import { type getDictionary } from '@/get-dictionary';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { usePathname } from 'next/navigation';
 import { i18n, type Locale } from '../../i18n-config';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  selectCartItemCount,
+  selectCartModalWindowOpen,
+} from '@/redux/slices/selectors/shopPageSelectors';
+import {
+  setCartItemCount,
+  getShopItems,
+  setCartModalWindowOpen,
+} from '@/redux/slices/shopPageSlice';
+import MenuModalWindow from './MenuModalWindow';
 
 import { BASE_COLORS } from '@/shared/constants';
+import CartModalWindow from './CartModalWindow';
 
 const StyledTextMain = styled(Typography)({
   color: '#FFFFFF',
@@ -81,8 +94,23 @@ function Header({
   dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
   lang: string;
 }) {
+  const dispatch = useDispatch();
   const pathName = usePathname();
+  const cartItemCount = useSelector(selectCartItemCount);
+  const cartModalWindowOpen = useSelector(selectCartModalWindowOpen);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  useEffect(() => {
+    const cartItemsCountFromStorage = JSON.parse(
+      localStorage.getItem('cartItem') || '[]',
+    ).length;
+
+    dispatch(setCartItemCount(cartItemsCountFromStorage));
+  }, [dispatch, cartItemCount, cartModalWindowOpen]);
+
+  useEffect(() => {
+    dispatch(getShopItems(''));
+  }, [dispatch]);
 
   const handleLanguageClick = useCallback((event: SyntheticEvent) => {
     setAnchorEl(event.target as HTMLElement);
@@ -119,19 +147,19 @@ function Header({
   const menu: MenuItemData[] = [
     {
       name: 'homeLabel',
-      link: '/',
+      link: `${lang}/`,
     },
     {
       name: 'shopLabel',
-      link: '/shop',
+      link: `${lang}/shop`,
     },
     {
       name: 'aboutLabel',
-      link: '/about',
+      link: `${lang}/about`,
     },
     {
       name: 'contactLabel',
-      link: '/contact',
+      link: `${lang}/contact`,
     },
   ];
 
@@ -213,27 +241,40 @@ function Header({
           />
         </Link>
         <StyledTextNavigation>
-          {menu.map((menuItem, index) => (
-            <NextLink key={index} href={`/${lang}${menuItem.link}`} passHref>
-              <Typography
-                sx={{
-                  color: '#000',
-                  fontSize: '1.1rem',
-                  fontWeight: 400,
-                }}>
-                {dictionary[menuItem.name as keyof typeof dictionary]}
-              </Typography>
-            </NextLink>
-          ))}
+          {menu.map((menuItem, index) => {
+            const isHomePageLink = menuItem.name === 'homeLabel';
+            const isActiveForHomePage =
+              isHomePageLink &&
+              (pathName === `/${lang}` || pathName === `/${lang}/`);
+            const isActiveForOtherPages =
+              !isHomePageLink && pathName?.startsWith(`/${menuItem.link}`);
+            const isActive = isActiveForHomePage || isActiveForOtherPages;
+            return (
+              <NextLink key={index} href={`/${menuItem.link}`} passHref>
+                <Typography
+                  sx={{
+                    color: isActive ? BASE_COLORS.DEFAULT_BLUE : '#000',
+                    fontFamily: FONTS.MAIN_TEXT_FAMILY,
+                    fontSize: '1.1rem',
+                    borderBottom: isActive
+                      ? `1px solid  ${BASE_COLORS.DEFAULT_BLUE}`
+                      : 'none',
+                    fontWeight: isActive ? 600 : 400,
+                  }}>
+                  {dictionary[menuItem.name as keyof typeof dictionary]}
+                </Typography>
+              </NextLink>
+            );
+          })}
         </StyledTextNavigation>
         <StyledButtonsNav>
           <IconButton
-            /* onClick={() =>
-              dispatch(actions.setCartModalWindowOpen(!cartModalWindowOpen))
-            } */
+            onClick={() =>
+              dispatch(setCartModalWindowOpen(!cartModalWindowOpen))
+            }
             aria-label="cart"
             sx={{
-              /* marginRight: cartModalWindowOpen ? '0px' : '1rem', */
+              marginRight: cartModalWindowOpen ? '0px' : '1rem',
               '@media (max-width: 918px)': {
                 width: '10px',
                 height: '10px',
@@ -248,7 +289,7 @@ function Header({
               },
             }}>
             <Badge
-              /* badgeContent={cartItemCount} */
+              badgeContent={cartItemCount}
               sx={{
                 color: '#FFF',
                 '& .MuiBadge-badge': {
@@ -272,7 +313,7 @@ function Header({
               />
             </Badge>
           </IconButton>
-          {/* {cartModalWindowOpen && <CartModalWindow />} */}
+          {cartModalWindowOpen && <CartModalWindow dictionary={dictionary} />}
           <Button
             onClick={(event) => handleLanguageClick(event)}
             sx={{
@@ -337,7 +378,11 @@ function Header({
               </MenuItem>
             ))}
           </Menu>
-          {/* <MenuModalWindow menuData={menu} /> */}
+          <MenuModalWindow
+            menuData={menu}
+            dictionary={dictionary}
+            lang={lang}
+          />
         </StyledButtonsNav>
       </Box>
     </Box>
