@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Link, Rating, Stack, Typography, styled } from '@mui/material';
+import { Box, Rating, Stack, Typography, styled } from '@mui/material';
 import { BASE_COLORS, FILTER_COLORS, FONTS } from '@/shared/constants';
 import { ShopItem } from '@/redux/slices/shopPageSlice';
 import { SHOP_ITEM_TIRES_IMG_PREFIX } from '@/shared/keys';
 import { motion } from 'framer-motion';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { Opacity } from '@mui/icons-material';
+import { type getDictionary } from '@/get-dictionary';
+import Link from 'next/link';
+
+type ShopItemCardProps = ShopItem & {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
+};
 
 const HoverableBox = styled(motion.div)({
   position: 'absolute',
@@ -92,7 +97,8 @@ export function ShopItemCard({
   speed,
   weight,
   param,
-}: ShopItem) {
+  dictionary,
+}: ShopItemCardProps) {
   const [value, setValue] = useState<number | null>(2);
   const [hoverWindow, setHoverWindow] = useState<boolean>(false);
 
@@ -101,12 +107,12 @@ export function ShopItemCard({
   }, [rating]);
 
   const tableData = [
-    { title: 'width', info: width },
-    { title: 'diametr', info: diametr },
-    { title: 'profile', info: height },
-    { title: 'country', info: country },
-    { title: 'season', info: season },
-    { title: 'year', info: year },
+    { title: `${dictionary.width}`, info: width },
+    { title: `${dictionary.diametr}`, info: diametr },
+    { title: `${dictionary.profile}`, info: height },
+    { title: `${dictionary.country}`, info: country },
+    { title: `${dictionary.season}`, info: season },
+    { title: `${dictionary.year}`, info: year },
   ];
 
   const handleHoverOpen = () => {
@@ -118,13 +124,7 @@ export function ShopItemCard({
   };
 
   return (
-    <Link
-      href={`/item?id=${id.toString()}`}
-      sx={{
-        textDecoration: 'none',
-        outline: 'none',
-        textAlign: 'center',
-      }}>
+    <Link href={`item-id-${id}`}>
       <Stack
         direction="column"
         gap="1rem"
@@ -242,7 +242,7 @@ export function ShopItemCard({
                   fontSize="large"
                   sx={{ color: BASE_COLORS.DEFAULT_BLUE }}
                 />
-                <StyledTextBold>{'shortInfo'}</StyledTextBold>
+                <StyledTextBold>{dictionary.shortInfo}</StyledTextBold>
               </Box>
               <Box>
                 {tableData.map((item, index) => (
