@@ -94,7 +94,7 @@ export function ShopContainer({
         },
       }}>
       <ShopHeaderBar dictionary={dictionary} />
-      {/* <MobileShopHeaderBar /> */}
+      <MobileShopHeaderBar dictionary={dictionary} />
       {isLoading ? (
         <Box
           display={'flex'}

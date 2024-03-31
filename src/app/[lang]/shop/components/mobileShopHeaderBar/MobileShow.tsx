@@ -1,11 +1,12 @@
 import { Box } from '@mui/material';
-import { BASE_COLORS } from '../../../../shared/constants';
+import { BASE_COLORS } from '@/shared/constants';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectCardView } from '../../selectors';
+import { selectCardView } from '@/redux/slices/selectors/shopPageSelectors';
 import { useCallback } from 'react';
-import { actions } from '../../reducer';
+import { setCardView } from '@/redux/slices/shopPageSlice';
 import styled from '@emotion/styled';
 import { Apps, FormatAlignJustify } from '@mui/icons-material';
+import { type getDictionary } from '@/get-dictionary';
 
 const ViewButton = styled(Box)({
   backgroundColor: BASE_COLORS.BACKGROUND_WHITE,
@@ -24,11 +25,11 @@ export function MobileShow() {
   const cardView = useSelector(selectCardView);
 
   const handleCardViewChange = useCallback(() => {
-    dispatch(actions.setCardView(false));
+    dispatch(setCardView(false));
   }, []);
 
   const handleTableViewChange = useCallback(() => {
-    dispatch(actions.setCardView(true));
+    dispatch(setCardView(true));
   }, []);
 
   return (
