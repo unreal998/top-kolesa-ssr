@@ -86,7 +86,7 @@ export default function MenuModalWindow({
           const isActive = isActiveForHomePage || isActiveForOtherPages;
 
           return (
-            <Box key={i} marginHorizontal={'auto'} marginTop={'0.3rem'}>
+            <Box key={i} marginY={'auto'} marginTop={'0.3rem'}>
               <Link href={`/${menuItem.link}`} passHref>
                 <Typography
                   lineHeight="1.7"

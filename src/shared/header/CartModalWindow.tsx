@@ -28,6 +28,8 @@ import { BASE_COLORS, FILTER_COLORS } from '@/shared/constants';
 import EmptyCart from './EmptyCart';
 import { type getDictionary } from '@/get-dictionary';
 import Link from 'next/link';
+import path from 'path';
+import { usePathname } from 'next/navigation';
 
 const StyledCartModalWindow = styled(Box)({
   width: '25vw',
@@ -55,10 +57,13 @@ const StyledButton = styled(Button)({
 
 export default function CartModalWindow({
   dictionary,
+  lang,
 }: {
   dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
+  lang: string;
 }) {
   const dispatch = useDispatch();
+  const pathName = usePathname();
   const cartModalWindowOpen = useSelector(selectCartModalWindowOpen);
   const shopItemsList = useSelector(selectShopItemsList());
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -68,6 +73,8 @@ export default function CartModalWindow({
   const [localStorageCartItems, setLocalStorageCartItems] = useState<
     CartStorageData[]
   >([]);
+
+  const languageCode = pathName ? pathName.split('/')[1] : 'default';
 
   useEffect(() => {
     setOpenDrawer(cartModalWindowOpen);
@@ -197,7 +204,7 @@ export default function CartModalWindow({
                     {`${totalAmount} ${dictionary.uah}`}
                   </Typography>
                 </Box>
-                <Link href={'/checkout'}>
+                <Link href={`/${languageCode}/checkout`}>
                   <StyledButton
                     variant="contained"
                     onClick={handletoCheckOutPage}>
@@ -207,7 +214,7 @@ export default function CartModalWindow({
               </Box>
             </>
           ) : (
-            <EmptyCart dictionary={dictionary}/>
+            <EmptyCart dictionary={dictionary} />
           )}
         </StyledCartModalWindow>
       </Drawer>
