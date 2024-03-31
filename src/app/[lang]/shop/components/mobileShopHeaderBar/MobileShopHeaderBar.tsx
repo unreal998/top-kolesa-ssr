@@ -3,8 +3,13 @@ import { BASE_COLORS } from '@/shared/constants';
 import { MobileShow } from './MobileShow';
 import { MobileSortBy } from './MobileSortBy';
 import { MobileFilter } from './MobileFilter';
+import { type getDictionary } from '@/get-dictionary';
 
-export function MobileShopHeaderBar() {
+export function MobileShopHeaderBar({
+  dictionary,
+}: {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
+}) {
   return (
     <Box
       width="100%"
@@ -20,10 +25,11 @@ export function MobileShopHeaderBar() {
         },
       }}>
       <Box>
-        <MobileFilter />
+        <MobileFilter dictionary={dictionary} />
       </Box>
       <Box>
-        <MobileSortBy />
+        {' '}
+        <MobileSortBy dictionary={dictionary} />
       </Box>
       <Box>
         <MobileShow />

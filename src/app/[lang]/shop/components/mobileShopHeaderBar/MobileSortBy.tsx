@@ -1,20 +1,19 @@
 import { Menu, MenuItem, Typography } from '@mui/material';
-import {
-  BASE_COLORS,
-  FILTER_COLORS,
-  FONTS,
-} from '../../../../shared/constants';
+import { BASE_COLORS, FILTER_COLORS } from '@/shared/constants';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectSortParams } from '../../selectors';
+import { selectSortParams } from '@/redux/slices/selectors/shopPageSelectors';
 import { useCallback, useState } from 'react';
-import { actions } from '../../reducer';
-import { useTranslation } from 'react-i18next';
+import { setSortParams } from '@/redux/slices/shopPageSlice';
 import SortIcon from '@mui/icons-material/Sort';
 import Button from '@mui/material/Button';
 import Fade from '@mui/material/Fade';
+import { type getDictionary } from '@/get-dictionary';
 
-export function MobileSortBy() {
-  const { t } = useTranslation();
+export function MobileSortBy({
+  dictionary,
+}: {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
+}) {
   const dispatch = useDispatch();
   const sortParams = useSelector(selectSortParams());
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -31,7 +30,7 @@ export function MobileSortBy() {
   const handleChangeSortBy = useCallback(
     (value: string) => {
       dispatch(
-        actions.setSortParams({
+        setSortParams({
           ...sortParams,
           sortBy: value,
         }),
@@ -44,19 +43,19 @@ export function MobileSortBy() {
   const menueItemData = [
     {
       value: 'rated',
-      label: t('rated'),
+      label: `${dictionary.rated}`,
     },
     {
       value: 'date',
-      label: t('date'),
+      label: `${dictionary.date}`,
     },
     {
       value: 'priceHigh',
-      label: t('priceHigh'),
+      label: `${dictionary.priceHigh}`,
     },
     {
       value: 'priceLow',
-      label: t('priceLow'),
+      label: `${dictionary.priceLow}`,
     },
   ];
 
@@ -75,7 +74,7 @@ export function MobileSortBy() {
         <Typography
           variant="subtitle1"
           sx={{ color: 'white', marginTop: '0.2rem', paddingLeft: '0.4rem' }}>
-          {t('sortBy')}
+          {dictionary.sortBy}
         </Typography>
       </Button>
       <Menu
@@ -98,7 +97,6 @@ export function MobileSortBy() {
             value={item.value}
             onClick={() => handleChangeSortBy(item.value)}
             sx={{
-              fontFamily: FONTS.MAIN_TEXT_FAMILY,
               color:
                 sortParams.sortBy === item.value
                   ? 'white'

@@ -14,8 +14,23 @@ import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 import { SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import { inputLabelClasses } from '@mui/material/InputLabel';
 import styled from '@emotion/styled';
-import { actions } from '@/redux/slices/shopPageSlice';
+import {
+  setSelectedWidth,
+  setSelectedProfile,
+  setSelectedDiametr,
+  setSeasonChange,
+  setBrandChange,
+  setStuddedChange,
+  setVechileTypeChange,
+  setClearSelectedWidth,
+  setClearSelectedProfile,
+  setClearSelectedDiametr,
+  setResetSeason,
+  setResetBrand,
+  setResetStudded,
+} from '@/redux/slices/shopPageSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { type getDictionary } from '@/get-dictionary';
 
 import { selectFilterData } from '@/redux/slices/selectors/filterSelectors';
 import CloseIcon from '@mui/icons-material/Close';
@@ -117,7 +132,11 @@ const StyledButton = styled(Button)({
   fontWeight: 'bold',
 });
 
-export function MobileFilter() {
+export function MobileFilter({
+  dictionary,
+}: {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
+}) {
   const dispatch = useDispatch();
   const selectWidth = useSelector(selectSelectedWidth);
   const selectProfile = useSelector(selectSelectedProfile);
@@ -161,26 +180,26 @@ export function MobileFilter() {
     };
 
   const handleSearchButton = () => {
-    dispatch(actions.setSelectedWidth(width));
-    dispatch(actions.setSelectedProfile(profile));
-    dispatch(actions.setSelectedDiametr(diametr));
-    dispatch(actions.setSeasonChange([originalSeason]));
-    dispatch(actions.setBrandChange([brand]));
-    dispatch(actions.setStuddedChange(originalStudded));
-    dispatch(actions.setVechileTypeChange(vechileType));
+    dispatch(setSelectedWidth(width));
+    dispatch(setSelectedProfile(profile));
+    dispatch(setSelectedDiametr(diametr));
+    dispatch(setSeasonChange([originalSeason]));
+    dispatch(setBrandChange([brand]));
+    dispatch(setStuddedChange(originalStudded));
+    dispatch(setVechileTypeChange(vechileType));
 
     setOpenFilter({ left: false });
 
     let seasonParam = '';
 
     switch (season) {
-      case 'D.summer':
+      case `${dictionary.summer}`:
         seasonParam = 'summer';
         break;
-      case 'D.winter':
+      case `${dictionary.winter}`:
         seasonParam = 'winter';
         break;
-      case 'D.all-season':
+      case `${dictionary.allseason}`:
         seasonParam = 'all-season';
         break;
       default:
@@ -210,15 +229,15 @@ export function MobileFilter() {
             break;
           case 'season':
             const originalValueSeason = value;
-            setSeasonValue(t(value));
+            setSeasonValue(value);
             switch (originalValueSeason) {
-              case t('summer'):
+              case `${dictionary.summer}`:
                 setOriginalSeason('summer');
                 break;
-              case t('winter'):
+              case `${dictionary.winter}`:
                 setOriginalSeason('winter');
                 break;
-              case t('all-season'):
+              case `${dictionary.allseason}`:
                 setOriginalSeason('all-season');
                 break;
               default:
@@ -231,12 +250,12 @@ export function MobileFilter() {
             break;
           case 'studded':
             const originalValueStudded = value;
-            setStuddedValue(t(value));
+            setStuddedValue(value);
             switch (originalValueStudded) {
-              case t('studded'):
+              case `${dictionary.studded}`:
                 setOriginalStudded('studded');
                 break;
-              case t('studless'):
+              case `${dictionary.studless}`:
                 setOriginalStudded('studless');
                 break;
               default:
@@ -246,16 +265,15 @@ export function MobileFilter() {
             break;
           case 'vechileType':
             const originalValueVechileType = value;
-            setVechileTypeValue(t(value));
             switch (originalValueVechileType) {
-              case t('light'):
-                setVechileTypeValue('light');
+              case 'light':
+                setVechileTypeValue(dictionary.light);
                 break;
-              case t('lightTruck'):
-                setVechileTypeValue('lightTruck');
+              case 'lightTruck':
+                setVechileTypeValue(dictionary.lightTruck);
                 break;
-              case t('cargo'):
-                setVechileTypeValue('cargo');
+              case 'cargo':
+                setVechileTypeValue(dictionary.cargo);
                 break;
               default:
                 setVechileTypeValue('');
@@ -276,27 +294,27 @@ export function MobileFilter() {
           switch (type) {
             case 'width':
               setWidthValue('');
-              dispatch(actions.setClearSelectedWidth());
+              dispatch(setClearSelectedWidth());
               break;
             case 'profile':
               setProfileValue('');
-              dispatch(actions.setClearSelectedProfile());
+              dispatch(setClearSelectedProfile());
               break;
             case 'diametr':
               setDiametrValue('');
-              dispatch(actions.setClearSelectedDiametr());
+              dispatch(setClearSelectedDiametr());
               break;
             case 'season':
               setSeasonValue('');
-              dispatch(actions.setResetSeason());
+              dispatch(setResetSeason());
               break;
             case 'brand':
               setBrandValue('');
-              dispatch(actions.setResetBrand());
+              dispatch(setResetBrand());
               break;
             case 'studded':
               setStuddedValue('');
-              dispatch(actions.setResetStudded());
+              dispatch(setResetStudded());
               break;
             case 'vechileType':
               setVechileTypeValue('');
@@ -332,13 +350,13 @@ export function MobileFilter() {
     setBrandValue('');
     setStuddedValue('');
     setVechileTypeValue('');
-    dispatch(actions.setClearSelectedWidth());
-    dispatch(actions.setClearSelectedProfile());
-    dispatch(actions.setClearSelectedDiametr());
-    dispatch(actions.setResetSeason());
-    dispatch(actions.setResetBrand());
-    dispatch(actions.setResetStudded());
-    dispatch(actions.setVechileTypeChange(''));
+    dispatch(setClearSelectedWidth());
+    dispatch(setClearSelectedProfile());
+    dispatch(setClearSelectedDiametr());
+    dispatch(setResetSeason());
+    dispatch(setResetBrand());
+    dispatch(setResetStudded());
+    dispatch(setVechileTypeChange(''));
   };
 
   const autocompleteOptions: AutocompleteOptionType[] = [
@@ -346,7 +364,7 @@ export function MobileFilter() {
       id: 'width',
       value: width,
       options: filtersParams?.width,
-      label: t('width'),
+      label: `${dictionary.width}`,
       onChange: handleAutocompleteChange('width'),
       onInputChange: handleAutocompleteInputChange('width'),
     },
@@ -354,7 +372,7 @@ export function MobileFilter() {
       id: 'profile',
       value: profile,
       options: filtersParams?.height,
-      label: t('profile'),
+      label: `${dictionary.profile}`,
       onChange: handleAutocompleteChange('profile'),
       onInputChange: handleAutocompleteInputChange('profile'),
     },
@@ -362,15 +380,19 @@ export function MobileFilter() {
       id: 'diametr',
       value: diametr,
       options: filtersParams?.diametr,
-      label: t('diametr'),
+      label: `${dictionary.diametr}`,
       onChange: handleAutocompleteChange('diametr'),
       onInputChange: handleAutocompleteInputChange('diametr'),
     },
     {
       id: 'season',
       value: season,
-      options: [t('summer'), t('winter'), t('all-season')],
-      label: t('season'),
+      options: [
+        `${dictionary.summer}`,
+        `${dictionary.winter}`,
+        `${dictionary.allseason}`,
+      ],
+      label: `${dictionary.season}`,
       onChange: handleAutocompleteChange('season'),
       onInputChange: handleAutocompleteInputChange('season'),
     },
@@ -378,23 +400,27 @@ export function MobileFilter() {
       id: 'brand',
       value: brand,
       options: filtersParams?.brands,
-      label: t('brand'),
+      label: `${dictionary.brand}`,
       onChange: handleAutocompleteChange('brand'),
       onInputChange: handleAutocompleteInputChange('brand'),
     },
     {
       id: 'vechileType',
       value: vechileType,
-      options: [t('light'), t('lightTruck'), t('cargo')],
-      label: t('vechileType'),
+      options: [
+        `${dictionary.light}`,
+        `${dictionary.lightTruck}`,
+        `${dictionary.cargo}`,
+      ],
+      label: `${dictionary.vechileType}`,
       onChange: handleAutocompleteChange('vechileType'),
       onInputChange: handleAutocompleteInputChange('vechileType'),
     },
     {
       id: 'studded',
       value: studded,
-      options: [t('studded'), t('studless')],
-      label: t('studdedFilterName'),
+      options: [`${dictionary.studded}`, `${dictionary.studless}`],
+      label: `${dictionary.studdedFilterName}`,
       onChange: handleAutocompleteChange('studded'),
       onInputChange: handleAutocompleteInputChange('studded'),
     },
@@ -421,7 +447,7 @@ export function MobileFilter() {
         <Typography
           variant="subtitle1"
           sx={{ color: 'white', marginTop: '0.2rem', paddingLeft: '0.4rem' }}>
-          {t('filters')}
+          {dictionary.filters}
         </Typography>
       </Button>
       <SwipeableDrawer
@@ -453,11 +479,8 @@ export function MobileFilter() {
                 color: 'white',
               }}
             />
-            <Typography
-              variant="h5"
-              fontFamily={FONTS.BOLD_TEXT_FAMILY}
-              fontWeight={600}>
-              {t('filters')}
+            <Typography variant="h5" fontWeight={600}>
+              {dictionary.filters}
             </Typography>
             <IconButton
               onClick={toggleDrawer(false)}
@@ -486,7 +509,7 @@ export function MobileFilter() {
               ({ id, value, options, label, onChange }) => (
                 <StyledAutocomplete
                   key={id}
-                  value={t(value)}
+                  value={value}
                   clearIcon={value ? undefined : false}
                   disablePortal
                   onChange={onChange}
@@ -498,7 +521,7 @@ export function MobileFilter() {
                   }
                   renderInput={(params) => (
                     <TextField
-                      label={t(label)}
+                      label={label}
                       {...params}
                       InputLabelProps={{
                         ...params.InputLabelProps,
@@ -525,7 +548,7 @@ export function MobileFilter() {
                       FILTER_COLORS.SHORT_MENU_RESET_BUTTON_BACKGROUND,
                   },
                 }}>
-                {t('resetFilter')}
+                {dictionary.resetFilter}
               </StyledButton>
               <StyledButton
                 variant="contained"
@@ -537,7 +560,7 @@ export function MobileFilter() {
                     background: BASE_COLORS.DEFAULT_BLUE,
                   },
                 }}>
-                {t('searchButton')}
+                {dictionary.searchButton}
               </StyledButton>
             </Box>
           </List>
