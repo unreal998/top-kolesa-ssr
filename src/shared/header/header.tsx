@@ -313,7 +313,9 @@ function Header({
               />
             </Badge>
           </IconButton>
-          {cartModalWindowOpen && <CartModalWindow dictionary={dictionary} />}
+          {cartModalWindowOpen && (
+            <CartModalWindow dictionary={dictionary} lang={lang} />
+          )}
           <Button
             onClick={(event) => handleLanguageClick(event)}
             sx={{
