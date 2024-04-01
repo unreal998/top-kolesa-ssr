@@ -1,8 +1,8 @@
 import Slider from 'react-slick';
 import { Box, styled } from '@mui/material';
-import { SliderItem } from '../../../shared/types';
 import 'slick-carousel/slick/slick.css';
 import { useRef, WheelEvent } from 'react';
+import { SliderItem } from '@/shared/types';
 
 const settings = {
   slidesToShow: 5,

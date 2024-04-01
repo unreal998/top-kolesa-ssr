@@ -94,7 +94,7 @@ function FilterFullMenuStuddedData({
       </Box>
       <RadioGroup onChange={handleSeasonChange}>
         <CheckBoxContainer>
-          {studdedTypes.map((type, i) => (
+          {studdedTypes.map((type) => (
             <FormControlLabel
               control={
                 <Radio
@@ -110,7 +110,7 @@ function FilterFullMenuStuddedData({
                   }}
                 />
               }
-              label={dictionary[type]}
+              label={dictionary[type as keyof typeof dictionary]}
               key={type}
               sx={{
                 '& .MuiTypography-root': {},

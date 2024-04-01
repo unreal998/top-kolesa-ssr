@@ -76,7 +76,7 @@ export default function MenuModalWindow({
         />
       </IconButton>
       <List sx={{ marginTop: '1rem' }}>
-        {menuData.map((menuItem: any, i: number) => {
+        {menuData.map((menuItem: MenuItemData, i: number) => {
           const isHomePageLink = menuItem.name === 'homeLabel';
           const isActiveForHomePage =
             isHomePageLink &&
@@ -106,7 +106,7 @@ export default function MenuModalWindow({
                       fontSize: '1.8rem',
                     },
                   }}>
-                  {dictionary[menuItem.name]}
+                  {dictionary[menuItem.name as keyof typeof dictionary]}
                 </Typography>
               </Link>
             </Box>

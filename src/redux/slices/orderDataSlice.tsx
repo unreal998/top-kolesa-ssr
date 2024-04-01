@@ -39,6 +39,7 @@ export const orderSlice = createSlice({
   },
 });
 
-export const { fetchOrderData, fetchOrderDataSuccess, fetchOrderDataFailed } = orderSlice.actions;
+export const { fetchOrderData, fetchOrderDataSuccess, fetchOrderDataFailed } =
+  orderSlice.actions;
 
 export type orderReducerState = typeof initialState;

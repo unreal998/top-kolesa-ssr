@@ -1,7 +1,12 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { getType } from '@reduxjs/toolkit';
 import { ActionType } from 'typesafe-actions';
-import { getShopItems, getShopItemsFailure, getShopItemsSuccess, ShopData } from '../slices/shopPageSlice';
+import {
+  getShopItems,
+  getShopItemsFailure,
+  getShopItemsSuccess,
+  ShopData,
+} from '../slices/shopPageSlice';
 import { getShopPageItems } from '../apis/shopPageItems';
 
 export function* getShopItemsSaga({

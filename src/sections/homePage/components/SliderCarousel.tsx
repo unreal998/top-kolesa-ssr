@@ -1,7 +1,6 @@
 'use client';
-
+import { BASE_COLORS } from '@/shared/constants';
 import { Box, styled } from '@mui/material';
-import { BASE_COLORS } from '../../../shared/constants';
 
 const SecDividerContainer = styled(Box)({
   width: '100px',

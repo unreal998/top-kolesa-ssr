@@ -1,4 +1,11 @@
-import { AutocompleateData, BuyItemResponce, CityListResponce, CityListResponceData, OrderItemProps, WarehouseListResponce } from '@/shared/types';
+import {
+  AutocompleateData,
+  BuyItemResponce,
+  CityListResponce,
+  CityListResponceData,
+  OrderItemProps,
+  WarehouseListResponce,
+} from '@/shared/types';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 type CheckoutPage = {
@@ -68,16 +75,16 @@ export const checkoutSlice = createSlice({
   },
 });
 
-export const { 
-    fetchCityListByInput, 
-    fetchCityListByInputSuccess, 
-    fetchCityListByInputFailed,
-    fetchWarehouseListByInput,
-    fetchWarehouseListByInputSuccess,
-    fetchWarehouseListByInputFailed,
-    fetchBuyItemAction,
-    fetchBuyItemActionSuccess,
-    fetchBuyItemActionFailed
+export const {
+  fetchCityListByInput,
+  fetchCityListByInputSuccess,
+  fetchCityListByInputFailed,
+  fetchWarehouseListByInput,
+  fetchWarehouseListByInputSuccess,
+  fetchWarehouseListByInputFailed,
+  fetchBuyItemAction,
+  fetchBuyItemActionSuccess,
+  fetchBuyItemActionFailed,
 } = checkoutSlice.actions;
 
 export type checkoutReducerState = typeof initialState;

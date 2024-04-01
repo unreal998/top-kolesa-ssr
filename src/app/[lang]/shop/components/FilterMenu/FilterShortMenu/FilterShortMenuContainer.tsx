@@ -64,7 +64,7 @@ const FilterShortMenuContainer = ({
   const selectedVechileType = useSelector(selectSelectedVechileType);
   const minPrice = Math.min(...filtersParams.prices);
   const maxPrice = Math.max(...filtersParams.prices);
-  
+
   useEffect(() => {
     const isFilterBackToInitial =
       selectWidth.length === 0 &&
@@ -81,21 +81,22 @@ const FilterShortMenuContainer = ({
         const path = pathName.replace(/\?.*/gm, '');
         router.push(path);
       } else {
-        const path = pathName.replace(/shop.*/gm,
-        `shop?price=${JSON.stringify([
-          selectedPrice[0],
-          selectedPrice[1],
-        ])}&width=${JSON.stringify(selectWidth)}&profile=${JSON.stringify(
-          selectProfile,
-        )}&diametr=${JSON.stringify(selectDiametr)}&season=${JSON.stringify(
-          selectedSeason,
-        )}&brand=${JSON.stringify(
-          selectedBrand,
-        )}&studded=${selectedStudded}&vechileType=${selectedVechileType}`)
+        const path = pathName.replace(
+          /shop.*/gm,
+          `shop?price=${JSON.stringify([
+            selectedPrice[0],
+            selectedPrice[1],
+          ])}&width=${JSON.stringify(selectWidth)}&profile=${JSON.stringify(
+            selectProfile,
+          )}&diametr=${JSON.stringify(selectDiametr)}&season=${JSON.stringify(
+            selectedSeason,
+          )}&brand=${JSON.stringify(
+            selectedBrand,
+          )}&studded=${selectedStudded}&vechileType=${selectedVechileType}`,
+        );
         router.push(path);
       }
     }
-
   }, [
     router,
     selectDiametr,
