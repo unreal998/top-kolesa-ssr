@@ -141,7 +141,7 @@ export function ContainerCheckout({
   useEffect(() => {
     if (createdOrderId !== '' && pathName) {
       localStorage.removeItem('cartItem');
-      router.push(pathName.replace(/checkout.*/gm, encodeURI(`order?id=${createdOrderId}`)));
+      router.replace(pathName.replace(/checkout.*/gm, encodeURI(`order?id=${createdOrderId}`)));
     }
   }, [createdOrderId, router]);
 

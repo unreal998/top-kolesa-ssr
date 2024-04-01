@@ -92,7 +92,7 @@ const FilterShortMenuContainer = ({
         )}&brand=${JSON.stringify(
           selectedBrand,
         )}&studded=${selectedStudded}&vechileType=${selectedVechileType}`)
-        router.push(encodeURI(path));
+        router.push(path);
       }
     }
 
