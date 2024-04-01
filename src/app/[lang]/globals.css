@@ -3,3 +3,34 @@
   padding: 0;
   text-decoration: none;
 }
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+@media (min-width: 1201px) {
+  html {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 1200px) {
+  html {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 800px) {
+  html {
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 500px) {
+  html {
+    font-size: 0.7rem;
+  }
+}
+@media (max-width: 400px) {
+  html {
+    font-size: 0.6rem;
+  }
+}
