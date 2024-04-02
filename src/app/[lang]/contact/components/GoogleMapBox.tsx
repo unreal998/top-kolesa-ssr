@@ -4,11 +4,11 @@ import { Wrapper } from '@googlemaps/react-wrapper';
 import { GoogleMaps } from './GoogleMaps';
 import { Box, Grid, Typography, styled } from '@mui/material';
 import { useState } from 'react';
-import { BASE_COLORS } from '../../../../shared/constants';
+import { BASE_COLORS, montserrat } from '@/shared/constants';
 import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import { GOOGLE_MAP_KEY } from '../../../../shared/keys';
-import { getDictionary } from '../../../../get-dictionary';
+import { GOOGLE_MAP_KEY } from '@/shared/keys';
+import { getDictionary } from '@/get-dictionary';
 
 const StyledHeadingText = styled(Typography)({
   textAlign: 'start',
@@ -53,7 +53,11 @@ function GoogleMapBox({
           sx={{ color: BASE_COLORS.DEFAULT_BLUE }}
           fontSize="large"
         />
-        <Typography variant="h4" fontWeight="600" ml={1}>
+        <Typography
+          className={montserrat.className}
+          variant="h4"
+          fontWeight="600"
+          ml={1}>
           {dictionary.ourStores}
         </Typography>
       </Box>
@@ -107,10 +111,10 @@ function GoogleMapBox({
                       gap: '0.5rem',
                     },
                   }}>
-                  <StyledHeadingText>
+                  <StyledHeadingText className={montserrat.className}>
                     {dictionary.headerCity},
                   </StyledHeadingText>
-                  <StyledHeadingText>
+                  <StyledHeadingText className={montserrat.className}>
                     {dictionary.headerAddress}
                   </StyledHeadingText>
                 </Box>
@@ -126,7 +130,7 @@ function GoogleMapBox({
                       paddingRight: '0.5rem',
                     }}
                   />
-                  <StyledSubHeading>
+                  <StyledSubHeading className={montserrat.className}>
                     {dictionary.openingHours}:
                   </StyledSubHeading>
                 </Box>
@@ -176,10 +180,10 @@ function GoogleMapBox({
                       gap: '0.5rem',
                     },
                   }}>
-                  <StyledHeadingText>
+                  <StyledHeadingText className={montserrat.className}>
                     {dictionary.headerCity},
                   </StyledHeadingText>
-                  <StyledHeadingText>
+                  <StyledHeadingText className={montserrat.className}>
                     {dictionary.headerAddress2}
                   </StyledHeadingText>
                 </Box>
@@ -195,7 +199,7 @@ function GoogleMapBox({
                       paddingRight: '0.5rem',
                     }}
                   />
-                  <StyledSubHeading>
+                  <StyledSubHeading className={montserrat.className}>
                     {dictionary.openingHours}:
                   </StyledSubHeading>
                 </Box>
@@ -291,10 +295,10 @@ function GoogleMapBox({
                       gap: '0.5rem',
                     },
                   }}>
-                  <StyledHeadingText>
+                  <StyledHeadingText className={montserrat.className}>
                     {dictionary.headerCity},
                   </StyledHeadingText>
-                  <StyledHeadingText>
+                  <StyledHeadingText className={montserrat.className}>
                     {dictionary.headerAddress2}
                   </StyledHeadingText>
                 </Box>
@@ -310,7 +314,7 @@ function GoogleMapBox({
                       paddingRight: '0.5rem',
                     }}
                   />
-                  <StyledSubHeading>
+                  <StyledSubHeading className={montserrat.className}>
                     {dictionary.openingHours}:
                   </StyledSubHeading>
                 </Box>

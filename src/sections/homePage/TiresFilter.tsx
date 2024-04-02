@@ -4,7 +4,6 @@ import { SyntheticEvent, useState, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { type getDictionary } from '../../get-dictionary';
-/* import { useNavigate } from 'react-router-dom'; */
 
 import {
   Autocomplete,
@@ -28,6 +27,7 @@ import {
   setBrandChange,
 } from '@/redux/slices/shopPageSlice';
 import Link from 'next/link';
+import { montserrat } from '@/shared/constants';
 
 const StyledFilterBox = styled(Stack)({
   backgroundColor: BASE_COLORS.BACKGROUND_WHITE,
@@ -254,6 +254,7 @@ function TiresFilter({
         variant="h3"
         color="#ffffff"
         fontWeight="600"
+        className={montserrat.className}
         textAlign={'center'}>
         {dictionary.tireSelection}
       </Typography>

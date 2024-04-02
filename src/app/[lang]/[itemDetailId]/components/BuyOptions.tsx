@@ -21,7 +21,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { type getDictionary } from '@/get-dictionary';
 
 import { ButtonWithIcon } from '@/shared/components/ButtonWithIcon';
-import { BASE_COLORS, TOOLTIP_TIMEOUT } from '@/shared/constants';
+import { BASE_COLORS, TOOLTIP_TIMEOUT, montserrat } from '@/shared/constants';
 import { CartItemData } from '@/shared/types';
 
 type BuyOptionsProps = {
@@ -139,6 +139,7 @@ export default function BuyOptions({
         variant="h3"
         fontWeight="600"
         fontSize="1.9rem"
+        className={montserrat.className}
         color={BASE_COLORS.DEFAULT_BLUE}
         mt={'2rem'}
         sx={{
@@ -179,6 +180,7 @@ export default function BuyOptions({
               paddingBottom: '0.5rem',
             }}>
             <StyledTextField
+              className={montserrat.className}
               id="outlined-basic"
               variant="outlined"
               type="number"

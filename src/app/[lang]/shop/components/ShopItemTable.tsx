@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Link, Rating, Stack, Typography, styled } from '@mui/material';
-import { BASE_COLORS, FILTER_COLORS } from '@/shared/constants';
+import { BASE_COLORS, FILTER_COLORS, montserrat } from '@/shared/constants';
 import { ShopItem } from '@/redux/slices/shopPageSlice';
 import { SHOP_ITEM_TIRES_IMG_PREFIX } from '@/shared/keys';
 import { motion } from 'framer-motion';
@@ -163,6 +163,7 @@ export function ShopItemTable({
             <Typography
               variant="subtitle1"
               fontWeight="600"
+              className={montserrat.className}
               color="#000"
               height={'4.5rem'}
               display={'flex'}
@@ -173,9 +174,10 @@ export function ShopItemTable({
             </Typography>
             <Typography
               variant="h6"
+              className={montserrat.className}
               fontWeight="600"
               color={BASE_COLORS.DEFAULT_BLUE}>
-              {price} {'uah'}
+              {price} {dictionary.uah}
             </Typography>
           </Stack>
           <HoverableBox
@@ -213,7 +215,7 @@ export function ShopItemTable({
                   fontSize="medium"
                   sx={{ color: BASE_COLORS.DEFAULT_BLUE }}
                 />
-                <StyledTextBold>{'shortInfo'}</StyledTextBold>
+                <StyledTextBold>{dictionary.shortInfo}</StyledTextBold>
               </Box>
               <Box>
                 {tableData.map((item, index) => (
@@ -221,8 +223,12 @@ export function ShopItemTable({
                     key={index}
                     display={'flex'}
                     justifyContent={'space-between'}>
-                    <StyledText>{item.title}</StyledText>
-                    <StyledTextBold>{item.info}</StyledTextBold>
+                    <StyledText className={montserrat.className}>
+                      {item.title}
+                    </StyledText>
+                    <StyledTextBold className={montserrat.className}>
+                      {item.info}
+                    </StyledTextBold>
                   </Box>
                 ))}
               </Box>

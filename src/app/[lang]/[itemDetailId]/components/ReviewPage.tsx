@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import { ArrowRight } from '@mui/icons-material';
 
-import { BASE_COLORS } from '@/shared/constants';
+import { BASE_COLORS, montserrat } from '@/shared/constants';
 import { ButtonWithIcon } from '@/shared/components/ButtonWithIcon';
 
 const StyledTextField = styled(TextField)({
@@ -56,7 +56,10 @@ export default function ReviewPage({
         },
       }}>
       <Stack gap="15px" m={'auto'} width={'100%'}>
-        <Typography fontWeight="600" variant="h5">
+        <Typography
+          fontWeight="600"
+          className={montserrat.className}
+          variant="h5">
           {dictionary.addReviewTitle}
         </Typography>
         <Stack gap="20px">

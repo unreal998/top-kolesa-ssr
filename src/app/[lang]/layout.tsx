@@ -1,6 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { PT_Sans } from 'next/font/google';
+import { PT_Sans, Roboto } from 'next/font/google';
 
 import { Providers } from '../../redux/provider';
 import { Locale, i18n } from '@/i18n-config';
@@ -10,6 +10,7 @@ const ptSans = PT_Sans({
   style: ['normal', 'italic'],
   subsets: ['latin'],
   display: 'swap',
+  variable: '--font-ptSans',
 });
 
 export const metadata: Metadata = {

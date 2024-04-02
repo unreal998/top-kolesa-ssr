@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BASE_COLORS, FILTER_COLORS, FONTS } from '@/shared/constants';
+import { BASE_COLORS, FILTER_COLORS } from '@/shared/constants';
 import {
   SwipeableDrawer,
   Box,
@@ -92,7 +92,6 @@ export default function MenuModalWindow({
                   lineHeight="1.7"
                   width={'25%'}
                   variant="body1"
-                  fontFamily={FONTS.MAIN_TEXT_FAMILY}
                   fontSize={'1.5rem'}
                   fontWeight={isActive ? 600 : 500}
                   textAlign={'center'}

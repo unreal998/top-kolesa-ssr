@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { getDictionary } from '../../get-dictionary';
 
 import { GOOGLE_MAP_KEY } from '../../shared/keys';
+import { montserrat } from '@/shared/constants';
 
 function MyMapComponent({
   center,
@@ -139,8 +140,9 @@ export function GoogleMap({
           }}>
           <Typography
             variant="h3"
-            fontWeight="700"
+            fontWeight="900"
             color="#000"
+            className={montserrat.className}
             pb={'1rem'}
             sx={{
               '@media (max-width: 1025px)': {
@@ -150,7 +152,11 @@ export function GoogleMap({
             {dictionary.howToFindUS}
           </Typography>
           <Stack>
-            <Typography variant="h5" fontWeight="600" color="#000">
+            <Typography
+              variant="h5"
+              fontWeight="600"
+              className={montserrat.className}
+              color="#000">
               {dictionary.officeBased}
             </Typography>
             <Typography
@@ -179,7 +185,11 @@ export function GoogleMap({
             </Typography>
           </Stack>
           <Stack>
-            <Typography variant="h5" fontWeight="600" color="#000">
+            <Typography
+              variant="h5"
+              fontWeight="600"
+              className={montserrat.className}
+              color="#000">
               {dictionary.waitingForCall}
             </Typography>
             {contactPhones.map((phone, i) => (
@@ -204,7 +214,11 @@ export function GoogleMap({
             ))}
           </Stack>
           <Stack>
-            <Typography variant="h5" fontWeight="600" color="#000">
+            <Typography
+              variant="h5"
+              fontWeight="600"
+              className={montserrat.className}
+              color="#000">
               {dictionary.ourMail}
             </Typography>
             <Typography

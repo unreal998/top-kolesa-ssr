@@ -8,6 +8,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { FILTER_COLORS, BASE_COLORS } from '@/shared/constants';
 import { useCallback } from 'react';
 import { type getDictionary } from '@/get-dictionary';
+import { montserrat } from '@/shared/constants';
 
 const StyledButtonMain = styled(Button)({
   display: 'flex',
@@ -162,6 +163,7 @@ function FilterShortMenuColumn({
         },
       }}>
       <StyledButtonMain
+        className={montserrat.className}
         onClick={handleMenuToggle}
         sx={{
           borderBottom: visableParams
@@ -193,6 +195,7 @@ function FilterShortMenuColumn({
           </Box>
           <Typography
             variant="body1"
+            className={montserrat.className}
             fontWeight={600}
             style={{
               marginLeft: `${filterName === 'Brand' ? '12px' : '16px'}`,
@@ -211,6 +214,7 @@ function FilterShortMenuColumn({
           .filter((param) => param !== '')
           .map((param) => (
             <StyledButtonSecondary
+              className={montserrat.className}
               key={param}
               disableRipple={true}
               sx={{

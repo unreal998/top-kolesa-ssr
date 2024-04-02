@@ -1,3 +1,12 @@
+import { Montserrat } from 'next/font/google';
+
+export const montserrat = Montserrat({
+  weight: ['400', '500', '600', '700', '800', '900'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
+});
+
 export const BASE_COLORS = {
   DEFAULT_BLUE: 'rgba(28,57,123)',
   BACKGROUND_WHITE: '#f8f8f8',

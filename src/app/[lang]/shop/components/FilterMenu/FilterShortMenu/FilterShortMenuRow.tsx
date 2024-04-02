@@ -8,6 +8,7 @@ import { Button, styled, Box, Typography } from '@mui/material';
 import { FILTER_COLORS, BASE_COLORS } from '@/shared/constants';
 import { type getDictionary } from '@/get-dictionary';
 import { useCallback } from 'react';
+import { montserrat } from '@/shared/constants';
 
 const StyledButton = styled(Button)({
   display: 'flex',
@@ -101,7 +102,7 @@ function FilterShortMenuRow({
   );
 
   return (
-    <StyledButton onClick={handleMenuToggle}>
+    <StyledButton onClick={handleMenuToggle} className={montserrat.className}>
       <Box
         display="flex"
         alignItems="center"
@@ -122,6 +123,7 @@ function FilterShortMenuRow({
         </Box>
         <Typography
           variant="body1"
+          className={montserrat.className}
           fontWeight={600}
           style={{
             marginLeft: `${

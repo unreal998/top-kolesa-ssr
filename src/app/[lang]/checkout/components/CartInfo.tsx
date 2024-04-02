@@ -2,7 +2,7 @@ import { Box, Button, Stack, Typography, styled } from '@mui/material';
 import { CartItem } from '@/shared/header/CartItem';
 import { type getDictionary } from '@/get-dictionary';
 import { CartItemData } from '@/shared/types';
-import { BASE_COLORS } from '@/shared/constants';
+import { BASE_COLORS, montserrat } from '@/shared/constants';
 
 type CartInfoProps = {
   cartItems: CartItemData[];
@@ -43,7 +43,11 @@ export function CartInfo({
           maxHeight: '100%',
         },
       }}>
-      <Typography variant="h6" fontWeight={600} m={'2rem 2rem 1rem 2rem'}>
+      <Typography
+        variant="h6"
+        className={montserrat.className}
+        fontWeight={600}
+        m={'2rem 2rem 1rem 2rem'}>
         {dictionary.yourOder}
       </Typography>
       <Box mx={'1.3rem'} sx={{ overflowY: 'auto' }}>
@@ -67,17 +71,22 @@ export function CartInfo({
       </Box>
       <Box m={'1.3rem'}>
         <Box display={'flex'} justifyContent={'space-between'}>
-          <Typography variant="h6" fontWeight={600}>
+          <Typography
+            variant="h6"
+            className={montserrat.className}
+            fontWeight={600}>
             {dictionary.totalCoast}:
           </Typography>
           <Typography
             variant="h6"
+            className={montserrat.className}
             fontWeight={600}
             color={BASE_COLORS.DEFAULT_BLUE}>
             {`${totalAmount} ${dictionary.uah}`}
           </Typography>
         </Box>
         <StyledButton
+          className={montserrat.className}
           disabled={isBuyButtonDisabled}
           variant="contained"
           onClick={handleOrder}>

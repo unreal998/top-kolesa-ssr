@@ -1,6 +1,6 @@
 import { Locale } from '@/i18n-config';
 import { getDictionary } from '@/get-dictionary';
-import Header from '@/shared/header/Header';
+import Header from '@/shared/header/header';
 import Footer from '@/shared/footer/Footer';
 import { Container } from './components/container';
 

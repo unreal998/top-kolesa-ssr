@@ -20,13 +20,13 @@ import { setCartModalWindowOpen } from '@/redux/slices/shopPageSlice';
 import {
   BASE_COLORS,
   FILTER_COLORS,
-  FONTS,
   TOOLTIP_TIMEOUT,
 } from '@/shared/constants';
 import { CartItemData } from '@/shared/types';
 import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectSelectedItemData } from '@/redux/slices/selectors/shopPageSelectors';
+import { montserrat } from '@/shared/constants';
 
 const StyledCartItem = styled(Box)({
   borderBottom: `1px solid ${BASE_COLORS.DEFAULT_BLUE}`,
@@ -153,7 +153,7 @@ export const CartItem: React.FC<CartItemProps> = ({
               variant="subtitle2"
               onClick={handleCloseCart}
               fontWeight={600}
-              fontFamily={FONTS.BOLD_TEXT_FAMILY}
+              className={montserrat.className}
               fontSize={'1.2rem'}
               mb={1}
               p={'0 10% 0 2.5%'}
@@ -180,7 +180,7 @@ export const CartItem: React.FC<CartItemProps> = ({
               <Typography
                 variant="h6"
                 fontWeight={600}
-                fontFamily={FONTS.BOLD_TEXT_FAMILY}
+                className={montserrat.className}
                 color={BASE_COLORS.DEFAULT_BLUE}>
                 {`${cartItemData.price * cartItemData.numberOfTires} ${dictionary.uah}`}
               </Typography>
@@ -213,7 +213,7 @@ export const CartItem: React.FC<CartItemProps> = ({
                     <Typography
                       variant="h6"
                       fontWeight={600}
-                      fontFamily={FONTS.BOLD_TEXT_FAMILY}>
+                      className={montserrat.className}>
                       {cartItemData.numberOfTires}
                     </Typography>
                     <IconButton

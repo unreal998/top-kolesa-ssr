@@ -32,6 +32,7 @@ import BrandIcon from '@/shared/Icons/BrandIcon';
 import PriceIcon from '@/shared/Icons/PriceIcon';
 import DiametrIcon from '@/shared/Icons/DiametrIcon';
 import StuddedTireIcon from '@/shared/Icons/StuddedTireIcon';
+import { montserrat } from '@/shared/constants';
 
 import { BASE_COLORS } from '@/shared/constants';
 import FilterFullMenuVechileTypeData from './FilterFullMenuVechileTypeData';
@@ -240,6 +241,7 @@ function FilterFullMenuContainer({
                 }}>
                 <Typography
                   variant="h5"
+                  className={montserrat.className}
                   sx={{
                     padding: 0,
                     fontWeight: 'bold',
@@ -271,6 +273,7 @@ function FilterFullMenuContainer({
                 </IconButton>
                 <Typography
                   variant="h5"
+                  className={montserrat.className}
                   gutterBottom
                   sx={{
                     fontWeight: 'bold',

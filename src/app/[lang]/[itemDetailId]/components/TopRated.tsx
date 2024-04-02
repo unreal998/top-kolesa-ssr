@@ -5,7 +5,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import { BASE_COLORS } from '@/shared/constants';
+import { BASE_COLORS, montserrat } from '@/shared/constants';
 import { selectCurrentPageItemList } from '@/redux/slices/selectors/shopPageSelectors';
 import { ShopItemCard } from '../../shop/components/ShopItemCard';
 import { useRef, WheelEvent } from 'react';
@@ -88,6 +88,7 @@ export default function TopRated({
       <Typography
         variant="h4"
         pl={'10%'}
+        className={montserrat.className}
         fontWeight={700}
         sx={{
           '@media (max-width: 918px)': {

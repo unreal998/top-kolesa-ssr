@@ -22,6 +22,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { selectFilterData } from '@/redux/slices/selectors/filterSelectors';
 
 import { FILTER_COLORS, BASE_COLORS } from '@/shared/constants';
+import { montserrat } from '@/shared/constants';
 
 const StyledTextField = styled(TextField)({
   width: '150px',
@@ -174,6 +175,7 @@ function FilterFullMenuPriceData({
       <Button
         onClick={handleApplyFilterPrice}
         variant="contained"
+        className={montserrat.className}
         sx={{
           marginTop: '18px',
           fontWeight: 'bold',

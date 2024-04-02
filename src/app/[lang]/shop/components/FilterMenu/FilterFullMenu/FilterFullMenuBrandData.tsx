@@ -12,6 +12,7 @@ import {
 } from '@/redux/slices/selectors/shopPageSelectors';
 import { selectFilterData } from '@/redux/slices/selectors/filterSelectors';
 import { type getDictionary } from '@/get-dictionary';
+import { montserrat } from '@/shared/constants';
 
 import {
   Box,
@@ -142,9 +143,9 @@ function FilterFullMenuBrandData({
       <Button
         onClick={handleSubmit}
         variant="contained"
+        className={montserrat.className}
         sx={{
           marginTop: '18px',
-
           fontWeight: 'bold',
           background: BASE_COLORS.DEFAULT_BLUE,
           '&:hover': {

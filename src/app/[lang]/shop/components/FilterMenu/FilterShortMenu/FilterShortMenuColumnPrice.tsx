@@ -8,6 +8,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { type getDictionary } from '@/get-dictionary';
 
 import { FILTER_COLORS, BASE_COLORS } from '@/shared/constants';
+import { montserrat } from '@/shared/constants';
 
 const StyledButtonMain = styled(Button)({
   display: 'flex',
@@ -110,6 +111,7 @@ function FilterShortMenuColumnPrice({
       }}>
       <StyledButtonMain
         onClick={handleMenuToggle}
+        className={montserrat.className}
         sx={{
           borderBottom: visableParams
             ? 'none'
@@ -140,6 +142,7 @@ function FilterShortMenuColumnPrice({
           </Box>
           <Typography
             variant="body1"
+            className={montserrat.className}
             fontWeight={600}
             style={{
               marginLeft: '11px',
@@ -155,6 +158,7 @@ function FilterShortMenuColumnPrice({
       </StyledButtonMain>
       {visableParams && (
         <StyledButtonSecondary
+          className={montserrat.className}
           disableRipple={true}
           sx={{
             borderTop: visableParams

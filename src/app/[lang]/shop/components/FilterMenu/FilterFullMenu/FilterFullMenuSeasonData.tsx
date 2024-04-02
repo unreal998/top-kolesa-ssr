@@ -23,7 +23,12 @@ import {
 } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 
-import { FILTER_COLORS, FONTS, BASE_COLORS } from '@/shared/constants';
+import {
+  FILTER_COLORS,
+  FONTS,
+  BASE_COLORS,
+  montserrat,
+} from '@/shared/constants';
 
 const CheckBoxContainer = styled(FormGroup)({
   display: 'grid',
@@ -155,6 +160,7 @@ function FilterFullMenuSeasonData({
       </CheckBoxContainer>
       <Button
         onClick={handleSubmit}
+        className={montserrat.className}
         variant="contained"
         sx={{
           marginTop: '18px',

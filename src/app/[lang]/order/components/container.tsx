@@ -1,7 +1,7 @@
 'use client';
 
 import { Box, Typography, styled } from '@mui/material';
-import { FONTS, BASE_COLORS } from '@/shared/constants';
+import { FONTS, BASE_COLORS, montserrat } from '@/shared/constants';
 import CheckCircleOutlineRoundedIcon from '@mui/icons-material/CheckCircleOutlineRounded';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,7 +10,6 @@ import { selectOrderData } from '@/redux/slices/selectors/orderPage';
 import { type getDictionary } from '@/get-dictionary';
 
 const StyledHeadingText = styled(Typography)({
-  fontFamily: `${FONTS.BOLD_TEXT_FAMILY}`,
   fontSize: '2rem',
   fontWeight: '700',
 });
@@ -60,7 +59,10 @@ export function Container({
             }}
           />
           <Box>
-            <StyledHeadingText>{`${dictionary.orderThank}, ${orderData?.userName}`}</StyledHeadingText>
+            <StyledHeadingText
+              className={
+                montserrat.className
+              }>{`${dictionary.orderThank}, ${orderData?.userName}`}</StyledHeadingText>
             <Typography
               variant="subtitle1"
               fontWeight={500}

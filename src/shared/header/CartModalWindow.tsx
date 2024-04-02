@@ -30,6 +30,7 @@ import { type getDictionary } from '@/get-dictionary';
 import Link from 'next/link';
 import path from 'path';
 import { usePathname } from 'next/navigation';
+import { montserrat } from '@/shared/constants';
 
 const StyledCartModalWindow = styled(Box)({
   width: '25vw',
@@ -147,7 +148,10 @@ export default function CartModalWindow({
             color={'#fff'}
             bgcolor={BASE_COLORS.DEFAULT_BLUE}>
             <ShoppingCartOutlinedIcon fontSize="large" />
-            <Typography variant="h5" fontWeight={600}>
+            <Typography
+              variant="h5"
+              fontWeight={600}
+              className={montserrat.className}>
               {dictionary.cart}
             </Typography>
             <IconButton
@@ -194,12 +198,16 @@ export default function CartModalWindow({
                   padding: '20px 10px',
                 }}>
                 <Box display={'flex'} justifyContent={'space-between'}>
-                  <Typography variant="h6" fontWeight={600}>
+                  <Typography
+                    variant="h6"
+                    fontWeight={600}
+                    className={montserrat.className}>
                     {dictionary.totalCoast}:
                   </Typography>
                   <Typography
                     variant="h6"
                     fontWeight={600}
+                    className={montserrat.className}
                     color={BASE_COLORS.DEFAULT_BLUE}>
                     {`${totalAmount} ${dictionary.uah}`}
                   </Typography>
@@ -207,6 +215,7 @@ export default function CartModalWindow({
                 <Link href={`/${languageCode}/checkout`}>
                   <StyledButton
                     variant="contained"
+                    className={montserrat.className}
                     onClick={handletoCheckOutPage}>
                     {dictionary.makeAnOrder}
                   </StyledButton>

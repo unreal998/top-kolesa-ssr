@@ -1,7 +1,7 @@
 'use client';
 
 import { Box, List, ListItem, Stack, Typography, styled } from '@mui/material';
-import { BASE_COLORS } from '../../../../shared/constants';
+import { BASE_COLORS, montserrat } from '../../../../shared/constants';
 import CheckIcon from '@mui/icons-material/Check';
 import { type getDictionary } from '../../../../get-dictionary';
 
@@ -57,12 +57,17 @@ function AboutPage({
         variant="h2"
         fontWeight="800"
         color={`${BASE_COLORS.DEFAULT_BLUE}`}
+        className={montserrat.className}
         textAlign={'center'}>
         {dictionary.aboutLabel}
       </Typography>
-      <StyledHeadingText>{dictionary.welcomeHeader}</StyledHeadingText>
+      <StyledHeadingText className={montserrat.className}>
+        {dictionary.welcomeHeader}
+      </StyledHeadingText>
       <StyledText>{dictionary.welcomeText}</StyledText>
-      <StyledHeadingText>{dictionary.whyWeHeader}</StyledHeadingText>
+      <StyledHeadingText className={montserrat.className}>
+        {dictionary.whyWeHeader}
+      </StyledHeadingText>
       <List>
         {WHY_WE_LIST.map((item, i) => (
           <StyledListItem key={i}>
@@ -80,13 +85,21 @@ function AboutPage({
           </StyledListItem>
         ))}
       </List>
-      <StyledHeadingText>{dictionary.historyHeader}</StyledHeadingText>
+      <StyledHeadingText className={montserrat.className}>
+        {dictionary.historyHeader}
+      </StyledHeadingText>
       <StyledText>{dictionary.historyText}</StyledText>
-      <StyledHeadingText>{dictionary.deliveryHeader}</StyledHeadingText>
+      <StyledHeadingText className={montserrat.className}>
+        {dictionary.deliveryHeader}
+      </StyledHeadingText>
       <StyledText>{dictionary.deliveryText}</StyledText>
-      <StyledHeadingText>{dictionary.staffHeader}</StyledHeadingText>
+      <StyledHeadingText className={montserrat.className}>
+        {dictionary.staffHeader}
+      </StyledHeadingText>
       <StyledText>{dictionary.staffText}</StyledText>
-      <StyledHeadingText>{dictionary.productsHeader}</StyledHeadingText>
+      <StyledHeadingText className={montserrat.className}>
+        {dictionary.productsHeader}
+      </StyledHeadingText>
       <StyledText>{dictionary.productsText}</StyledText>
     </Box>
   );

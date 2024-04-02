@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import { BASE_COLORS } from '@/shared/constants';
+import { BASE_COLORS, montserrat } from '@/shared/constants';
 
 import {
   styled,
@@ -125,7 +125,9 @@ export default function Characteristics({
                   <TitleText> {row.titles}</TitleText>
                 </StyledTableCellL>
                 <StyledTableCellR align="right">
-                  <PersonalInfoText>{row.info}</PersonalInfoText>
+                  <PersonalInfoText className={montserrat.className}>
+                    {row.info}
+                  </PersonalInfoText>
                 </StyledTableCellR>
               </StyledTableRow>
             ))}

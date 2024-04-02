@@ -1,6 +1,7 @@
 import { styled, Box, Typography } from '@mui/material';
 import { type getDictionary } from '@/get-dictionary';
 import { FILTER_COLORS } from '@/shared/constants';
+import { montserrat } from '@/shared/constants';
 
 const StyledButton = styled(Box)({
   display: 'flex',
@@ -40,12 +41,16 @@ function FilterShortMenuReset({
   dictionary,
 }: FilterShortMenuRowProps) {
   return (
-    <StyledButton onClick={onClick}>
+    <StyledButton onClick={onClick} className={montserrat.className}>
       <Box display="flex" alignItems="center" sx={{ flexGrow: 1 }}>
         <Box display="flex" justifyContent="center" alignItems="center">
           {icon}
         </Box>
-        <Typography variant="body1" fontWeight={600} ml={1.3}>
+        <Typography
+          variant="body1"
+          fontWeight={600}
+          ml={1.3}
+          className={montserrat.className}>
           {dictionary.resetAllFilters}
         </Typography>
       </Box>
