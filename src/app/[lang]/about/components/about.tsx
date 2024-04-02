@@ -4,7 +4,6 @@ import { Box, List, ListItem, Stack, Typography, styled } from '@mui/material';
 import { BASE_COLORS, montserrat } from '@/shared/constants';
 import CheckIcon from '@mui/icons-material/Check';
 import { type getDictionary } from '@/get-dictionary';
-import { BASE_COLORS } from '@/shared/constants';
 
 const StyledHeadingText = styled(Typography)({
   padding: '4rem 0 1.5rem',

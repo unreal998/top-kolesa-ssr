@@ -1,7 +1,5 @@
-import { BASE_COLORS, FONTS } from '@/shared/constants';
 import { Rating, Stack, Typography } from '@mui/material';
 import { BASE_COLORS, FONTS, montserrat } from '@/shared/constants';
-
 
 export function ReviewItem() {
   return (

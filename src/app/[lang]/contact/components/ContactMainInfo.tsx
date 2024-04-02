@@ -4,7 +4,7 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import { BASE_COLORS, montserrat,contactPhones } from '@/shared/constants';
+import { BASE_COLORS, montserrat, contactPhones } from '@/shared/constants';
 import { getDictionary } from '@/get-dictionary';
 
 const StyledHeadingText = styled(Typography)({

@@ -1,7 +1,6 @@
-import { Box, Button, Typography, styled } from '@mui/material';
-import { BASE_COLORS } from '@/shared/constants';
+import { Box, Typography, styled } from '@mui/material';
 import { type getDictionary } from '../../../../get-dictionary';
-import { montserrat } from '@/shared/constants';
+import { montserrat, BASE_COLORS } from '@/shared/constants';
 
 const StyledHeadingText = styled(Typography)({
   marginTop: '1rem',
