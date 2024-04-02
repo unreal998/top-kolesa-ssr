@@ -9,7 +9,7 @@ export interface ICard {
 }
 
 export type I18nDictionary = {
-    ['locale-switcher']: {
-        [key: string]: string
-    }
-}
+  ['locale-switcher']: {
+    [key: string]: string;
+  };
+};

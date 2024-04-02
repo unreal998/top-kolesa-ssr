@@ -105,7 +105,7 @@ function FilterFullMenuVechileTypeData({
                   }}
                 />
               }
-              label={dictionary[type]}
+              label={dictionary[type as keyof typeof dictionary]}
               key={type}
               sx={{
                 '& .MuiTypography-root': {},

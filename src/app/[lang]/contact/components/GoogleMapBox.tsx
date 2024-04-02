@@ -10,6 +10,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { GOOGLE_MAP_KEY } from '@/shared/keys';
 import { getDictionary } from '@/get-dictionary';
 
+
 const StyledHeadingText = styled(Typography)({
   textAlign: 'start',
   fontSize: '1.2rem',

@@ -38,6 +38,7 @@ import { Comment } from './Comment';
 import EmptyCart from '@/shared/header/EmptyCart';
 
 import { type getDictionary } from '@/get-dictionary';
+import { usePathname, useRouter } from 'next/navigation';
 
 export function ContainerCheckout({
   dictionary,
@@ -45,6 +46,8 @@ export function ContainerCheckout({
   dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
 }) {
   const dispatch = useDispatch();
+  const router = useRouter();
+  const pathName = usePathname();
   const cityListData = useSelector(selectCityListData());
   const warehouseData = useSelector(selectWarehoutListData());
   const fetchedCityName = useSelector(selectFetchedCityName());
@@ -135,12 +138,17 @@ export function ContainerCheckout({
     [fetchedCityName, dispatch],
   );
 
-  // useEffect(() => {
-  //   if (createdOrderId !== '') {
-  //     localStorage.removeItem('cartItem');
-  //     /* history(`/order?id=${createdOrderId}`); */
-  //   }
-  // }, [createdOrderId]);
+  useEffect(() => {
+    if (createdOrderId !== '' && pathName) {
+      localStorage.removeItem('cartItem');
+      router.replace(
+        pathName.replace(
+          /checkout.*/gm,
+          encodeURI(`order?id=${createdOrderId}`),
+        ),
+      );
+    }
+  }, [createdOrderId, router]);
 
   useEffect(() => {
     const localStorageCartItems = JSON.parse(

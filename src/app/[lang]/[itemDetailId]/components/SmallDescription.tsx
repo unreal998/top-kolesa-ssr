@@ -5,8 +5,8 @@ import ExtensionIcon from '@mui/icons-material/Extension';
 import ExpandIcon from '@mui/icons-material/Expand';
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import HeightIcon from '@mui/icons-material/Height';
-import { BASE_COLORS } from '../../../shared/constants';
-import { ShopItemAPI } from '../../../shared/types';
+import { BASE_COLORS } from '@/shared/constants';
+import { ShopItemAPI } from '@/shared/types';
 
 const SubDescriptionText = styled(Typography)({
   fontSize: '0.8rem',

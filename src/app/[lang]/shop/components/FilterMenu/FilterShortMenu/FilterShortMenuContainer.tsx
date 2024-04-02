@@ -41,9 +41,9 @@ import BrandIcon from '@/shared/Icons/BrandIcon';
 import ResetIcon from '@/shared/Icons/ResetIcon';
 import StuddedTireIcon from '@/shared/Icons/StuddedTireIcon';
 import { PayloadAction } from 'typesafe-actions';
-import { PayloadAction as PayloadActionRedux } from '@reduxjs/toolkit';
 import { useCallback, useEffect } from 'react';
 import { type getDictionary } from '@/get-dictionary';
+import { usePathname, useRouter } from 'next/navigation';
 
 const FilterShortMenuContainer = ({
   dictionary,
@@ -51,6 +51,8 @@ const FilterShortMenuContainer = ({
   dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
 }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
+  const pathName = usePathname();
   const filtersParams = useSelector(selectFilterData());
   const selectWidth = useSelector(selectSelectedWidth);
   const selectProfile = useSelector(selectSelectedProfile);
@@ -62,6 +64,52 @@ const FilterShortMenuContainer = ({
   const selectedVechileType = useSelector(selectSelectedVechileType);
   const minPrice = Math.min(...filtersParams.prices);
   const maxPrice = Math.max(...filtersParams.prices);
+
+  useEffect(() => {
+    const isFilterBackToInitial =
+      selectWidth.length === 0 &&
+      selectProfile.length === 0 &&
+      selectDiametr.length === 0 &&
+      selectedSeason.length === 0 &&
+      selectedBrand.length === 0 &&
+      selectedStudded.length === 0 &&
+      selectedPrice[0] === minPrice &&
+      selectedPrice[1] === maxPrice &&
+      selectedVechileType === '';
+    if (pathName) {
+      if (isFilterBackToInitial) {
+        const path = pathName.replace(/\?.*/gm, '');
+        router.push(path);
+      } else {
+        const path = pathName.replace(
+          /shop.*/gm,
+          `shop?price=${JSON.stringify([
+            selectedPrice[0],
+            selectedPrice[1],
+          ])}&width=${JSON.stringify(selectWidth)}&profile=${JSON.stringify(
+            selectProfile,
+          )}&diametr=${JSON.stringify(selectDiametr)}&season=${JSON.stringify(
+            selectedSeason,
+          )}&brand=${JSON.stringify(
+            selectedBrand,
+          )}&studded=${selectedStudded}&vechileType=${selectedVechileType}`,
+        );
+        router.push(path);
+      }
+    }
+  }, [
+    router,
+    selectDiametr,
+    selectProfile,
+    selectWidth,
+    selectedBrand,
+    selectedPrice,
+    selectedSeason,
+    selectedStudded,
+    selectedVechileType,
+    minPrice,
+    maxPrice,
+  ]);
 
   const visableResetButton =
     selectedPrice?.[0] !== minPrice ||

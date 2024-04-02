@@ -1,4 +1,4 @@
-import { ShopItemAPI } from "@/shared/types";
+import { ShopItemAPI } from '@/shared/types';
 
 export function sortItemsList(sortParam: string, itemsList: ShopItemAPI[]) {
   switch (sortParam) {

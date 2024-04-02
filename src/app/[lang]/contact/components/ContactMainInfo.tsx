@@ -1,13 +1,10 @@
 'use client';
-
 import { Box, Grid, Link, Typography, styled } from '@mui/material';
-import { BASE_COLORS } from '../../../../shared/constants';
-
 import PhoneIcon from '@mui/icons-material/Phone';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import { contactPhones, montserrat } from '@/shared/constants';
+import { BASE_COLORS, montserrat,contactPhones } from '@/shared/constants';
 import { getDictionary } from '@/get-dictionary';
 
 const StyledHeadingText = styled(Typography)({

@@ -49,7 +49,7 @@ function ContainerPage({
       dispatch(getShopItems(''));
     }
     dispatch(getFilterData());
-  }, [dispatch]);
+  }, [dispatch, searchParams]);
 
   useEffect(() => {
     if (isInitialized) {

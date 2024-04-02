@@ -8,6 +8,7 @@ import { GoogleMap } from '@/sections/homePage/GoogleMap';
 import { OurServices } from '@/sections/homePage/OurServices';
 import { TiresInput } from '@/sections/homePage/TiresInput';
 
+
 async function Home({ params: { lang } }: { params: { lang: Locale } }) {
   const dictionary = await getDictionary(lang);
 
