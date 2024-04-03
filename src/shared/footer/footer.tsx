@@ -7,6 +7,7 @@ import { ButtonWithIcon } from '../components/ButtonWithIcon';
 import { FooterStrocedText } from './FooterStrocedText';
 import { Copyright } from './Copyright';
 import { BASE_COLORS, contactPhones } from '../constants';
+import { montserrat } from '@/shared/constants';
 
 const StyledTextBox = styled(Stack)({
   width: '30%',
@@ -85,7 +86,11 @@ function Footer({
         }}>
         <StyledTextBox>
           <FooterStrocedText
-            text={<StyledHeader>{dictionary.about}</StyledHeader>}
+            text={
+              <StyledHeader className={montserrat.className}>
+                {dictionary.about}
+              </StyledHeader>
+            }
           />
           <StyledSubText>{dictionary.aboutSubtitle}</StyledSubText>
           <Box
@@ -114,7 +119,11 @@ function Footer({
         </StyledTextBox>
         <StyledTextBox>
           <FooterStrocedText
-            text={<StyledHeader> {dictionary.connectWithUs}</StyledHeader>}
+            text={
+              <StyledHeader className={montserrat.className}>
+                {dictionary.connectWithUs}
+              </StyledHeader>
+            }
           />
           <Stack gap="10px">
             <Typography

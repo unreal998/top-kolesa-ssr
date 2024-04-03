@@ -14,7 +14,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { Box, Button, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-import { FILTER_COLORS } from '@/shared/constants';
+import { FILTER_COLORS, montserrat } from '@/shared/constants';
 
 const ButtonsContainer = styled('div')({
   display: 'grid',
@@ -106,6 +106,7 @@ function FilterFullMenuWidthData({
           filteredWidthOptions.slice(1).map((widthOption) => (
             <StyledButton
               key={widthOption}
+              className={montserrat.className}
               variant="outlined"
               onClick={() => handleWidthClick(widthOption)}
               style={{

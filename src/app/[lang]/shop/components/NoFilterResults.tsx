@@ -1,6 +1,6 @@
-import { Box, Button, Typography, styled } from '@mui/material';
-import { BASE_COLORS } from '@/shared/constants';
+import { Box, Typography, styled } from '@mui/material';
 import { type getDictionary } from '../../../../get-dictionary';
+import { montserrat, BASE_COLORS } from '@/shared/constants';
 
 const StyledHeadingText = styled(Typography)({
   marginTop: '1rem',
@@ -51,8 +51,12 @@ function NoFilterResults({
             width: '90%',
           },
         }}>
-        <StyledHeadingText>{dictionary.noResultsText1} </StyledHeadingText>
-        <StyledHeadingText>{dictionary.noResultsText2}</StyledHeadingText>
+        <StyledHeadingText className={montserrat.className}>
+          {dictionary.noResultsText1}{' '}
+        </StyledHeadingText>
+        <StyledHeadingText className={montserrat.className}>
+          {dictionary.noResultsText2}
+        </StyledHeadingText>
       </Box>
     </Box>
   );

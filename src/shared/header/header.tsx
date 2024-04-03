@@ -2,7 +2,6 @@
 
 import React, { SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import NextLink from 'next/link';
-import { FONTS } from '@/shared/constants';
 import {
   Box,
   Button,
@@ -45,6 +44,7 @@ import CartModalWindow from './CartModalWindow';
 const StyledTextMain = styled(Typography)({
   color: '#FFFFFF',
   fontSize: '0.9rem',
+  fontWeight: 300,
 });
 
 const StyledTextNavigation = styled(Stack)({
@@ -228,7 +228,7 @@ function Header({
             padding: '20px 2%',
           },
         }}>
-        <Link href="/">
+        <NextLink href={`/${lang}`}>
           <Box
             component={'img'}
             src="./logo.png"
@@ -239,7 +239,7 @@ function Header({
               },
             }}
           />
-        </Link>
+        </NextLink>
         <StyledTextNavigation>
           {menu.map((menuItem, index) => {
             const isHomePageLink = menuItem.name === 'homeLabel';
@@ -254,8 +254,8 @@ function Header({
                 <Typography
                   sx={{
                     color: isActive ? BASE_COLORS.DEFAULT_BLUE : '#000',
-                    fontFamily: FONTS.MAIN_TEXT_FAMILY,
                     fontSize: '1.1rem',
+
                     borderBottom: isActive
                       ? `1px solid  ${BASE_COLORS.DEFAULT_BLUE}`
                       : 'none',

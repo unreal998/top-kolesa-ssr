@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Rating, Stack, Typography, styled } from '@mui/material';
-import { BASE_COLORS, FILTER_COLORS, FONTS } from '@/shared/constants';
+import {
+  BASE_COLORS,
+  FILTER_COLORS,
+  FONTS,
+  montserrat,
+} from '@/shared/constants';
 import { ShopItem } from '@/redux/slices/shopPageSlice';
 import { SHOP_ITEM_TIRES_IMG_PREFIX } from '@/shared/keys';
 import { motion } from 'framer-motion';
@@ -75,7 +80,6 @@ const StyledText = styled(Typography)({
 });
 
 const StyledTextBold = styled(Typography)({
-  fontFamily: `${FONTS.BOLD_TEXT_FAMILY}`,
   fontSize: '1rem',
   color: FILTER_COLORS.TEXT_MAIN,
   fontWeight: 600,
@@ -183,7 +187,7 @@ export function ShopItemCard({
             />
             <Typography
               variant="subtitle1"
-              fontFamily={FONTS.BOLD_TEXT_FAMILY}
+              className={montserrat.className}
               fontWeight="600"
               color="#000"
               height={'3rem'}
@@ -194,7 +198,7 @@ export function ShopItemCard({
             </Typography>
             <Typography
               variant="subtitle1"
-              fontFamily={FONTS.BOLD_TEXT_FAMILY}
+              className={montserrat.className}
               fontWeight="600"
               color="#000"
               height={'3rem'}
@@ -206,10 +210,10 @@ export function ShopItemCard({
             </Typography>
             <Typography
               variant="h6"
-              fontFamily={FONTS.BOLD_TEXT_FAMILY}
+              className={montserrat.className}
               fontWeight="600"
               color={BASE_COLORS.DEFAULT_BLUE}>
-              {price} {'uah'}
+              {price} {dictionary.uah}
             </Typography>
           </Box>
           <HoverableBox
@@ -232,6 +236,8 @@ export function ShopItemCard({
               }}>
               <Box
                 mt={'5%'}
+                justifyContent={'center'}
+                textAlign={'center'}
                 mb={'0.5rem'}
                 sx={{
                   '@media (max-width: 1150px)': {
@@ -242,7 +248,9 @@ export function ShopItemCard({
                   fontSize="large"
                   sx={{ color: BASE_COLORS.DEFAULT_BLUE }}
                 />
-                <StyledTextBold>{dictionary.shortInfo}</StyledTextBold>
+                <StyledTextBold className={montserrat.className}>
+                  {dictionary.shortInfo}
+                </StyledTextBold>
               </Box>
               <Box>
                 {tableData.map((item, index) => (
@@ -251,7 +259,9 @@ export function ShopItemCard({
                     display={'flex'}
                     justifyContent={'space-between'}>
                     <StyledText>{item.title}</StyledText>
-                    <StyledTextBold>{item.info}</StyledTextBold>
+                    <StyledTextBold className={montserrat.className}>
+                      {item.info}
+                    </StyledTextBold>
                   </Box>
                 ))}
               </Box>

@@ -14,6 +14,7 @@ import { useRef, WheelEvent } from 'react';
 import { type getDictionary } from '../../get-dictionary';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { montserrat } from '@/shared/constants';
 
 const settings = {
   dots: true,
@@ -270,6 +271,7 @@ export function OurServices({
         variant="h2"
         color="#000"
         fontWeight="800"
+        className={montserrat.className}
         textAlign={'center'}
         mb={1}>
         {dictionary.ourServices}
@@ -299,7 +301,9 @@ export function OurServices({
                     }}
                   />
                   <motion.div variants={hoverAnimationHeader}>
-                    <StyledAnimatedheader variant="h5">
+                    <StyledAnimatedheader
+                      className={montserrat.className}
+                      variant="h5">
                       {dictionary[service.title as keyof typeof dictionary]}
                     </StyledAnimatedheader>
                   </motion.div>
@@ -309,6 +313,7 @@ export function OurServices({
                       <Typography
                         variant="h5"
                         fontWeight="600"
+                        className={montserrat.className}
                         width={250}
                         textAlign={'center'}
                         color={'#fff'}

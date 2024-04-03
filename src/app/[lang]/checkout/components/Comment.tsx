@@ -1,5 +1,5 @@
 import { Stack, TextField, Typography, styled } from '@mui/material';
-import { BASE_COLORS } from '@/shared/constants';
+import { BASE_COLORS, montserrat } from '@/shared/constants';
 import { type getDictionary } from '@/get-dictionary';
 
 const StyledTextField = styled(TextField)({
@@ -30,7 +30,11 @@ export function Comment({
       bgcolor={BASE_COLORS.BACKGROUND_WHITE}
       p={'2rem'}
       borderRadius={'0.5rem'}>
-      <Typography variant="h6" fontWeight={600} pb={'1rem'}>
+      <Typography
+        variant="h6"
+        fontWeight={600}
+        className={montserrat.className}
+        pb={'1rem'}>
         {dictionary.addComment}
       </Typography>
       <StyledTextField

@@ -16,6 +16,7 @@ import { Box, Button, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 import { FILTER_COLORS } from '@/shared/constants';
+import { montserrat } from '@/shared/constants';
 
 const ButtonsContainer = styled('div')({
   display: 'grid',
@@ -109,6 +110,7 @@ function FilterFullMenuDiametr({
             <StyledButton
               key={diametrOption}
               variant="outlined"
+              className={montserrat.className}
               onClick={() => handleDiametrClick(diametrOption)}
               style={{
                 backgroundColor:

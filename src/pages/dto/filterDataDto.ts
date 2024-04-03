@@ -1,4 +1,4 @@
-type TireSizesDto = {
+export type TireSizesDto = {
   width: string[];
   diametr: string[];
   height: string[];
@@ -8,7 +8,7 @@ type TireSizesDto = {
   prices: number[];
 };
 
-type TireSizesDataResponceDto = {
+export type TireSizesDataResponceDto = {
   width: string;
   diametr: string;
   height: string;

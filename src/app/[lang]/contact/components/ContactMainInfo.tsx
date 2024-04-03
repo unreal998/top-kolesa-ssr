@@ -4,8 +4,8 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import { getDictionary } from '../../../../get-dictionary';
-import { BASE_COLORS, contactPhones } from '@/shared/constants';
+import { BASE_COLORS, montserrat, contactPhones } from '@/shared/constants';
+import { getDictionary } from '@/get-dictionary';
 
 const StyledHeadingText = styled(Typography)({
   textAlign: 'center',
@@ -18,8 +18,6 @@ const StyledText = styled(Typography)({
   fontSize: '1rem',
 });
 
-/* test */
-
 export function ContactMainInfo({
   dictionary,
 }: {
@@ -30,6 +28,7 @@ export function ContactMainInfo({
       <Typography
         variant="h2"
         fontWeight="800"
+        className={montserrat.className}
         color={`${BASE_COLORS.DEFAULT_BLUE}`}
         textAlign={'center'}>
         {dictionary.contactLabel}
@@ -73,7 +72,9 @@ export function ContactMainInfo({
                   alignItems={'center'}
                   justifyContent={'center'}>
                   <PhoneIcon sx={{ color: BASE_COLORS.DEFAULT_BLUE }} />
-                  <StyledHeadingText>{dictionary.contactUs}</StyledHeadingText>
+                  <StyledHeadingText className={montserrat.className}>
+                    {dictionary.contactUs}
+                  </StyledHeadingText>
                 </Box>
                 <Box display={'flex'} flexDirection={'column'} p={2}>
                   {contactPhones.map((item, i) => (
@@ -132,7 +133,9 @@ export function ContactMainInfo({
                   <AlternateEmailIcon
                     sx={{ color: BASE_COLORS.DEFAULT_BLUE }}
                   />
-                  <StyledHeadingText>{dictionary.ourMail}</StyledHeadingText>
+                  <StyledHeadingText className={montserrat.className}>
+                    {dictionary.ourMail}
+                  </StyledHeadingText>
                 </Box>
                 <Box
                   display={'flex'}
@@ -178,7 +181,7 @@ export function ContactMainInfo({
                   alignItems={'center'}
                   justifyContent={'center'}>
                   <CalendarMonthIcon sx={{ color: BASE_COLORS.DEFAULT_BLUE }} />
-                  <StyledHeadingText>
+                  <StyledHeadingText className={montserrat.className}>
                     {dictionary.openingHours}
                   </StyledHeadingText>
                 </Box>
@@ -245,7 +248,9 @@ export function ContactMainInfo({
                   alignItems={'center'}
                   justifyContent={'center'}>
                   <LocalShippingIcon sx={{ color: BASE_COLORS.DEFAULT_BLUE }} />
-                  <StyledHeadingText>{dictionary.delivery}</StyledHeadingText>
+                  <StyledHeadingText className={montserrat.className}>
+                    {dictionary.delivery}
+                  </StyledHeadingText>
                 </Box>
                 <Box display={'flex'} flexDirection={'column'} p={2}>
                   <Box display={'flex'} flexDirection={'column'} gap={2}>

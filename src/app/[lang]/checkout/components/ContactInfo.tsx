@@ -1,5 +1,5 @@
 import { Stack, TextField, Typography } from '@mui/material';
-import { BASE_COLORS, FONTS } from '@/shared/constants';
+import { BASE_COLORS, FONTS, montserrat } from '@/shared/constants';
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import { type getDictionary } from '@/get-dictionary';
@@ -99,7 +99,7 @@ export function ContactInfo({
         variant="h6"
         fontWeight={600}
         pb={'1rem'}
-        fontFamily={FONTS.BOLD_TEXT_FAMILY}>
+        className={montserrat.className}>
         {dictionary.contactDestails}
       </Typography>
       <Stack gap="1.5rem">

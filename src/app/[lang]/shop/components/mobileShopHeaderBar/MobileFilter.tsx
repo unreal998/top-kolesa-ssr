@@ -8,7 +8,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { BASE_COLORS, FILTER_COLORS } from '@/shared/constants';
+import { BASE_COLORS, FILTER_COLORS, montserrat } from '@/shared/constants';
 import Button from '@mui/material/Button';
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 import { SyntheticEvent, useCallback, useEffect, useState } from 'react';
@@ -128,7 +128,6 @@ const StyledButton = styled(Button)({
   marginTop: '1rem',
   width: '40%',
   height: '50px',
-
   fontWeight: 'bold',
 });
 
@@ -538,6 +537,7 @@ export function MobileFilter({
             <Box display={'flex'} width={'91%'} justifyContent={'space-around'}>
               <StyledButton
                 variant="contained"
+                className={montserrat.className}
                 onClick={handleCleareAllFilters}
                 sx={{
                   color: FILTER_COLORS.TEXT_MAIN,
@@ -552,6 +552,7 @@ export function MobileFilter({
               </StyledButton>
               <StyledButton
                 variant="contained"
+                className={montserrat.className}
                 onClick={handleSearchButton}
                 sx={{
                   background: BASE_COLORS.DEFAULT_BLUE,

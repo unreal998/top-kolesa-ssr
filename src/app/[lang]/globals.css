@@ -2,11 +2,13 @@
   margin: 0;
   padding: 0;
   text-decoration: none;
+  font-family: 'PT Sans', sans-serif;
 }
 
 html {
   font-size: 62.5%;
   scroll-behavior: smooth;
+  font-family: 'PT Sans', sans-serif;
 }
 
 @media (min-width: 1201px) {

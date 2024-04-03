@@ -10,7 +10,7 @@ import ReplayCircleFilledIcon from '@mui/icons-material/ReplayCircleFilled';
 import styled from '@emotion/styled';
 import { type getDictionary } from '@/get-dictionary';
 
-import { BASE_COLORS } from '@/shared/constants';
+import { BASE_COLORS, montserrat } from '@/shared/constants';
 
 const CustomIcon = styled('span')(({ theme }) => ({
   color: BASE_COLORS.DEFAULT_BLUE,
@@ -59,7 +59,9 @@ export default function Tooltips({
         color={BASE_COLORS.DEFAULT_BLUE}
         title={
           <Stack padding="10px">
-            <Typography variant="h6">{dictionary.delivery}</Typography>
+            <Typography className={montserrat.className} variant="h6">
+              {dictionary.delivery}
+            </Typography>
             <Typography variant="body1">
               - {dictionary.deliveryPriceFrom} 35 {dictionary.uah}
             </Typography>
@@ -82,7 +84,9 @@ export default function Tooltips({
               <LocalShippingOutlinedIcon />
             )}
           </CustomIcon>
-          <Typography variant="h6">{dictionary.delivery}</Typography>
+          <Typography variant="h6" className={montserrat.className}>
+            {dictionary.delivery}
+          </Typography>
         </Stack>
       </Tooltip>
       <Tooltip
@@ -94,7 +98,9 @@ export default function Tooltips({
         open={guarantiePopupHover}
         title={
           <Stack padding="10px">
-            <Typography variant="h6">{dictionary.guarantee}</Typography>
+            <Typography variant="h6" className={montserrat.className}>
+              {dictionary.guarantee}
+            </Typography>
             <Typography variant="body1">
               - {dictionary.manufacturerGuarantee}
             </Typography>
@@ -104,7 +110,9 @@ export default function Tooltips({
           <CustomIcon>
             {guarantiePopupHover ? <GppGoodIcon /> : <GppGoodOutlinedIcon />}
           </CustomIcon>
-          <Typography variant="h6">{dictionary.guarantee}</Typography>
+          <Typography variant="h6" className={montserrat.className}>
+            {dictionary.guarantee}
+          </Typography>
         </Stack>
       </Tooltip>
       <Tooltip
@@ -116,7 +124,9 @@ export default function Tooltips({
         open={revertPopupHover}
         title={
           <Stack padding="10px">
-            <Typography variant="h6">{dictionary.returns}</Typography>
+            <Typography variant="h6" className={montserrat.className}>
+              {dictionary.returns}
+            </Typography>
             <Typography variant="body1">
               {dictionary.returnsDescription}{' '}
               <b>({dictionary.returnsDescription2})</b>
@@ -131,7 +141,9 @@ export default function Tooltips({
               <ReplayOutlinedIcon />
             )}
           </CustomIcon>
-          <Typography variant="h6">{dictionary.returns}</Typography>
+          <Typography variant="h6" className={montserrat.className}>
+            {dictionary.returns}
+          </Typography>
         </Stack>
       </Tooltip>
     </Stack>

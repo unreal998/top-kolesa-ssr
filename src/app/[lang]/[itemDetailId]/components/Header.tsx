@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Box, Rating, Typography } from '@mui/material';
 
 import { selectSelectedItemData } from '@/redux/slices/selectors/shopPageSelectors';
-import { BASE_COLORS, FONTS } from '@/shared/constants';
+import { BASE_COLORS, FONTS, montserrat } from '@/shared/constants';
 import { type getDictionary } from '@/get-dictionary';
 
 export default function Header({
@@ -25,17 +25,10 @@ export default function Header({
           },
         }}>
         <Rating name="read-only" value={selectedItemData?.rate} readOnly />
-        <Typography
-          variant="subtitle1"
-          fontFamily={FONTS.MAIN_TEXT_FAMILY}
-          color={BASE_COLORS.DEFAULT_BLUE}
-          pl={1}>
-          (1 {dictionary.review})
-        </Typography>
       </Box>
       <Typography
         variant="h4"
-        fontFamily={FONTS.BOLD_TEXT_FAMILY}
+        className={montserrat.className}
         fontWeight={600}
         pb={2}
         width={'fit-content'}>
@@ -48,7 +41,7 @@ export default function Header({
         <Box display={'flex'}>
           <Typography
             fontSize="0.8rem"
-            fontFamily={FONTS.BOLD_TEXT_FAMILY}
+            className={montserrat.className}
             fontWeight={600}
             color={BASE_COLORS.DEFAULT_GREY}
             variant="body1">

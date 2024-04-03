@@ -11,6 +11,7 @@ import TiresFilter from './TiresFilter';
 import { getFilterData } from '@/redux/slices/filterSlice';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { montserrat } from '@/shared/constants';
 
 const StyledTagLine = styled(Typography)({
   fontWeight: '800',
@@ -179,6 +180,7 @@ export function TiresInput({
           backgroundSize: 'cover',
         }}>
         <StyledTagLine
+          className={montserrat.className}
           variant="h2"
           top={'35%'}
           sx={{
@@ -192,6 +194,7 @@ export function TiresInput({
           {dictionary.tireSelectorTitle1}
         </StyledTagLine>
         <StyledTagLine
+          className={montserrat.className}
           variant="h2"
           top={'48%'}
           sx={{
@@ -236,6 +239,7 @@ export function TiresInput({
               <Typography
                 fontWeight="900"
                 variant="h2"
+                className={montserrat.className}
                 m={'auto'}
                 sx={{
                   '@media (max-width: 700px)': {

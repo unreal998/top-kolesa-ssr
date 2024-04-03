@@ -7,7 +7,7 @@ import {
   Typography,
   styled,
 } from '@mui/material';
-import { BASE_COLORS, FONTS } from '@/shared/constants';
+import { BASE_COLORS, FONTS, montserrat } from '@/shared/constants';
 import { type getDictionary } from '@/get-dictionary';
 
 const StyledRadio = styled(Radio)({
@@ -35,7 +35,7 @@ export function PaymentInfo({
         variant="h6"
         fontWeight={600}
         pb={'1rem'}
-        fontFamily={FONTS.BOLD_TEXT_FAMILY}>
+        className={montserrat.className}>
         {dictionary.pay}
       </Typography>
       <FormControl>

@@ -21,7 +21,7 @@ import {
 } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 
-import { FILTER_COLORS, BASE_COLORS } from '@/shared/constants';
+import { FILTER_COLORS, BASE_COLORS, montserrat } from '@/shared/constants';
 
 const CheckBoxContainer = styled(FormGroup)({
   display: 'grid',
@@ -121,10 +121,10 @@ function FilterFullMenuStuddedData({
       </RadioGroup>
       <Button
         onClick={handleSubmit}
+        className={montserrat.className}
         variant="contained"
         sx={{
           marginTop: '18px',
-
           fontWeight: 'bold',
           background: BASE_COLORS.DEFAULT_BLUE,
           '&:hover': {

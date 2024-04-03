@@ -1,4 +1,4 @@
-type OrderItemsListDto = {
+export type OrderItemsListDto = {
   price: string;
   brand: string;
   name: string;
@@ -6,7 +6,7 @@ type OrderItemsListDto = {
   count: string;
 };
 
-type OrderContentResponceDto = {
+export type OrderContentResponceDto = {
   price_buy: number;
   brand: string;
   name: string;
@@ -14,7 +14,7 @@ type OrderContentResponceDto = {
   quantity: string;
 };
 
-type OrderDataResponceDto = {
+export type OrderDataResponceDto = {
   id: number;
   name: string;
   email: string;
@@ -27,7 +27,7 @@ type OrderDataResponceDto = {
   itemsList: OrderItemsListDto[];
 };
 
-type OrderItemDto = {
+export type OrderItemDto = {
   brandId: number;
   modelId: number;
   sizeId: number;

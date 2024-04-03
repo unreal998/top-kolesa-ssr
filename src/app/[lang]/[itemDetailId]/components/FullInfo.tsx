@@ -9,7 +9,7 @@ import Characteristics from './Characteristics';
 import ReviewPage from './ReviewPage';
 
 import { selectSelectedItemData } from '@/redux/slices/selectors/shopPageSelectors';
-import { BASE_COLORS } from '@/shared/constants';
+import { BASE_COLORS, montserrat } from '@/shared/constants';
 
 interface ITabPanelProps {
   children?: React.ReactNode;
@@ -57,8 +57,14 @@ export default function FullInfo({
     <>
       <Box display="flex" alignContent="center" justifyContent="center" mt={2}>
         <StyledTabs value={modalValue} onChange={handleChange}>
-          <StyledTab label={dictionary.characteristics} />
-          <StyledTab label={`${dictionary.reviews} (0)`} />
+          <StyledTab
+            className={montserrat.className}
+            label={dictionary.characteristics}
+          />
+          <StyledTab
+            className={montserrat.className}
+            label={`${dictionary.reviews} (0)`}
+          />
         </StyledTabs>
       </Box>
       <CustomTabPanel value={modalValue} index={0}>
