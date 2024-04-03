@@ -1,6 +1,6 @@
 import { getOrderContentData, getOrderData } from '@/shared/database/sql/sql';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { OrderContentResponceDto, OrderDataResponceDto } from '../dto/orderDataDto';
+import { OrderContentResponceDto, OrderDataResponceDto } from '@/shared/types';
 
 function unifiyOrderItemsData(orderContent: OrderContentResponceDto[]) {
   let totalAmount = 0;

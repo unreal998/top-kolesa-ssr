@@ -1,7 +1,5 @@
-import { ShopDataRequestDto } from '@/pages/dto/shopDataDto';
 import db from '../database';
-import { TireSizesDataResponceDto, TireSizesDto } from '@/pages/dto/filterDataDto';
-import { OrderDataResponceDto, OrderItemDto } from '@/pages/dto/orderDataDto';
+import { OrderDataResponceDto, OrderItemDto, TireSizesDataResponceDto, TireSizesDto, ShopDataRequestDto } from '@/shared/types';
 
 export async function getOrderData(orderId: string) {
   return new Promise((resolve, reject) =>
