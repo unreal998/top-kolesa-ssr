@@ -1,4 +1,4 @@
-type ShopDataRequestDto = {
+export type ShopDataRequestDto = {
   price?: string;
   diametr?: string;
   profile?: string;
