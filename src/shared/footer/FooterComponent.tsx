@@ -84,8 +84,6 @@ function Footer({
     }
   };
 
-  console.log('pathname', pathname);
-
   return (
     <Box
       display="flex"
