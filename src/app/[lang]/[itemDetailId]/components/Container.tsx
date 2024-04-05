@@ -23,6 +23,7 @@ import { type getDictionary } from '@/get-dictionary';
 type ContainerProps = {
   itemDetailId: string;
   dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
+  lang: string;
 };
 
 const StyledItemBox = styled(Stack)({
@@ -60,7 +61,7 @@ const StyledItemBox = styled(Stack)({
   },
 });
 
-function Container({ itemDetailId, dictionary }: ContainerProps) {
+function Container({ itemDetailId, dictionary, lang }: ContainerProps) {
   const dispatch = useDispatch();
   const selectedItemData = useSelector(selectSelectedItemData());
   const [loading, setLoading] = useState<boolean>(true);
@@ -102,6 +103,7 @@ function Container({ itemDetailId, dictionary }: ContainerProps) {
             <Stack mx={1}>
               <Header dictionary={dictionary} />
               <BuyOptions
+                lang={lang}
                 tireId={selectedItemData?.id}
                 dictionary={dictionary}
                 itemDetailId={itemDetailId}
