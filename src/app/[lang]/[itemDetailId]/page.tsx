@@ -15,7 +15,7 @@ async function Home({
     <>
       <Header lang={lang} dictionary={dictionary.project} />
       <Container itemDetailId={itemDetailId} dictionary={dictionary.project} />
-      <Footer dictionary={dictionary.project} />
+      <Footer lang={lang} dictionary={dictionary.project} />
     </>
   );
 }

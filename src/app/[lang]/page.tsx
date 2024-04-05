@@ -17,7 +17,7 @@ async function Home({ params: { lang } }: { params: { lang: Locale } }) {
       <TiresInput dictionary={dictionary.project} />
       <OurServices dictionary={dictionary.project} />
       <GoogleMap dictionary={dictionary.project} />
-      <Footer dictionary={dictionary.project} />
+      <Footer lang={lang} dictionary={dictionary.project} />
     </>
   );
 }
