@@ -8,6 +8,8 @@ import { FooterStrocedText } from './FooterStrocedText';
 import { Copyright } from './Copyright';
 import { BASE_COLORS, contactPhones } from '../constants';
 import { montserrat } from '@/shared/constants';
+import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 const StyledTextBox = styled(Stack)({
   width: '30%',
@@ -50,9 +52,40 @@ const StyledSubText = styled(Typography)({
 
 function Footer({
   dictionary,
+  lang,
 }: {
   dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
+  lang: string;
 }) {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const scrollToMapContact = () => {
+    const mapBox = document.getElementById('googleMapBox');
+    if (mapBox) {
+      mapBox.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToMapMain = () => {
+    const mapBox = document.getElementById('mapMainPages');
+    if (mapBox) {
+      mapBox.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleShowMap = () => {
+    if (pathname === `/${lang}/contact`) {
+      scrollToMapContact();
+    } else if (pathname === `/${lang}`) {
+      scrollToMapMain();
+    } else {
+      router.push(`/${lang}/contact#googleMapBox`);
+    }
+  };
+
+  console.log('pathname', pathname);
+
   return (
     <Box
       display="flex"
@@ -103,6 +136,7 @@ function Footer({
               button={
                 <Button
                   variant="contained"
+                  onClick={handleShowMap}
                   sx={{
                     backgroundColor: BASE_COLORS.DEFAULT_BLUE,
                     fontWeight: '600',
