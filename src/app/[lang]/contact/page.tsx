@@ -12,7 +12,7 @@ async function Contact({ params: { lang } }: { params: { lang: Locale } }) {
     <div>
       <Header lang={lang} dictionary={dictionary.project} />
       <ContactPage dictionary={dictionary.project} />
-      <Footer dictionary={dictionary.project} />
+      <Footer lang={lang} dictionary={dictionary.project} />
     </div>
   );
 }
