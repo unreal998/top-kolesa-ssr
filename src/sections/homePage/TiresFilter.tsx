@@ -19,6 +19,7 @@ import { inputLabelClasses } from '@mui/material/InputLabel';
 import { ButtonWithIcon } from '../../shared/components/ButtonWithIcon';
 import { BASE_COLORS, FILTER_COLORS } from '../../shared/constants';
 import { selectFilterData } from '@/redux/slices/selectors/filterSelectors';
+import { selectFilterMiniData } from '@/redux/slices/selectors/filterMiniSelectors';
 import {
   setSelectedWidth,
   setSelectedProfile,
@@ -123,11 +124,14 @@ function TiresFilter({
   const dispatch = useDispatch();
   /* const history = useNavigate(); */
   const filtersParams = useSelector(selectFilterData());
+  const filtersParamsMini = useSelector(selectFilterMiniData());
   const [width, setWidthValue] = useState('');
   const [profile, setProfileValue] = useState('');
   const [diametr, setDiametrValue] = useState('');
   const [season, setSeasonValue] = useState('');
   const [brand, setBrandValue] = useState('');
+
+  console.log(filtersParamsMini);
 
   const handleSearchButton = () => {
     dispatch(setSelectedWidth(width));
