@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -23,11 +25,14 @@ import { type getDictionary } from '@/get-dictionary';
 import { ButtonWithIcon } from '@/shared/components/ButtonWithIcon';
 import { BASE_COLORS, TOOLTIP_TIMEOUT, montserrat } from '@/shared/constants';
 import { CartItemData } from '@/shared/types';
+import ShoppingCartCheckoutOutlinedIcon from '@mui/icons-material/ShoppingCartCheckoutOutlined';
+import { useRouter } from 'next/navigation';
 
 type BuyOptionsProps = {
   tireId: number | undefined;
   dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
   itemDetailId: string;
+  lang: string;
 };
 
 const StyledTextField = styled(TextField)({
@@ -63,11 +68,13 @@ export default function BuyOptions({
   tireId,
   itemDetailId,
   dictionary,
+  lang,
 }: BuyOptionsProps) {
   const dispatch = useDispatch();
   const selectedItemData = useSelector(selectSelectedItemData());
   const [tooltipOpen, setTooltipOpen] = useState<boolean>(false);
   const [numberOfTires, setNumberOfTires] = useState<number | undefined>(4);
+  const router = useRouter();
 
   useEffect(() => {
     const selectedItemId = itemDetailId.slice(8);
@@ -113,6 +120,28 @@ export default function BuyOptions({
     const cartItems = JSON.parse(localStorage.getItem('cartItem') || '').length;
     dispatch(setCartItemCount(cartItems));
   };
+  const handleFastBuy = () => {
+    const existingCartItemsString = localStorage.getItem('cartItem');
+    const existingCartItems = existingCartItemsString
+      ? JSON.parse(existingCartItemsString)
+      : [];
+
+    const itemIndex = existingCartItems.findIndex(
+      (item: CartItemData) => item.tireId === tireId,
+    );
+
+    if (itemIndex > -1) {
+      existingCartItems[itemIndex].numberOfTires += numberOfTires;
+    } else {
+      existingCartItems.push({ tireId, numberOfTires });
+    }
+
+    localStorage.setItem('cartItem', JSON.stringify(existingCartItems));
+
+    const cartItems = JSON.parse(localStorage.getItem('cartItem') || '').length;
+    dispatch(setCartItemCount(cartItems));
+    router.push(`/${lang}/checkout`);
+  };
 
   const handleTooltipClose = () => {
     setTooltipOpen(false);
@@ -130,6 +159,15 @@ export default function BuyOptions({
       text: `${dictionary.addToCart}`,
       function: handleAddToCart,
       icon: <ShoppingCartOutlinedIcon sx={{ height: '14px', width: '14px' }} />,
+    },
+    {
+      text: `${dictionary.fastBuy}`,
+      function: handleFastBuy,
+      icon: (
+        <ShoppingCartCheckoutOutlinedIcon
+          sx={{ height: '14px', width: '14px' }}
+        />
+      ),
     },
   ];
 
