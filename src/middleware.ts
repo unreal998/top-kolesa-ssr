@@ -50,6 +50,9 @@ export function middleware(request: NextRequest) {
 
     // e.g. incoming request is /products
     // The new URL is now /en-US/products
+    if (pathname.startsWith('/private') || pathname.startsWith('/uploads')) {
+      return;
+    }
     return NextResponse.redirect(
       new URL(
         `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
