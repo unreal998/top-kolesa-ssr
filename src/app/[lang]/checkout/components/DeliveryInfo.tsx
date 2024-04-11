@@ -19,7 +19,6 @@ import styled from '@emotion/styled';
 import { inputLabelClasses } from '@mui/material/InputLabel';
 import { SyntheticEvent } from 'react';
 import { type getDictionary } from '@/get-dictionary';
-import { useDispatch } from 'react-redux';
 
 const StyledTextField = styled(TextField)({
   '& .MuiInputBase-input': {
@@ -107,8 +106,6 @@ export function DeliveryInfo({
   handleDelivery,
   dictionary,
 }: DeliveryInfoProps) {
-  const dispatch = useDispatch();
-
   return (
     <Stack
       gap="5px"

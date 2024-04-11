@@ -30,8 +30,6 @@ export function Container({
     }
   }, [dispatch]);
 
-  console.log(orderData);
-
   return (
     <Box
       m={'3% auto 10%'}
