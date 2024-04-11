@@ -21,12 +21,6 @@ import { SyntheticEvent } from 'react';
 import { type getDictionary } from '@/get-dictionary';
 import { useDispatch } from 'react-redux';
 
-import {
-  fetchCityListByInput,
-  fetchWarehouseListByInput,
-  fetchBuyItemAction,
-} from '@/redux/slices/checkoutPageSlice';
-
 const StyledTextField = styled(TextField)({
   '& .MuiInputBase-input': {
     fontFamily: FONTS.MAIN_TEXT_FAMILY,
@@ -211,7 +205,7 @@ export function DeliveryInfo({
             options={optionsData}
             onSelect={(e) => handleCityTextChange(e)}
             onChange={(e, newValue) => {
-              setInputedCityName(newValue);
+              setInputedCityName(newValue as string);
             }}
             renderInput={(params: any) => (
               <StyledTextField
@@ -226,7 +220,7 @@ export function DeliveryInfo({
             disableClearable
             disablePortal
             onSelect={(e) => handleWarehouseTextChange(e)}
-            onChange={(e, newValue) => setSelectedWarehouse(newValue)}
+            onChange={(e, newValue) => setSelectedWarehouse(newValue as string)}
             options={optionsWarehouseData}
             renderInput={(params: any) => (
               <StyledTextField

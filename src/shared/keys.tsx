@@ -1,6 +1,6 @@
 // export const SERVER_URL = 'https://top-kolesa-be.vercel.app';
-export const SERVER_URL = 'https://topkolesa.com.ua';
-// export const SERVER_URL = 'http://localhost:3000';
+// export const SERVER_URL = 'https://topkolesa.com.ua';
+export const SERVER_URL = 'http://localhost:3000';
 
 export const NOVA_POSHTA_API = 'https://api.novaposhta.ua/v2.0/json/';
 export const API_KEY = 'a092079f1673b334914ab2ab539e84c6';
