@@ -19,6 +19,13 @@ import styled from '@emotion/styled';
 import { inputLabelClasses } from '@mui/material/InputLabel';
 import { SyntheticEvent } from 'react';
 import { type getDictionary } from '@/get-dictionary';
+import { useDispatch } from 'react-redux';
+
+import {
+  fetchCityListByInput,
+  fetchWarehouseListByInput,
+  fetchBuyItemAction,
+} from '@/redux/slices/checkoutPageSlice';
 
 const StyledTextField = styled(TextField)({
   '& .MuiInputBase-input': {
@@ -106,6 +113,8 @@ export function DeliveryInfo({
   handleDelivery,
   dictionary,
 }: DeliveryInfoProps) {
+  const dispatch = useDispatch();
+
   return (
     <Stack
       gap="5px"
@@ -201,6 +210,9 @@ export function DeliveryInfo({
             disablePortal
             options={optionsData}
             onSelect={(e) => handleCityTextChange(e)}
+            onChange={(e, newValue) => {
+              setInputedCityName(newValue);
+            }}
             renderInput={(params: any) => (
               <StyledTextField
                 required={true}
@@ -214,6 +226,7 @@ export function DeliveryInfo({
             disableClearable
             disablePortal
             onSelect={(e) => handleWarehouseTextChange(e)}
+            onChange={(e, newValue) => setSelectedWarehouse(newValue)}
             options={optionsWarehouseData}
             renderInput={(params: any) => (
               <StyledTextField

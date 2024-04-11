@@ -73,12 +73,10 @@ export function ContainerCheckout({
   const handleCityTextChange = useCallback(
     (e: SyntheticEvent) => {
       const inputTarget = e.target as HTMLInputElement;
-      if (inputTarget.value.length > 1) {
-        dispatch(fetchCityListByInput(inputTarget.value));
-      }
       setInputedCityName(inputTarget.value);
+      dispatch(fetchCityListByInput(inputTarget.value));
     },
-    [dispatch],
+    [dispatch, fetchCityListByInput],
   );
 
   const isRequiredFieldsPassed = useCallback(() => {

@@ -30,6 +30,8 @@ export function Container({
     }
   }, [dispatch]);
 
+  console.log(orderData);
+
   return (
     <Box
       m={'3% auto 10%'}
@@ -92,7 +94,6 @@ export function Container({
             <Typography variant="subtitle1" fontWeight={600}>
               {dictionary?.shippingAddress}:
             </Typography>
-
             <Typography variant="subtitle1" fontWeight={500}>
               {orderData?.deliveryAddress}
             </Typography>
@@ -146,7 +147,7 @@ export function Container({
               fontWeight={600}
               textAlign={'start'}
               width={'10rem'}>
-              {` ${orderData?.totalAmount}.00 ${dictionary.uah}`}
+              {` ${orderData?.totalAmount * orderData?.itemsList[0]?.count}.00 ${dictionary.uah}`}
             </Typography>
           </Box>
         </Box>
