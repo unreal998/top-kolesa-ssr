@@ -201,6 +201,9 @@ export function DeliveryInfo({
             disablePortal
             options={optionsData}
             onSelect={(e) => handleCityTextChange(e)}
+            onChange={(e, newValue) => {
+              setInputedCityName(newValue as string);
+            }}
             renderInput={(params: any) => (
               <StyledTextField
                 required={true}
@@ -214,6 +217,7 @@ export function DeliveryInfo({
             disableClearable
             disablePortal
             onSelect={(e) => handleWarehouseTextChange(e)}
+            onChange={(e, newValue) => setSelectedWarehouse(newValue as string)}
             options={optionsWarehouseData}
             renderInput={(params: any) => (
               <StyledTextField
