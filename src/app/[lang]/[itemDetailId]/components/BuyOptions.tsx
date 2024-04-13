@@ -31,7 +31,6 @@ import { useRouter } from 'next/navigation';
 type BuyOptionsProps = {
   tireId: number | undefined;
   dictionary: Awaited<ReturnType<typeof getDictionary>>['project'];
-  itemDetailId: string;
   lang: string;
 };
 
@@ -66,7 +65,6 @@ const StyledButton = styled(Button)({
 
 export default function BuyOptions({
   tireId,
-  itemDetailId,
   dictionary,
   lang,
 }: BuyOptionsProps) {
@@ -77,15 +75,11 @@ export default function BuyOptions({
   const router = useRouter();
 
   useEffect(() => {
-    const selectedItemId = itemDetailId.slice(8);
-
     selectedItemData && selectedItemData?.in_stock >= 4
       ? setNumberOfTires(4)
       : setNumberOfTires(selectedItemData?.in_stock);
 
-    dispatch(getShopItems(''));
-    dispatch(setSelectedItemId(selectedItemId || ''));
-  }, [dispatch]);
+  }, [dispatch, selectedItemData]);
 
   const handleNumberOfTires = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;

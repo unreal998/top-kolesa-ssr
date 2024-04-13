@@ -67,7 +67,8 @@ function Container({ itemDetailId, dictionary, lang }: ContainerProps) {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const selectedItemId = itemDetailId.slice(8);
+    const selectedItemName = itemDetailId.split('-');
+    const selectedItemId = selectedItemName[selectedItemName.length - 1];
     dispatch(getShopItems(''));
     dispatch(setSelectedItemId(selectedItemId || ''));
   }, [dispatch]);
@@ -106,7 +107,6 @@ function Container({ itemDetailId, dictionary, lang }: ContainerProps) {
                 lang={lang}
                 tireId={selectedItemData?.id}
                 dictionary={dictionary}
-                itemDetailId={itemDetailId}
               />
               <Tooltips dictionary={dictionary} />
             </Stack>

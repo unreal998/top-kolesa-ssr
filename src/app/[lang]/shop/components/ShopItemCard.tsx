@@ -126,9 +126,8 @@ export function ShopItemCard({
   const handleHoverClose = () => {
     setHoverWindow(false);
   };
-
   return (
-    <Link href={`item-id-${id}`}>
+    <Link href={encodeURI(`${brand} ${name} ${width} ${height} r${diametr} ${weight}${speed} ${id}`.toLowerCase().replaceAll(' ', '-'))}>
       <Stack
         direction="column"
         gap="1rem"
