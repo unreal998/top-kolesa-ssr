@@ -17,6 +17,13 @@ export type FilterParamsResponce = {
   vechileType: string[];
 };
 
+export type FilterParamsResponceMini = {
+  width: string[];
+  diametr: string[];
+  height: string[];
+  brands: string[];
+};
+
 export type CartItemData = CartStorageData & {
   name: string;
   image: string;
@@ -189,7 +196,6 @@ export type OrderData = {
   itemsList: OrderItem[];
 };
 
-
 // DTO
 export type TireSizesDto = {
   width: string[];
@@ -199,6 +205,12 @@ export type TireSizesDto = {
   weight: string[];
   brands: string[];
   prices: number[];
+};
+export type TireSizesMiniDto = {
+  width: string[];
+  diametr: string[];
+  height: string[];
+  brands: string[];
 };
 
 export type TireSizesDataResponceDto = {
@@ -317,4 +329,3 @@ export type ShopDataRequestDto = {
   studded?: string;
   vechileType?: string;
 };
-

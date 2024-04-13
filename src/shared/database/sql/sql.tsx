@@ -1,5 +1,12 @@
 import db from '../database';
-import { OrderDataResponceDto, OrderItemDto, TireSizesDataResponceDto, TireSizesDto, ShopDataRequestDto } from '@/shared/types';
+import {
+  OrderDataResponceDto,
+  OrderItemDto,
+  TireSizesDataResponceDto,
+  TireSizesDto,
+  TireSizesMiniDto,
+  ShopDataRequestDto,
+} from '@/shared/types';
 
 export async function getOrderData(orderId: string) {
   return new Promise((resolve, reject) =>
@@ -153,6 +160,135 @@ export async function getFilterData() {
                                     pricesArray.push(+item.price_uah);
                                   });
                                   responseData.tireSizes.prices = pricesArray;
+                                  connection.release();
+                                  resolve(responseData.tireSizes);
+                                },
+                              );
+                            },
+                          );
+                        },
+                      );
+                    },
+                  );
+                },
+              );
+            },
+          );
+        },
+      );
+    }),
+  );
+}
+
+export async function getFilterMiniData() {
+  return new Promise((resolve, reject) =>
+    db.getConnection((err, connection) => {
+      connection.execute(
+        `SELECT DISTINCT width FROM ${`mod_tires_sizes`}`,
+        function (err: string, result: TireSizesDataResponceDto[]) {
+          if (err) {
+            console.log('=====err===', err);
+          }
+          const widthArray: string[] = [];
+
+          result.forEach((item) => {
+            widthArray.push(item.width);
+          });
+
+          const responseData: {
+            tireSizes: TireSizesMiniDto;
+          } = {
+            tireSizes: {
+              width: [],
+              diametr: [],
+              height: [],
+              brands: [],
+            },
+          };
+          responseData.tireSizes.width = widthArray;
+          connection.execute(
+            `SELECT DISTINCT diametr FROM ${`mod_tires_sizes`} ORDER BY diametr`,
+            function (err: string, result: TireSizesDataResponceDto[]) {
+              if (err) {
+                connection.release();
+                reject(err);
+              }
+              const diametrArray: string[] = [];
+
+              result.forEach((item) => {
+                diametrArray.push(item.diametr);
+              });
+              responseData.tireSizes.diametr = diametrArray;
+              connection.execute(
+                `SELECT DISTINCT height FROM ${`mod_tires_sizes`} ORDER BY height`,
+                function (err: string, result: TireSizesDataResponceDto[]) {
+                  if (err) {
+                    connection.release();
+                    reject(err);
+                  }
+                  const heightArray: string[] = [];
+
+                  result.forEach((item) => {
+                    heightArray.push(item.height);
+                  });
+                  responseData.tireSizes.height = heightArray;
+                  connection.execute(
+                    `SELECT DISTINCT speed FROM ${`mod_tires_sizes`} ORDER BY speed`,
+                    function (err: string, result: TireSizesDataResponceDto[]) {
+                      if (err) {
+                        connection.release();
+                        reject(err);
+                      }
+                      /* const speedArray: string[] = [];
+                      result.forEach((item) => {
+                        speedArray.push(item.speed);
+                      });
+                      responseData.tireSizes.speed = speedArray; */
+                      connection.execute(
+                        `SELECT DISTINCT weight FROM ${`mod_tires_sizes`} ORDER BY weight`,
+                        function (
+                          err: string,
+                          result: TireSizesDataResponceDto[],
+                        ) {
+                          if (err) {
+                            connection.release();
+                            reject(err);
+                          }
+                          /* const weightArray: string[] = [];
+                          result.forEach((item) => {
+                            weightArray.push(item.weight);
+                          });
+                          responseData.tireSizes.weight = weightArray; */
+                          connection.execute(
+                            `SELECT DISTINCT brand FROM ${`mod_tires_prices`} ORDER BY brand`,
+                            function (
+                              err: string,
+                              result: TireSizesDataResponceDto[],
+                            ) {
+                              if (err) {
+                                connection.release();
+                                reject(err);
+                              }
+                              const brandsArray: string[] = [];
+                              result.forEach((item) => {
+                                brandsArray.push(item.brand);
+                              });
+                              responseData.tireSizes.brands = brandsArray;
+                              connection.execute(
+                                `SELECT DISTINCT price_uah FROM ${`mod_tires_prices`} ORDER BY price_uah`,
+                                function (
+                                  err: string,
+                                  result: TireSizesDataResponceDto[],
+                                ) {
+                                  if (err) {
+                                    connection.release();
+                                    reject(err);
+                                  }
+                                  const pricesArray: number[] = [];
+                                  result.forEach((item) => {
+                                    pricesArray.push(+item.price_uah);
+                                  });
+                                  /* responseData.tireSizes.prices = pricesArray; */
                                   connection.release();
                                   resolve(responseData.tireSizes);
                                 },
