@@ -6,6 +6,18 @@ import Header from '@/shared/header/HeaderComponent';
 import Footer from '@/shared/footer/FooterComponent';
 import { ContainerCheckout } from './components/ContainerCheckout';
 
+export async function generateMetadata({
+  params: { lang },
+}: {
+  params: { lang: Locale };
+}) {
+  const dictionary = await getDictionary(lang);
+
+  return {
+    title: `${dictionary.project.metaTitleCheckoutPage}`,
+  };
+}
+
 async function Checkout({ params: { lang } }: { params: { lang: Locale } }) {
   const dictionary = await getDictionary(lang);
   return (

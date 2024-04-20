@@ -6,6 +6,18 @@ import Header from '@/shared/header/HeaderComponent';
 import Footer from '@/shared/footer/FooterComponent';
 import AboutPage from './components/about';
 
+export async function generateMetadata({
+  params: { lang },
+}: {
+  params: { lang: Locale };
+}) {
+  const dictionary = await getDictionary(lang);
+
+  return {
+    title: `${dictionary.project.metaTitleAboutPage}`,
+  };
+}
+
 async function About({ params: { lang } }: { params: { lang: Locale } }) {
   const dictionary = await getDictionary(lang);
   return (
