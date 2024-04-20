@@ -3,6 +3,7 @@ import { getDictionary } from '@/get-dictionary';
 import Header from '@/shared/header/HeaderComponent';
 import Footer from '@/shared/footer/FooterComponent';
 import Container from './components/Container';
+import handler from '@/pages/api/getItemData';
 
 export async function generateMetadata({
   params: { lang, itemDetailId },
@@ -10,11 +11,14 @@ export async function generateMetadata({
   params: { lang: Locale; itemDetailId: string };
 }) {
   const dictionary = await getDictionary(lang);
-  const selectedItemName = itemDetailId.split('-');
-  const selectedItemId = selectedItemName[selectedItemName.length - 1];
+  const metaData = itemDetailId
+    .split('-')
+    .slice(0, -2)
+    .map((word) => word[0].toUpperCase() + word.slice(1))
+    .join(' ');
 
   return {
-    title: `${selectedItemId} ${dictionary.project.metaTitleItemDetailPage1}  ${dictionary.project.metaTitleItemDetailPage2}`,
+    title: ` ${dictionary.project.metaTitleItemDetailPage1} ${metaData} ${dictionary.project.metaTitleItemDetailPage2}`,
   };
 }
 
