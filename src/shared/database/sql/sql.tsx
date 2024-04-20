@@ -263,18 +263,19 @@ export async function getShopData(queryParam: ShopDataRequestDto) {
   });
 }
 
-export async function getItemData() {
+export async function getItemData(id: string) {
   return new Promise((resolve, reject) => {
     db.getConnection((err, connection) => {
       connection.execute(
         `SELECT *
-            FROM ${`mod_tires`}, ${`mod_tires_prices`}
-            WHERE mod_tires.id = mod_tires_prices.tire_id`,
+            FROM mod_tires_prices
+            WHERE id = ${id}`,
         function (err, result) {
           if (err) {
             connection.release();
             reject(err);
           }
+          console.log(JSON.stringify(result), id)
           connection.release();
           resolve(JSON.stringify(result));
         },
