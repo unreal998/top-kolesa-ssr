@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 import { Locale } from '@/i18n-config';
 import { getDictionary } from '@/get-dictionary';
@@ -7,6 +7,18 @@ import Footer from '@/shared/footer/FooterComponent';
 import { GoogleMap } from '@/sections/homePage/GoogleMap';
 import { OurServices } from '@/sections/homePage/OurServices';
 import { TiresInput } from '@/sections/homePage/TiresInput';
+
+export async function generateMetadata({
+  params: { lang },
+}: {
+  params: { lang: Locale };
+}) {
+  const dictionary = await getDictionary(lang);
+
+  return {
+    title: `${dictionary.project.metaTitleMainPage}`,
+  };
+}
 
 async function Home({ params: { lang } }: { params: { lang: Locale } }) {
   const dictionary = await getDictionary(lang);
