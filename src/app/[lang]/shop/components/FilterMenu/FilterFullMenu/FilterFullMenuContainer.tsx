@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect, useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DriveEtaIcon from '@mui/icons-material/DriveEta';
 import { selectActiveTabIndex } from '@/redux/slices/selectors/shopPageSelectors';
