@@ -3,7 +3,6 @@ import { getDictionary } from '@/get-dictionary';
 import Header from '@/shared/header/HeaderComponent';
 import Footer from '@/shared/footer/FooterComponent';
 import Container from './components/Container';
-import handler from '@/pages/api/getItemData';
 
 export async function generateMetadata({
   params: { lang, itemDetailId },
