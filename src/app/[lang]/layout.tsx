@@ -27,9 +27,6 @@ export default function RootLayout({
   return (
     <Providers>
       <html lang={params.lang} className={ptSans.className}>
-        {/* <head>
-          <link rel="icon" href="/favicon.ico" />
-        </head> */}
         <body>
           <main>{children}</main>
         </body>
