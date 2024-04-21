@@ -15,17 +15,12 @@ import {
   Badge,
 } from '@mui/material';
 import { TypographyWithIcon } from '@/shared/components/TypographyWithIcon';
-import {
-  EmailOutlined,
-  Language,
-  MapsHomeWorkOutlined,
-  TimerOutlined,
-} from '@mui/icons-material';
+import { EmailOutlined, Language, TimerOutlined } from '@mui/icons-material';
 import PhoneIcon from '@mui/icons-material/Phone';
 import { type getDictionary } from '@/get-dictionary';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { usePathname } from 'next/navigation';
-import { i18n, type Locale } from '../../i18n-config';
+import { type Locale } from '../../i18n-config';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectCartItemCount,

@@ -12,7 +12,6 @@ import styled from '@emotion/styled';
 import {
   Box,
   Button,
-  Checkbox,
   FormControlLabel,
   FormGroup,
   Radio,

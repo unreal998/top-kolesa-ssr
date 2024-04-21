@@ -1,6 +1,6 @@
 'use client';
 
-import { SyntheticEvent, useState, useCallback, useEffect } from 'react';
+import { SyntheticEvent, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { type getDictionary } from '../../get-dictionary';

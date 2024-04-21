@@ -6,8 +6,6 @@ import Header from '@/shared/header/HeaderComponent';
 import Footer from '@/shared/footer/FooterComponent';
 import AboutPage from './components/about';
 
-import Head from 'next/head';
-
 export async function generateMetadata({
   params: { lang },
 }: {

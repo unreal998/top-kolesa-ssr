@@ -6,7 +6,6 @@ import { useCallback } from 'react';
 import { setCardView } from '@/redux/slices/shopPageSlice';
 import styled from '@emotion/styled';
 import { Apps, FormatAlignJustify } from '@mui/icons-material';
-import { type getDictionary } from '@/get-dictionary';
 
 const ViewButton = styled(Box)({
   backgroundColor: BASE_COLORS.BACKGROUND_WHITE,

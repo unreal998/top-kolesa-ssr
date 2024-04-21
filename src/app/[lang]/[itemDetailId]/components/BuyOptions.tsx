@@ -1,13 +1,9 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  getShopItems,
-  setSelectedItemId,
-  setCartItemCount,
-} from '@/redux/slices/shopPageSlice';
+import { setCartItemCount } from '@/redux/slices/shopPageSlice';
 import { selectSelectedItemData } from '@/redux/slices/selectors/shopPageSelectors';
 
 import {

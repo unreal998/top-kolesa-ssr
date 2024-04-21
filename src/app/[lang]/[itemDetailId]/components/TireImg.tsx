@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { Box, Modal, Stack, Typography, styled } from '@mui/material';
+import { Box, Modal, Stack, styled } from '@mui/material';
 
 import { selectSelectedItemData } from '@/redux/slices/selectors/shopPageSelectors';
 import { SHOP_ITEM_TIRES_IMG_PREFIX } from '@/shared/keys';

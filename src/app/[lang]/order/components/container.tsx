@@ -1,7 +1,7 @@
 'use client';
 
 import { Box, Typography, styled } from '@mui/material';
-import { FONTS, BASE_COLORS, montserrat } from '@/shared/constants';
+import { BASE_COLORS, montserrat } from '@/shared/constants';
 import CheckCircleOutlineRoundedIcon from '@mui/icons-material/CheckCircleOutlineRounded';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
