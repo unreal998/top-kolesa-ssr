@@ -78,7 +78,6 @@ export default function BuyOptions({
     selectedItemData && selectedItemData?.in_stock >= 4
       ? setNumberOfTires(4)
       : setNumberOfTires(selectedItemData?.in_stock);
-
   }, [dispatch, selectedItemData]);
 
   const handleNumberOfTires = (event: React.ChangeEvent<HTMLInputElement>) => {

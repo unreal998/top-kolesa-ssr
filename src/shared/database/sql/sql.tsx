@@ -1,5 +1,11 @@
 import db from '../database';
-import { OrderDataResponceDto, OrderItemDto, TireSizesDataResponceDto, TireSizesDto, ShopDataRequestDto } from '@/shared/types';
+import {
+  OrderDataResponceDto,
+  OrderItemDto,
+  TireSizesDataResponceDto,
+  TireSizesDto,
+  ShopDataRequestDto,
+} from '@/shared/types';
 
 export async function getOrderData(orderId: string) {
   return new Promise((resolve, reject) =>
@@ -275,7 +281,6 @@ export async function getItemData(id: string) {
             connection.release();
             reject(err);
           }
-          console.log(JSON.stringify(result), id)
           connection.release();
           resolve(JSON.stringify(result));
         },

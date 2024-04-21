@@ -189,7 +189,6 @@ export type OrderData = {
   itemsList: OrderItem[];
 };
 
-
 // DTO
 export type TireSizesDto = {
   width: string[];
@@ -317,4 +316,3 @@ export type ShopDataRequestDto = {
   studded?: string;
   vechileType?: string;
 };
-

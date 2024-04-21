@@ -3,7 +3,9 @@ import axios from 'axios';
 
 export async function getItemDataApi(itemId: string) {
   try {
-    const response = await axios.get(`${SERVER_URL}/api/getItemData?id=${itemId}`);
+    const response = await axios.get(
+      `${SERVER_URL}/api/getItemData?id=${itemId}`,
+    );
 
     return response.data;
   } catch (error) {

@@ -72,6 +72,9 @@ export const checkoutSlice = createSlice({
       state.createdOrderId = payload.orderId.toString();
     },
     fetchBuyItemActionFailed(state, { payload }: PayloadAction<string>) {},
+    cleanOrderId(state) {
+      state.createdOrderId = '';
+    },
   },
 });
 
@@ -85,6 +88,7 @@ export const {
   fetchBuyItemAction,
   fetchBuyItemActionSuccess,
   fetchBuyItemActionFailed,
+  cleanOrderId,
 } = checkoutSlice.actions;
 
 export type checkoutReducerState = typeof initialState;

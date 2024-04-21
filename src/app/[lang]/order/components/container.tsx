@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrderData } from '@/redux/slices/orderDataSlice';
 import { selectOrderData } from '@/redux/slices/selectors/orderPage';
 import { type getDictionary } from '@/get-dictionary';
+import { cleanOrderId } from '@/redux/slices/checkoutPageSlice';
 
 const StyledHeadingText = styled(Typography)({
   fontSize: '2rem',
@@ -27,6 +28,7 @@ export function Container({
     const orderId = searchParams.get('id');
     if (orderId) {
       dispatch(fetchOrderData(orderId));
+      dispatch(cleanOrderId());
     }
   }, [dispatch]);
 
