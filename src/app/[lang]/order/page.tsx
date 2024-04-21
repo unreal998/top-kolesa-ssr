@@ -14,6 +14,9 @@ export async function generateMetadata({
 
   return {
     title: `${dictionary.project.metaTitleOrderPage}`,
+    icons: {
+      icon: './favicon.ico',
+    },
   };
 }
 
