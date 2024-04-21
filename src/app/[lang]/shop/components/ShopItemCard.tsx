@@ -127,7 +127,7 @@ export function ShopItemCard({
     setHoverWindow(false);
   };
   return (
-    <Link href={encodeURI(`${brand} ${name} ${width} ${height} r${diametr} ${weight}${speed} ${id}`.toLowerCase().replaceAll(' ', '-'))}>
+    <Link href={encodeURI(`${brand} ${name} ${width} ${height} r${diametr} ${weight}${speed} ${id}`.toLowerCase().replace('/', ' ').replaceAll(' ', '-'))}>
       <Stack
         direction="column"
         gap="1rem"
