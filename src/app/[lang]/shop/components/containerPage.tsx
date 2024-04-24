@@ -19,6 +19,16 @@ import { selectFilterData } from '@/redux/slices/selectors/filterSelectors';
 import FilterShortMenuContainer from './FilterMenu/FilterShortMenu/FilterShortMenuContainer';
 import FilterFullMenuContainer from './FilterMenu/FilterFullMenu/FilterFullMenuContainer';
 import { useSearchParams } from 'next/navigation';
+import {
+  setBrandChange,
+  setPriceChange,
+  setSelectedDiametr,
+  setSelectedProfile,
+  setSelectedWidth,
+  setSeasonChange,
+  setStuddedChange,
+  setVechileTypeChange,
+} from '@/redux/slices/shopPageSlice';
 
 function ContainerPage({
   dictionary,
@@ -33,18 +43,58 @@ function ContainerPage({
 
   useEffect(() => {
     if (searchParams && searchParams.size > 0) {
-      dispatch(
-        getShopItems({
-          price: searchParams.get('price') || undefined,
-          width: searchParams.get('width') || undefined,
-          profile: searchParams.get('profile') || undefined,
-          diametr: searchParams.get('diametr') || undefined,
-          season: searchParams.get('season') || undefined,
-          brand: searchParams.get('brand') || undefined,
-          studded: searchParams.get('studded') || undefined,
-          vechileType: searchParams.get('vechileType') || undefined,
-        }),
-      );
+      const params = {
+        price: searchParams.get('price') || undefined,
+        width: searchParams.get('width') || undefined,
+        profile: searchParams.get('profile') || undefined,
+        diametr: searchParams.get('diametr') || undefined,
+        season: searchParams.get('season') || undefined,
+        brand: searchParams.get('brand') || undefined,
+        studded: searchParams.get('studded') || undefined,
+        vechileType: searchParams.get('vechileType') || undefined,
+      };
+
+      if (params.price) {
+        const priceRange = JSON.parse(params.price);
+        dispatch(setPriceChange(priceRange));
+        console.log('priceRange', priceRange);
+      }
+      if (params.width) {
+        const parsedWidth = JSON.parse(params.width);
+        dispatch(setSelectedWidth(parsedWidth));
+      }
+      if (params.profile) {
+        const parsedProfile = JSON.parse(params.profile);
+        dispatch(setSelectedProfile(parsedProfile));
+      }
+      if (params.diametr) {
+        const parsedDiametr = JSON.parse(params.diametr);
+        dispatch(setSelectedDiametr(parsedDiametr));
+      }
+      if (params.season) {
+        const parsedSeason = JSON.parse(params.season);
+        if (Array.isArray(parsedSeason) && parsedSeason.length > 0) {
+          dispatch(setSeasonChange(parsedSeason.filter(Boolean)));
+        } else {
+          dispatch(setSeasonChange([]));
+        }
+      }
+      if (params.brand) {
+        const parsedBrands = JSON.parse(params.brand);
+        if (Array.isArray(parsedBrands) && parsedBrands.length > 0) {
+          dispatch(setBrandChange(parsedBrands.filter(Boolean)));
+        } else {
+          dispatch(setBrandChange([]));
+        }
+      }
+      if (params.studded) {
+        dispatch(setStuddedChange(params.studded));
+      }
+      if (params.vechileType) {
+        dispatch(setVechileTypeChange(params.vechileType));
+      }
+
+      dispatch(getShopItems(params));
     } else {
       dispatch(getShopItems(''));
     }
