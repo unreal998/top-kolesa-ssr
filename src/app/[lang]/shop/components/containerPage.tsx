@@ -57,7 +57,6 @@ function ContainerPage({
       if (params.price) {
         const priceRange = JSON.parse(params.price);
         dispatch(setPriceChange(priceRange));
-        console.log('priceRange', priceRange);
       }
       if (params.width) {
         const parsedWidth = JSON.parse(params.width);

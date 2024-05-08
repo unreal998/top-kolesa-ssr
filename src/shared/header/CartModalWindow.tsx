@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
+  selectCartItemsList,
   selectCartModalWindowOpen,
-  selectShopItemsList,
 } from '@/redux/slices/selectors/shopPageSelectors';
 
 import {
@@ -28,7 +28,6 @@ import { BASE_COLORS, FILTER_COLORS } from '@/shared/constants';
 import EmptyCart from './EmptyCart';
 import { type getDictionary } from '@/get-dictionary';
 import Link from 'next/link';
-import path from 'path';
 import { usePathname } from 'next/navigation';
 import { montserrat } from '@/shared/constants';
 
@@ -66,7 +65,7 @@ export default function CartModalWindow({
   const dispatch = useDispatch();
   const pathName = usePathname();
   const cartModalWindowOpen = useSelector(selectCartModalWindowOpen);
-  const shopItemsList = useSelector(selectShopItemsList());
+  const shopItemsList = useSelector(selectCartItemsList());
   const [openDrawer, setOpenDrawer] = useState(false);
   const [cartItems, updateCartItems] = useState<CartStorageData[]>([]);
   const [cartItemDetails, updateCartItemDetails] = useState<CartItemData[]>([]);

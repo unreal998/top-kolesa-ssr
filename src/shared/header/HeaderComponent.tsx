@@ -28,7 +28,7 @@ import {
 } from '@/redux/slices/selectors/shopPageSelectors';
 import {
   setCartItemCount,
-  getShopItems,
+  getCartItems,
   setCartModalWindowOpen,
 } from '@/redux/slices/shopPageSlice';
 import MenuModalWindow from './MenuModalWindow';
@@ -104,7 +104,7 @@ function Header({
   }, [dispatch, cartItemCount, cartModalWindowOpen]);
 
   useEffect(() => {
-    dispatch(getShopItems(''));
+    dispatch(getCartItems(''));
   }, [dispatch]);
 
   const handleLanguageClick = useCallback((event: SyntheticEvent) => {

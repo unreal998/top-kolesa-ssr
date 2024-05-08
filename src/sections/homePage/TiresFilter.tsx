@@ -137,34 +137,6 @@ function TiresFilter({
     dispatch(setBrandChange([brand]));
   };
 
-  /* history(
-      `shop/?price=${JSON.stringify([
-        Math.min.apply(null, filtersParams.prices),
-        Math.max.apply(null, filtersParams.prices),
-      ])}&width=${JSON.stringify(width)}&profile=${JSON.stringify(
-        profile,
-      )}&diametr=${JSON.stringify(diametr)}&season=${JSON.stringify(
-        season === 'summer'
-          ? 'summer'
-          : season === 'winter'
-            ? 'winter'
-            : season === 'all-season'
-              ? 'all-season'
-              : '',
-      )}&brand=${JSON.stringify(brand)}`,
-      { replace: true },
-    );
-  }, [
-    brand,
-    diametr,
-    filtersParams.prices,
-    history,
-    profile,
-    season,
-    width,
-    dispatch,
-  ]); */
-
   const handleAutocompleteChange = useCallback(
     (type: FieldType) =>
       (

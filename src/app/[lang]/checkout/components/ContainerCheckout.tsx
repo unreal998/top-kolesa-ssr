@@ -20,7 +20,7 @@ import {
   selectWarehoutListData,
   selectCreatedOrderId,
 } from '@/redux/slices/selectors/checkout';
-import { selectShopItemsList } from '@/redux/slices/selectors/shopPageSelectors';
+import { selectCartItemsList } from '@/redux/slices/selectors/shopPageSelectors';
 import { itemBuyDataBuilder } from '../utils/itemBuyDataBuilder';
 import { SHOP_ITEM_TIRES_IMG_PREFIX } from '@/shared/keys';
 import {
@@ -51,7 +51,7 @@ export function ContainerCheckout({
   const cityListData = useSelector(selectCityListData());
   const warehouseData = useSelector(selectWarehoutListData());
   const fetchedCityName = useSelector(selectFetchedCityName());
-  const shopItemsList = useSelector(selectShopItemsList());
+  const shopItemsList = useSelector(selectCartItemsList());
   const [deliveryState, changeDeliveryState] = useState('post');
   const [paymentState, changePaymentState] = useState('cash');
   const [checkoutItemsDetails, setCheckoutItemsDetails] = useState<

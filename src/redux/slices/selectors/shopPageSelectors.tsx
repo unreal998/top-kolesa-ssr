@@ -20,6 +20,11 @@ export const selectShopItemsList =
   ({ shopPageSliceData }: ShopSliceStore) =>
     shopPageSliceData.itemsList;
 
+export const selectCartItemsList =
+  () =>
+  ({ shopPageSliceData }: ShopSliceStore) =>
+    shopPageSliceData.cartItems;
+
 export const selectCurrentPageItemList =
   () =>
   ({ shopPageSliceData }: ShopSliceStore) => {

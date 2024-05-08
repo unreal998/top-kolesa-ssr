@@ -76,7 +76,7 @@ const FilterShortMenuContainer = ({
       selectedPrice[0] === minPrice &&
       selectedPrice[1] === maxPrice &&
       selectedVechileType === '';
-    if (pathName) {
+    if (pathName && minPrice !== Infinity && maxPrice !== -Infinity) {
       if (isFilterBackToInitial) {
         const path = pathName.replace(/\?.*/gm, '');
         router.push(path);
@@ -108,6 +108,7 @@ const FilterShortMenuContainer = ({
     selectedStudded,
     selectedVechileType,
     minPrice,
+    pathName,
     maxPrice,
   ]);
 

@@ -2,6 +2,9 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { getType } from '@reduxjs/toolkit';
 import { ActionType } from 'typesafe-actions';
 import {
+  getCartItems,
+  getCartItemsFailure,
+  getCartItemsSuccess,
   getShopItems,
   getShopItemsFailure,
   getShopItemsSuccess,
@@ -20,6 +23,18 @@ export function* getShopItemsSaga({
   }
 }
 
+export function* getCartItemsSaga({
+  payload,
+}: ActionType<typeof getCartItems>) {
+  try {
+    const result: ShopData = yield call(getShopPageItems, payload);
+    yield put(getCartItemsSuccess(result));
+  } catch (error) {
+    yield put(getCartItemsFailure(error as string));
+  }
+}
+
 export function* watchShopGetItems() {
   yield takeLatest(getType(getShopItems), getShopItemsSaga);
+  yield takeLatest(getType(getCartItems), getCartItemsSaga);
 }

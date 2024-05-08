@@ -53,6 +53,7 @@ type ShopPageState = {
   selectedStudded: string;
   cartModalWindowOpen: boolean;
   isLoading: boolean;
+  cartItems: ShopItemAPI[];
 };
 
 export type FilterParams = {
@@ -89,6 +90,7 @@ const initialState: ShopPageState = {
   selectedStudded: '',
   cartModalWindowOpen: false,
   isLoading: false,
+  cartItems: [],
 };
 
 export const shopPageSlice = createSlice({
@@ -106,6 +108,19 @@ export const shopPageSlice = createSlice({
       state.isLoading = false;
     },
     getShopItemsFailure(state, { payload }: PayloadAction<string>) {
+      state.isLoading = false;
+    },
+    getCartItems(state, { payload }: PayloadAction<FilterParams | ''>) {
+      state.isLoading = true;
+    },
+    getCartItemsSuccess(state, { payload }: PayloadAction<ShopData>) {
+      state.cartItems = sortItemsList(
+        state.sortParams.sortBy,
+        payload.tiresList,
+      );
+      state.isLoading = false;
+    },
+    getCartItemsFailure(state, { payload }: PayloadAction<string>) {
       state.isLoading = false;
     },
     setSelectedItemId(state, { payload }: PayloadAction<string>) {
@@ -228,6 +243,9 @@ export const {
   setVechileTypeChange,
   setResetStudded,
   setCartModalWindowOpen,
+  getCartItems,
+  getCartItemsSuccess,
+  getCartItemsFailure,
 } = shopPageSlice.actions;
 
 export type shopPageReducerState = typeof initialState;
