@@ -18,7 +18,7 @@ export function Copyright() {
           }}
         />
       }{' '}
-      2023 TopKolesa. All Rights Reserved.
+      2024 TopKolesa. All Rights Reserved.
     </Typography>
   );
 }
