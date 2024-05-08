@@ -109,7 +109,11 @@ export function ShopItemTable({
 
   return (
     <Link
-      href={`/item?id=${id.toString()}`}
+      href={encodeURI(
+        `${brand} ${name} ${width} ${height} r${diametr} ${weight}${speed} ${id}`
+          .toLowerCase()
+          .replace('/', ' ')
+          .replaceAll(' ', '-'))}
       sx={{
         textDecoration: 'none',
         outline: 'none',
