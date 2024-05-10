@@ -106,7 +106,7 @@ function FilterFullMenuDiametr({
       </Box>
       <ButtonsContainer>
         {filteredDiamenrOptions.length > 0 ? (
-          filteredDiamenrOptions.slice(1).map((diametrOption) => (
+          filteredDiamenrOptions.map((diametrOption) => (
             <StyledButton
               key={diametrOption}
               variant="outlined"

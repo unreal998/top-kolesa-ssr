@@ -105,7 +105,7 @@ function FilterFullMenuProfileData({
       </Box>
       <ButtonsContainer>
         {filteredProfileOptions.length > 0 ? (
-          filteredProfileOptions.slice(1).map((heightOption) => (
+          filteredProfileOptions.map((heightOption) => (
             <StyledButton
               key={heightOption}
               variant="outlined"
