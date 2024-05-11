@@ -70,6 +70,7 @@ function FilterFullMenuWidthData({
   const handleResetFilterDiametr = () => {
     dispatch(setSelectedWidth(''));
   };
+  console.log(filtersParams.width);
 
   return (
     <>
@@ -103,7 +104,7 @@ function FilterFullMenuWidthData({
       </Box>
       <ButtonsContainer>
         {filteredWidthOptions.length > 0 ? (
-          filteredWidthOptions.slice(1).map((widthOption) => (
+          filteredWidthOptions.map((widthOption) => (
             <StyledButton
               key={widthOption}
               className={montserrat.className}
