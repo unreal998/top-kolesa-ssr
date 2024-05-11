@@ -78,17 +78,19 @@ export default function BuyOptions({
 
   const handleNumberOfTires = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    let numValue = Number(value);
-
-    numValue = Math.max(numValue, 1);
-
-    const maxAvailable = selectedItemData?.in_stock ?? 1;
-    numValue = Math.min(numValue, maxAvailable);
-
-    setNumberOfTires(numValue);
+    if (value === '') {
+      setNumberOfTires(undefined);
+    } else {
+      let numValue = Number(value);
+      numValue = Math.max(numValue, 1);
+      const maxAvailable = selectedItemData?.in_stock ?? 1;
+      numValue = Math.min(numValue, maxAvailable);
+      setNumberOfTires(numValue);
+    }
   };
 
   const handleAddToCart = () => {
+    const numberOfTiresToAdd = numberOfTires || 1;
     const existingCartItemsString = localStorage.getItem('cartItem');
     const existingCartItems = existingCartItemsString
       ? JSON.parse(existingCartItemsString)
@@ -99,9 +101,9 @@ export default function BuyOptions({
     );
 
     if (itemIndex > -1) {
-      existingCartItems[itemIndex].numberOfTires += numberOfTires;
+      existingCartItems[itemIndex].numberOfTires += numberOfTiresToAdd;
     } else {
-      existingCartItems.push({ tireId, numberOfTires });
+      existingCartItems.push({ tireId, numberOfTires: numberOfTiresToAdd });
     }
 
     localStorage.setItem('cartItem', JSON.stringify(existingCartItems));
@@ -109,7 +111,9 @@ export default function BuyOptions({
     const cartItems = JSON.parse(localStorage.getItem('cartItem') || '').length;
     dispatch(setCartItemCount(cartItems));
   };
+
   const handleFastBuy = () => {
+    const numberOfTiresToAdd = numberOfTires || 1;
     const existingCartItemsString = localStorage.getItem('cartItem');
     const existingCartItems = existingCartItemsString
       ? JSON.parse(existingCartItemsString)
@@ -120,9 +124,9 @@ export default function BuyOptions({
     );
 
     if (itemIndex > -1) {
-      existingCartItems[itemIndex].numberOfTires += numberOfTires;
+      existingCartItems[itemIndex].numberOfTires += numberOfTiresToAdd;
     } else {
-      existingCartItems.push({ tireId, numberOfTires });
+      existingCartItems.push({ tireId, numberOfTires: numberOfTiresToAdd });
     }
 
     localStorage.setItem('cartItem', JSON.stringify(existingCartItems));
@@ -191,7 +195,13 @@ export default function BuyOptions({
             gap: '4rem',
           },
         }}>
-        <ClickAwayListener onClickAway={handleTooltipClose}>
+        <ClickAwayListener
+          onClickAway={() => {
+            handleTooltipClose();
+            if (numberOfTires === undefined) {
+              setNumberOfTires(1);
+            }
+          }}>
           <Tooltip
             PopperProps={{
               disablePortal: true,
