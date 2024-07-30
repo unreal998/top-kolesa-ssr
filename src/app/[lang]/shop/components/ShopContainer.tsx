@@ -59,6 +59,7 @@ export function ShopContainer({
   const cardView = useSelector(selectCardView);
   const isLoading = useSelector(selectIsLoading);
   const [siblingCount, setSiblingCount] = useState(1);
+  const [showNoFilterResults, setShowNoFilterResults] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -73,6 +74,14 @@ export function ShopContainer({
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowNoFilterResults(true);
+    }, 500);
+
+    return () => clearTimeout(timeout);
+  }, [shopItems]);
 
   const handlePageChange = useCallback(
     (event: ChangeEvent<unknown>, page: number) => {
@@ -152,9 +161,25 @@ export function ShopContainer({
                 </Grid>
               ))
             ) : (
-              <NoFilterResults dictionary={dictionary} />
+              <></>
             )}
           </StyledGridBox>
+          {!shopItems || shopItems.length === 0 ? (
+            <Box
+              display={'flex'}
+              flexDirection={'column'}
+              alignItems={'center'}
+              justifyContent={'center'}
+              height={'50vh'}>
+              {showNoFilterResults ? (
+                <NoFilterResults dictionary={dictionary} />
+              ) : (
+                <Loader />
+              )}
+            </Box>
+          ) : (
+            <></>
+          )}
           <Pagination
             onChange={handlePageChange}
             count={pagesCount}
@@ -180,3 +205,4 @@ export function ShopContainer({
     </Stack>
   );
 }
+``;
