@@ -15,14 +15,15 @@ export async function getShopPageItems(params: '' | FilterParams) {
       studded,
       vechileType,
     } = params;
+
+    const priceRange = JSON.parse(price as string);
+
     response = await axios.get(
-      `${SERVER_URL}/api/getShopData?price=${JSON.stringify(
-        JSON.parse(price as string)[0],
-      )}-${JSON.stringify(
-        JSON.parse(price as string)[1],
-      )}&width=${width}&profile=${profile}&diametr=${diametr}&season=${season}&brand=${brand}&studded=${studded}&vechileType=${
-        vechileType || ''
-      }`,
+      `${SERVER_URL}/api/getShopData?price=${encodeURIComponent(
+        priceRange[0],
+      )}-${encodeURIComponent(
+        priceRange[1],
+      )}&width=${encodeURIComponent(width)}&profile=${encodeURIComponent(profile)}&diametr=${encodeURIComponent(diametr)}&season=${encodeURIComponent(season)}&brand=${encodeURIComponent(brand)}&studded=${encodeURIComponent(studded)}&vechileType=${encodeURIComponent(vechileType || '')}`,
     );
     return response.data;
   } else {
