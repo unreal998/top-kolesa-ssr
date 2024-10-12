@@ -3,7 +3,6 @@ import axios, { AxiosResponse } from 'axios';
 import { FilterParams } from '../slices/shopPageSlice';
 
 export async function getShopPageItems(params: '' | FilterParams) {
-  debugger
   let response: AxiosResponse<any, any>;
   if (params !== '') {
     const {
