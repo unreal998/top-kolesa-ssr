@@ -42,7 +42,7 @@ function ContainerPage({
   const [isInitialized, setIsInitialized] = useState<boolean>(true);
 
   useEffect(() => {
-    if (searchParams && searchParams.size > 0) {
+    if (searchParams && (searchParams.size > 0 || searchParams?.toString())) {
       const params = {
         price: searchParams.get('price') || undefined,
         width: searchParams.get('width') || undefined,

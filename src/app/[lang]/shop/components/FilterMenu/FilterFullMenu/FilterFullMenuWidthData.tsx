@@ -12,7 +12,7 @@ import { type getDictionary } from '@/get-dictionary';
 
 import ClearIcon from '@mui/icons-material/Clear';
 import { Box, Button, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import styled from '@mui/system/styled';
 
 import { FILTER_COLORS, montserrat } from '@/shared/constants';
 

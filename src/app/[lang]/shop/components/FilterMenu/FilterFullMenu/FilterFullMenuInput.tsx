@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectSearchInput } from '@/redux/slices/selectors/shopPageSelectors';
 
 import { Box } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import styled from '@mui/system/styled';
 import { AiOutlineClose } from 'react-icons/ai';
 import { BsSearch } from 'react-icons/bs';
 

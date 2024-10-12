@@ -13,7 +13,7 @@ import {
 
 import { Box, Button, Typography } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
-import { styled } from '@mui/material/styles';
+import styled from '@mui/system/styled';
 
 import { FILTER_COLORS } from '@/shared/constants';
 import { montserrat } from '@/shared/constants';
